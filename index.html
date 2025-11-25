@@ -1478,6 +1478,143 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Contradiction Section */
+    .contradiction-section {
+      background: #FFF8E7;
+      border-top: 3px solid var(--accent-rust);
+      border-bottom: 3px solid var(--accent-rust);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .comparison-card {
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .comparison-card.rejected {
+      border-color: var(--accent-teal);
+    }
+
+    .comparison-card.approved {
+      border-color: var(--accent-rust);
+    }
+
+    .comparison-header {
+      padding: 1rem 1.25rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-card.rejected .comparison-header {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    .comparison-card.approved .comparison-header {
+      background: var(--accent-rust);
+      color: white;
+    }
+
+    .comparison-body {
+      padding: 1.25rem;
+    }
+
+    .comparison-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .comparison-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comparison-list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .comparison-list li:last-child {
+      border-bottom: none;
+    }
+
+    .comparison-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .comparison-card.rejected .comparison-list li::before {
+      background: var(--accent-teal);
+    }
+
+    .comparison-card.approved .comparison-list li::before {
+      background: var(--accent-rust);
+    }
+
+    .quote-attribution {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--bg-cream-dark);
+      border-left: 3px solid var(--accent-rust);
+      font-style: italic;
+    }
+
+    .quote-attribution cite {
+      display: block;
+      font-style: normal;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .quote-attribution cite a {
+      color: var(--accent-teal);
+    }
+
+    .tipa-callout {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: white;
+      border: 2px dashed var(--accent-rust);
+    }
+
+    .tipa-callout-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent-rust);
+      margin-bottom: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -1920,6 +2057,63 @@
           <div class="timeline-title">$15M Privatized Surveillance Pipeline</div>
           <p class="timeline-desc">They're back—this time routing money through a private nonprofit to bypass the oversight that stopped them before.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Contradiction -->
+  <section id="contradiction" class="contradiction-section">
+    <div class="container">
+      <div class="fade-in">
+        <div class="section-label">The Double Standard</div>
+        <h2 class="section-title">Same Surveillance, Fewer Protections</h2>
+        <p class="section-intro">
+          Mayor O'Connell abandoned Fusus because federal "erosions in the rule of law" made him doubt whether Metro's guardrails would hold. Now he's backing a system with <em>no guardrails at all</em>.
+        </p>
+      </div>
+
+      <div class="comparison-grid fade-in">
+        <div class="comparison-card rejected">
+          <div class="comparison-header">Fusus — Rejected</div>
+          <div class="comparison-body">
+            <div class="comparison-title">What O'Connell Said Was Too Risky</div>
+            <ul class="comparison-list">
+              <li><strong>Public agency control</strong> — MNPD would operate the system</li>
+              <li><strong>Council passed guardrails</strong> — BL2025-120 established oversight requirements</li>
+              <li><strong>Public records apply</strong> — Metro subject to Tennessee open records laws</li>
+              <li><strong>Local accountability</strong> — Voters could hold Metro officials responsible</li>
+              <li><strong>Transparent process</strong> — Four council votes over three years</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="comparison-card approved">
+          <div class="comparison-header">Downtown Partnership MOU — Approved</div>
+          <div class="comparison-body">
+            <div class="comparison-title">What O'Connell Signed Anyway</div>
+            <ul class="comparison-list">
+              <li><strong>Private nonprofit control</strong> — No public accountability</li>
+              <li><strong>Zero guardrails</strong> — Metro explicitly waives oversight</li>
+              <li><strong>No public records</strong> — Private entity not subject to FOIA</li>
+              <li><strong>No local accountability</strong> — BID not elected by Nashville voters</li>
+              <li><strong>Minimal notice</strong> — Filed Friday before Thanksgiving, vote days later</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-attribution fade-in">
+        "It's going to be very hard to propose something they would support right now."
+        <cite>— Mayor Freddie O'Connell on surveillance, April 2025
+          <a href="https://nashvillebanner.com/2025/04/28/metro-nashville-fusus-freddie-oconnell/" target="_blank" rel="noopener">Nashville Banner</a>
+        </cite>
+      </div>
+
+      <div class="tipa-callout fade-in">
+        <div class="tipa-callout-title">Why Private Control Makes It Worse, Not Better</div>
+        <p>
+          Under the <strong>Tennessee Information Protection Act (TIPA)</strong>, private entities like the Downtown Partnership can share <em>any and all data</em> with law enforcement—no warrant required, no guardrails possible. The same concerns O'Connell cited for abandoning Fusus apply here with <strong>even fewer protections</strong>. Federal agencies can request data directly from a private nonprofit that has no obligation to refuse.
+        </p>
       </div>
     </div>
   </section>
