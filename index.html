@@ -1338,19 +1338,28 @@
     .affect-tab {
       background: var(--accent-rust);
       color: white !important;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      padding: 0.6rem 1.25rem;
+      border-radius: 50px;
       font-weight: 700 !important;
       cursor: pointer;
       transition: all 0.2s ease;
-      border: none;
+      border: 2px solid var(--accent-rust);
       font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(184, 92, 56, 0.4);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 2px 8px rgba(184, 92, 56, 0.4); }
+      50% { box-shadow: 0 4px 16px rgba(184, 92, 56, 0.6); }
     }
 
     .affect-tab:hover {
       background: var(--accent-rust-light);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(184, 92, 56, 0.5);
+      animation: none;
     }
 
     /* Audience Modal */
