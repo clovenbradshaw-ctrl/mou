@@ -1328,14 +1328,229 @@
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    
+
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* How Does This Affect You Tab */
+    .affect-tab {
+      background: var(--accent-rust);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+    }
+
+    .affect-tab:hover {
+      background: var(--accent-rust-light);
+      transform: translateY(-1px);
+    }
+
+    /* Audience Modal */
+    .audience-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .audience-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .audience-modal {
+      background: var(--bg-cream);
+      border-radius: 8px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .audience-modal-overlay.active .audience-modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: var(--bg-cream);
+      z-index: 10;
+    }
+
+    .modal-header h2 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0.5rem;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--accent-rust);
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-intro {
+      font-size: 1.05rem;
+      color: var(--text-body);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .modal-audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .modal-audience-card {
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+      padding: 1.25rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: block;
+    }
+
+    .modal-audience-card:hover {
+      border-color: var(--accent-teal);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .modal-card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-card-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .modal-header {
+        padding: 1rem 1.25rem;
+      }
+
+      .modal-header h2 {
+        font-size: 1.25rem;
+      }
+
+      .modal-body {
+        padding: 1.25rem;
+      }
+
+      .modal-audience-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Audience Modal -->
+  <div class="audience-modal-overlay" id="audienceModal" onclick="closeAudienceModal(event)">
+    <div class="audience-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>How Does This Affect You?</h2>
+        <button class="modal-close" onclick="closeAudienceModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">
+          Different communities face different risks from this surveillance infrastructure. Select your community to learn more about specific impacts and concerns:
+        </p>
+        <div class="modal-audience-grid">
+          <a href="immigrant-communities.html" class="modal-audience-card">
+            <div class="modal-card-icon">🌎</div>
+            <div class="modal-card-title">Immigrant Communities</div>
+            <div class="modal-card-desc">ICE connections, sanctuary implications, and how this surveillance could enable federal enforcement</div>
+          </a>
+
+          <a href="downtown-residents.html" class="modal-audience-card">
+            <div class="modal-card-icon">🏙️</div>
+            <div class="modal-card-title">Downtown Residents & Workers</div>
+            <div class="modal-card-desc">What cameras and monitoring in your neighborhood actually means for daily life</div>
+          </a>
+
+          <a href="fiscal-accountability.html" class="modal-audience-card">
+            <div class="modal-card-icon">📊</div>
+            <div class="modal-card-title">Fiscal Conservatives</div>
+            <div class="modal-card-desc">$15M in spending with zero oversight, problematic contractors, and accountability failures</div>
+          </a>
+
+          <a href="privacy-advocates.html" class="modal-audience-card">
+            <div class="modal-card-icon">🔐</div>
+            <div class="modal-card-title">Privacy & Civil Liberties</div>
+            <div class="modal-card-desc">Technical details on Fivecast, data collection scope, and surveillance architecture</div>
+          </a>
+
+          <a href="organizers-activists.html" class="modal-audience-card">
+            <div class="modal-card-icon">✊</div>
+            <div class="modal-card-title">Organizers & Activists</div>
+            <div class="modal-card-desc">Social media monitoring, network mapping, and protest surveillance implications</div>
+          </a>
+
+          <a href="faith-communities.html" class="modal-audience-card">
+            <div class="modal-card-icon">⛪</div>
+            <div class="modal-card-title">Faith Communities</div>
+            <div class="modal-card-desc">Protecting vulnerable congregants, moral implications, and sanctuary considerations</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Sticky CTA -->
   <div class="sticky-cta" id="stickyCta">
@@ -1347,6 +1562,7 @@
     <div class="header-inner">
       <div class="site-name">Nashville Community Safety Network</div>
       <nav class="nav-links">
+        <button class="affect-tab" onclick="openAudienceModal()">How does this affect you?</button>
         <a href="#the-bypass">How It Works</a>
         <a href="#whats-in-it">Equipment</a>
         <a href="#track-record">Track Record</a>
@@ -1927,9 +2143,28 @@
   </footer>
 
   <script>
+    // Audience Modal Functions
+    function openAudienceModal() {
+      document.getElementById('audienceModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAudienceModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('audienceModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAudienceModal();
+      }
+    });
+
     // Countdown Timer
     function updateCountdown() {
-      const voteDate = new Date('2025-12-04T18:00:00-06:00'); // 6 PM CST
+      const voteDate = new Date('2025-12-04T18:30:00-06:00'); // 6:30 PM CT
       const now = new Date();
       const diff = voteDate - now;
       
