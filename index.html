@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop the Surveillance MOU | Nashville Community Safety Network</title>
+  <meta name="description" content="Nashville has rejected surveillance overreach before. Now they're back with $15M and zero oversight. Take action before December 4.">
+  <meta property="og:title" content="Stop the Downtown Partnership Surveillance MOU">
+  <meta property="og:description" content="$15M in surveillance equipment, controlled by a private nonprofit, with zero Metro oversight. Nashville Council votes December 4.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    section[id] {
+      scroll-margin-top: 20px;
+    }
+    
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-teal-dark: #3A6359;
+      --accent-rust: #B85C38;
+      --accent-rust-light: #D4714A;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+    }
+    
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    
+    ::selection {
+      background: var(--accent-teal);
+      color: white;
+    }
+    
+    /* Sticky CTA Button */
+    .sticky-cta {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .sticky-cta.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    
+    .sticky-cta a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-rust);
+      color: white;
+      padding: 1rem 1.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(184, 92, 56, 0.4);
+      transition: all 0.2s ease;
+    }
+    
+    .sticky-cta a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(184, 92, 56, 0.5);
+    }
+    
+    /* Header/Nav */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .site-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-teal);
+    }
+    
+    .nav-links a[href*="instagram"] {
+      color: var(--accent-teal);
+      font-weight: 600;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      border-bottom: 2px solid var(--border-light);
+    }
+    
+    .hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    /* Countdown Timer */
+    .countdown-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--accent-rust);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      font-family: 'Archivo', sans-serif;
+    }
+    
+    .countdown-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .countdown-timer {
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .countdown-unit {
+      text-align: center;
+    }
+    
+    .countdown-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    
+    .countdown-unit-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    
+    .hero-visual {
+      margin: 1.5rem auto;
+      max-width: 450px;
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+    }
+    
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--accent-teal);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-body);
+      max-width: 550px;
+      margin: 0 auto 2rem;
+    }
+    
+    .hero-signature-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem auto 2.5rem;
+      max-width: 600px;
+      padding: 1.5rem;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+    }
+    
+    .signature-box {
+      flex-shrink: 0;
+      width: 200px;
+      border-right: 2px solid var(--border-light);
+      padding-right: 1.5rem;
+    }
+    
+    .signature-box img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      object-position: center 8%;
+      display: block;
+    }
+    
+    .signature-text {
+      flex: 1;
+      text-align: left;
+    }
+    
+    .signature-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-rust);
+      margin-bottom: 0.25rem;
+    }
+    
+    .signature-detail {
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+    
+    @media (max-width: 640px) {
+      .hero-signature-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .signature-box {
+        border-right: none;
+        border-bottom: 2px solid var(--border-light);
+        padding-right: 0;
+        padding-bottom: 1rem;
+        width: 180px;
+      }
+      
+      .signature-text {
+        text-align: center;
+      }
+      
+      .countdown-banner {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+      }
+    }
+    
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    
+    .btn-primary {
+      background: var(--accent-teal);
+      color: white;
+      padding: 0.875rem 1.75rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-teal-dark);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-teal);
+      padding: 0.8rem 1.65rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 2px solid var(--accent-teal);
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--accent-teal);
+      color: white;
+    }
+    
+    /* TL;DR Box */
+    .tldr-section {
+      padding: 2.5rem 1.5rem;
+      background: var(--accent-rust);
+      color: white;
+    }
+    
+    .tldr-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .tldr-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.75rem;
+    }
+    
+    .tldr-content {
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+    
+    .tldr-content strong {
+      color: var(--highlight-yellow);
+    }
+    
+    .tldr-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .tldr-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    
+    .tldr-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .tldr-point-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    /* Sections */
+    section {
+      padding: 4rem 1.5rem;
+    }
+    
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    
+    .container-wide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .section-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      color: var(--accent-rust);
+    }
+    
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    
+    .section-intro {
+      font-size: 1.1rem;
+      color: var(--text-body);
+      margin-bottom: 2.5rem;
+    }
+    
+    /* Definition tooltips */
+    .defined-term {
+      border-bottom: 1px dotted var(--accent-teal);
+      cursor: help;
+      position: relative;
+    }
+    
+    .defined-term:hover::after {
+      content: attr(data-definition);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text-dark);
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      max-width: 280px;
+      white-space: normal;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    /* Highlight Box */
+    .highlight-box {
+      padding: 1.5rem;
+      background: var(--highlight-yellow);
+      border-left: 4px solid var(--accent-rust);
+      margin-bottom: 2.5rem;
+    }
+    
+    .highlight-box p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    
+    /* Stats */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      justify-content: center;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 1rem 1.5rem;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+      min-width: 140px;
+    }
+    
+    .stat-value {
+      font-family: 'Archivo', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent-rust);
+    }
+    
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    /* Steps (How It Works) */
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+    
+    .step-number {
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: var(--accent-rust);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .step-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .step-desc {
+      color: var(--text-body);
+      font-size: 0.95rem;
+    }
+    
+    /* Timeline */
+    .timeline {
+      margin-top: 2rem;
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      padding-bottom: 2rem;
+      border-left: 2px solid var(--border-light);
+    }
+    
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .timeline-item.victory { border-color: var(--accent-teal); }
+    .timeline-item.warning { border-color: var(--accent-rust); }
+    
+    .timeline-marker {
+      position: absolute;
+      left: -0.6rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .timeline-item.victory .timeline-marker { background: var(--accent-teal); }
+    .timeline-item.warning .timeline-marker { background: var(--accent-rust); }
+    
+    .timeline-year {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    
+    .timeline-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .timeline-item.victory .timeline-title { color: var(--accent-teal); }
+    .timeline-item.warning .timeline-title { color: var(--accent-rust); }
+    
+    .timeline-desc {
+      color: var(--text-body);
+      font-size: 0.95rem;
+    }
+    
+    /* Equipment/Issues List */
+    .issue-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    
+    .issue-card {
+      padding: 1.25rem;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+    }
+    
+    .issue-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .issue-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .issue-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    /* Fivecast Warning */
+    .warning-section {
+      background: #FDF8F3;
+      border: 3px solid #B85C38;
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+    
+    .warning-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .warning-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #B85C38;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    
+    .warning-header h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .warning-tagline {
+      color: var(--text-body);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    
+    .capability-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: #F5F0E6;
+      border-radius: 6px;
+      align-items: flex-start;
+    }
+    
+    .capability-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .capability-text {
+      flex: 1;
+    }
+    
+    .capability-text strong {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      display: block;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .capability-text span {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+    
+    .users-box {
+      background: #F5F0E6;
+      padding: 1.75rem;
+      border-radius: 6px;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    
+    .users-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #B85C38;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    
+    .agency-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .agency-badge {
+      padding: 0.5rem 1rem;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    
+    .users-note {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      font-style: italic;
+      line-height: 1.6;
+    }
+    
+    /* Fivecast Images */
+    .fivecast-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 0 0 2rem 0;
+    }
+    
+    .fivecast-image-item {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 3px solid #D4CFC3;
+      background: white;
+    }
+    
+    .fivecast-image-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .image-caption {
+      padding: 0.75rem 1rem;
+      background: white;
+      font-size: 0.85rem;
+      color: #B85C38;
+      font-weight: 700;
+      font-family: 'Archivo', sans-serif;
+    }
+    
+    @media (max-width: 768px) {
+      .fivecast-images {
+        grid-template-columns: 1fr;
+      }
+      
+      .fivecast-image-item img {
+        height: 180px;
+      }
+      
+      .capability-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Contractor Cards */
+    .contractor-with-image {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contractor-with-image.reverse {
+      direction: rtl;
+    }
+    
+    .contractor-with-image.reverse > * {
+      direction: ltr;
+    }
+    
+    .contractor-image img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border-light);
+    }
+    
+    .contractor-name {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .contractor-desc {
+      font-size: 1rem;
+      color: var(--text-body);
+      margin-bottom: 0.5rem;
+    }
+    
+    .contractor-source {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    
+    .explosion-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    
+    .explosion-gallery img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    @media (max-width: 768px) {
+      .contractor-with-image {
+        grid-template-columns: 1fr;
+      }
+      
+      .contractor-with-image.reverse {
+        direction: ltr;
+      }
+      
+      .explosion-gallery img {
+        height: 150px;
+      }
+    }
+    
+    /* Document Images */
+    .doc-image {
+      margin: 1.5rem 0;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .doc-image img {
+      width: 100%;
+      display: block;
+    }
+    
+    .doc-image-caption {
+      padding: 0.75rem 1rem;
+      background: var(--bg-cream-dark);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border-light);
+    }
+    
+    /* Callout */
+    .callout-box {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: var(--highlight-yellow);
+      border: 2px dashed var(--accent-rust);
+      text-align: center;
+    }
+    
+    .callout-text {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-dark);
+    }
+    
+    /* Audience Links Section */
+    .audience-section {
+      background: var(--bg-cream-dark);
+      border-top: 2px solid var(--border-light);
+      border-bottom: 2px solid var(--border-light);
+    }
+    
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .audience-card {
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+      padding: 1.25rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .audience-card:hover {
+      border-color: var(--accent-teal);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    .audience-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .audience-card-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .audience-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    
+    /* Action Section */
+    .action-section {
+      background: var(--accent-teal);
+      color: white;
+    }
+    
+    .action-section .section-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .action-section .section-title {
+      color: white;
+    }
+    
+    .action-section .section-intro {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .btn-action {
+      display: inline-block;
+      background: white;
+      color: var(--accent-teal);
+      padding: 0.875rem 1.75rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 3px;
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-action:hover {
+      background: var(--bg-cream);
+    }
+    
+    .email-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    
+    .email-actions button {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      padding: 0.875rem 1.75rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .email-actions button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: white;
+    }
+    
+    /* Message Template */
+    .message-template {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 4px;
+    }
+    
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    
+    .message-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    
+    .btn-regenerate {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 0.5rem 1rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-regenerate:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: white;
+    }
+    
+    .copy-section {
+      background: white;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    
+    .copy-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .copy-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    
+    .btn-copy {
+      background: var(--accent-teal);
+      color: white;
+      border: none;
+      padding: 0.25rem 0.6rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    
+    .btn-copy:hover {
+      background: var(--accent-teal-dark);
+    }
+    
+    .btn-copy.copied {
+      background: var(--accent-rust);
+    }
+    
+    .subject-content {
+      padding: 0.75rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+    
+    .message-content {
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+    
+    .message-content p {
+      margin-bottom: 0.75rem;
+    }
+    
+    .message-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .personal-input {
+      background: var(--highlight-yellow);
+      border: 2px dashed var(--accent-rust);
+      border-radius: 3px;
+      padding: 0.75rem;
+      margin: 0.75rem 0;
+      color: var(--accent-rust);
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+    
+    .personal-input::before {
+      content: "✎ ";
+    }
+    
+    .template-note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Share Section */
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .share-btn.twitter {
+      background: #1DA1F2;
+      color: white;
+    }
+    
+    .share-btn.twitter:hover {
+      background: #0d8bd9;
+    }
+    
+    .share-btn.facebook {
+      background: #4267B2;
+      color: white;
+    }
+    
+    .share-btn.facebook:hover {
+      background: #365899;
+    }
+    
+    .share-btn.copy-link {
+      background: var(--accent-teal);
+      color: white;
+    }
+    
+    .share-btn.copy-link:hover {
+      background: var(--accent-teal-dark);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 3rem 1.5rem 2rem;
+      border-top: 2px solid var(--border-light);
+      background: var(--bg-cream-dark);
+    }
+    
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-about h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-about p {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-links h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-decoration: none;
+    }
+    
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+    
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      margin-bottom: 0.25rem;
+    }
+    
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    
+    @media (max-width: 640px) {
+      .footer-main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .step {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .header-inner {
+        justify-content: center;
+        text-align: center;
+      }
+      
+      .nav-links {
+        justify-content: center;
+      }
+    }
+    
+    /* Alternating backgrounds */
+    .bg-alt {
+      background: var(--bg-cream-dark);
+    }
+    
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="#take-action">✊ Take Action Now</a>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name">Nashville Community Safety Network</div>
+      <nav class="nav-links">
+        <a href="#the-bypass">How It Works</a>
+        <a href="#whats-in-it">Equipment</a>
+        <a href="#track-record">Track Record</a>
+        <a href="#take-action">Take Action</a>
+        <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      
+      <!-- Countdown Timer -->
+      <div class="countdown-banner">
+        <span class="countdown-label">Council Vote In:</span>
+        <div class="countdown-timer" id="countdown">
+          <div class="countdown-unit">
+            <div class="countdown-value" id="days">--</div>
+            <div class="countdown-unit-label">Days</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="hours">--</div>
+            <div class="countdown-unit-label">Hours</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="minutes">--</div>
+            <div class="countdown-unit-label">Min</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <img 
+          src="https://storage.googleapis.com/intelechia-content/im/FUSUS%202.png" 
+          alt="FUSUS gravestone with zombie hand reaching for Mayor's MOU document"
+          class="hero-image"
+        />
+      </div>
+      
+      <h1 class="hero-title">They Keep Coming Back</h1>
+      <p class="hero-subtitle">We keep winning.</p>
+      <p class="hero-description">
+        Nashville has rejected surveillance overreach before. Now they're back with $15 million, armored vehicles, and zero oversight. Let's stop them again.
+      </p>
+      
+      <div class="hero-signature-row">
+        <div class="signature-box">
+          <img src="https://storage.googleapis.com/intelechia-content/im/Screenshot%202025-11-23%20at%208.31.23%E2%80%AFPM.png" alt="Mayor's signature on MOU" />
+        </div>
+        <div class="signature-text">
+          <p class="signature-label">The Mayor Already Signed</p>
+          <p class="signature-detail">Council votes December 4, 2025</p>
+        </div>
+      </div>
+      
+      <div class="btn-group">
+        <a href="#take-action" class="btn-primary">Take Action Now</a>
+        <a href="#the-bypass" class="btn-secondary">How Does This Work?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TL;DR Section -->
+  <section class="tldr-section">
+    <div class="tldr-inner">
+      <div class="tldr-label">The Short Version</div>
+      <p class="tldr-content">
+        The Mayor signed an <span class="defined-term" data-definition="Memorandum of Understanding—a formal agreement between parties">MOU</span> giving a private nonprofit—the <span class="defined-term" data-definition="Business Improvement District—a private nonprofit that manages a downtown area, funded by property assessments">Nashville Downtown Partnership</span>—<strong>$15 million for armored vehicles, social media surveillance, and camera networks</strong>. Once transferred, Metro Council loses all oversight. The structure is specifically designed to bypass the democratic accountability that blocked surveillance expansion before.
+      </p>
+      <div class="tldr-points">
+        <div class="tldr-point">
+          <span class="tldr-icon">💰</span>
+          <span class="tldr-point-text"><strong>$15 million</strong> in state surveillance funds</span>
+        </div>
+        <div class="tldr-point">
+          <span class="tldr-icon">🔒</span>
+          <span class="tldr-point-text"><strong>Zero Metro oversight</strong> once funds transfer</span>
+        </div>
+        <div class="tldr-point">
+          <span class="tldr-icon">🏢</span>
+          <span class="tldr-point-text"><strong>Private nonprofit control</strong> over public surveillance</span>
+        </div>
+        <div class="tldr-point">
+          <span class="tldr-icon">📅</span>
+          <span class="tldr-point-text"><strong>December 4 vote</strong>—contact your council member</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works (Moved Earlier) -->
+  <section id="the-bypass">
+    <div class="container">
+      <div class="fade-in">
+        <div class="section-label">The Core Problem</div>
+        <h2 class="section-title">Designed to Bypass Democracy</h2>
+        <p class="section-intro">
+          This MOU uses a structure specifically designed to avoid the democratic oversight that has blocked surveillance expansion before. Here's how it works:
+        </p>
+      </div>
+      
+      <div class="fade-in">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div>
+            <h3 class="step-title">State funds must go through local government</h3>
+            <p class="step-desc">Tennessee's grant structure requires surveillance funds flow through Metro first.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div>
+            <h3 class="step-title">Metro immediately hands funds to private nonprofit</h3>
+            <p class="step-desc">The MOU ensures Metro transfers control to the Downtown Partnership—a private <span class="defined-term" data-definition="Business Improvement District—a private nonprofit funded by property assessments, not accountable to voters">BID</span> operator not accountable to Nashville voters.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div>
+            <h3 class="step-title">Metro explicitly agrees not to apply for funds</h3>
+            <p class="step-desc">The MOU requires Metro "shall not apply for any funds under this program"—ensuring permanent private control.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <div>
+            <h3 class="step-title">Oversight stays at state level only</h3>
+            <p class="step-desc">Once transferred, Metro Council has no authority. Local surveillance restrictions can be evaded.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">5</div>
+          <div>
+            <h3 class="step-title">Minimize public notice</h3>
+            <p class="step-desc">Documents submitted Friday before Thanksgiving. Vote scheduled right after the holiday.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="callout-box fade-in">
+        <p class="callout-text">
+          "This is a model used in Louisiana and elsewhere to evade local bans on surveillance technology."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's in the MOU -->
+  <section id="whats-in-it" class="bg-alt">
+    <div class="container-wide">
+      <div class="fade-in">
+        <div class="section-label">What They Want</div>
+        <h2 class="section-title">$15 Million in Surveillance Equipment</h2>
+        <p class="section-intro">
+          The equipment list reads like a militarized surveillance wishlist: armored vehicles, AI-powered social media monitoring, real-time camera networks, and mobile command centers.
+        </p>
+      </div>
+      
+      <div class="stats-row fade-in">
+        <div class="stat-item">
+          <div class="stat-value">$15M</div>
+          <div class="stat-label">In surveillance funds</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Metro oversight after transfer</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">Dec 4</div>
+          <div class="stat-label">Council vote</div>
+        </div>
+      </div>
+      
+      <!-- Fivecast Warning -->
+      <div class="warning-section fade-in">
+        <div class="warning-header">
+          <div class="warning-label">Also Included in the MOU</div>
+          <h3>Fivecast ONYX</h3>
+          <p class="warning-tagline">AI surveillance software built with Five Eyes intelligence agencies</p>
+        </div>
+        
+        <!-- Fivecast Images -->
+        <div class="fivecast-images">
+          <div class="fivecast-image-item">
+            <img src="https://www.fivecast.com/wp-content/uploads/2025/02/HomePage_BorderSecurity.jpg" alt="Fivecast border security marketing showing surveillance capabilities" />
+            <div class="image-caption">From Fivecast's marketing materials</div>
+          </div>
+          <div class="fivecast-image-item">
+            <img src="https://storage.googleapis.com/intelechia-content/im/Screenshot%202025-11-24%20at%205.18.20%E2%80%AFPM.png" alt="Fivecast database showing 8 billion people records" />
+            <div class="image-caption">8 billion people in their database</div>
+          </div>
+        </div>
+        
+        <div class="capability-grid">
+          <div class="capability-item">
+            <div class="capability-icon">🌐</div>
+            <div class="capability-text">
+              <strong>Mass Data Collection</strong>
+              <span>Scrapes surface web, deep web, and dark web. Tracks people across platforms.</span>
+            </div>
+          </div>
+          <div class="capability-item">
+            <div class="capability-icon">😠</div>
+            <div class="capability-text">
+              <strong>Emotion Detection</strong>
+              <span>AI flags "sentiment and emotion" in posts—anger, fear, "radicalization."</span>
+            </div>
+          </div>
+          <div class="capability-item">
+            <div class="capability-icon">🔗</div>
+            <div class="capability-text">
+              <strong>Network Mapping</strong>
+              <span>Builds relationship graphs. Maps your entire digital footprint.</span>
+            </div>
+          </div>
+          <div class="capability-item">
+            <div class="capability-icon">⚠️</div>
+            <div class="capability-text">
+              <strong>Automated Risk Scoring</strong>
+              <span>Flags people based on "threat indicators." No human review required.</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="users-box">
+          <div class="users-label">Who Else Uses This Software</div>
+          <div class="agency-badges">
+            <span class="agency-badge">ICE ($3.3M)</span>
+            <span class="agency-badge">CBP ($3.4M)</span>
+            <span class="agency-badge">Defense Security Agency ($14M+)</span>
+          </div>
+          <p class="users-note">CBP uses it to detect "sentiment and emotion" in travelers. DCSA monitors 2+ million security clearance holders.</p>
+        </div>
+      </div>
+      
+      <!-- Equipment List -->
+      <div class="section-label fade-in" style="margin-top: 2.5rem;">Physical Equipment</div>
+      
+      <!-- Featured: Armored Vehicle with Document -->
+      <div class="contractor-with-image fade-in" style="margin-top: 1rem; margin-bottom: 2rem;">
+        <div class="contractor-image">
+          <img src="https://storage.googleapis.com/intelechia-content/im/truck.png" alt="Armored tactical vehicle requested in MOU" />
+        </div>
+        <div>
+          <h3 class="contractor-name" style="color: var(--accent-rust);">Armored Tactical Vehicles</h3>
+          <p class="contractor-desc">
+            The grant lists a "Tactical Support Post" described as a mobile command post "used by MNPD SWAT." But here's the catch: <strong>MNPD can't legally receive these funds</strong>—only the Downtown Partnership can.
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+            NDP must purchase the vehicle as grantee of record. Public agencies would use equipment purchased by a private nonprofit—with no public procurement process.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Document Screenshot -->
+      <div class="doc-image fade-in">
+        <img src="https://storage.googleapis.com/intelechia-content/im/Screenshot%202025-11-23%20at%208.30.55%E2%80%AFPM.png" alt="Screenshot from MOU document describing tactical support post" />
+        <div class="doc-image-caption">From the MOU's equipment list: "Tactical Support Post... mobile command post that is used by MNPD SWAT"</div>
+      </div>
+      
+      <div class="issue-list fade-in" style="margin-top: 1.5rem;">
+        <div class="issue-card">
+          <div class="issue-icon">📡</div>
+          <div class="issue-title">Mobile Command Posts</div>
+          <p class="issue-desc">Deployable surveillance centers throughout downtown.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-icon">📹</div>
+          <div class="issue-title">Rapid-Deploy Cameras</div>
+          <p class="issue-desc">Camera systems that can be installed anywhere in the district.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-icon">🔊</div>
+          <div class="issue-title">Noise Surveillance</div>
+          <p class="issue-desc">Audio monitoring technology for public spaces.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-icon">🖥️</div>
+          <div class="issue-title">Real-Time Fusion Centers</div>
+          <p class="issue-desc">"Tech Centers" integrating multiple surveillance feeds.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-icon">🎥</div>
+          <div class="issue-title">Centralized Video Walls</div>
+          <p class="issue-desc">Command displays linking public and private cameras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Track Record -->
+  <section id="track-record">
+    <div class="container">
+      <div class="fade-in">
+        <div class="section-label" style="color: var(--accent-teal);">Our Track Record</div>
+        <h2 class="section-title">Nashville Says No</h2>
+        <p class="section-intro">
+          Nashville has repeatedly rejected surveillance overreach. Each time they try, Nashville says no.
+        </p>
+      </div>
+      
+      <div class="highlight-box fade-in">
+        <p>
+          <strong>What was FUSUS?</strong> A real-time surveillance platform that would have linked thousands of private and public cameras into a single network accessible to police. Nashville residents fought it through three years and four council votes—withdrawals in 2023 and 2024, a 20-18 defeat in December 2024, and finally O'Connell's abandonment in April 2025.
+        </p>
+      </div>
+      
+      <div class="timeline fade-in">
+        <div class="timeline-item victory">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-year">2012</div>
+          <div class="timeline-title">287(g) ICE Agreement Ended</div>
+          <p class="timeline-desc">After the Juana Villegas case, Davidson County's six-year 287(g) agreement with ICE lapsed and was not renewed.</p>
+        </div>
+        
+        <div class="timeline-item victory">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-year">2017</div>
+          <div class="timeline-title">Surveillance Technology Oversight</div>
+          <p class="timeline-desc">Metro Council passed ordinance BL2017-646 requiring Council approval before police deploy surveillance technology or enter agreements with private entities to share surveillance information.</p>
+        </div>
+        
+        <div class="timeline-item victory">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-year">2022</div>
+          <div class="timeline-title">Facial Recognition Restricted</div>
+          <p class="timeline-desc">In February, Metro Council authorized a limited license plate reader pilot program while explicitly declining to approve facial recognition technology.</p>
+        </div>
+        
+        <div class="timeline-item warning">
+          <div class="timeline-marker">!</div>
+          <div class="timeline-year">2022-2024</div>
+          <div class="timeline-title">FUSUS: Three Years of Resistance</div>
+          <p class="timeline-desc">MNPD contracted with Fusus in September 2022 without council approval. Residents fought back through three council votes: RS2023-2380 withdrawn, RS2024-158 withdrawn, RS2024-792 voted down 20-18 in December 2024.</p>
+        </div>
+        
+        <div class="timeline-item victory">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-title">FUSUS Finally Abandoned</div>
+          <p class="timeline-desc">After guardrails passed in March, O'Connell abandoned FUSUS in April 2025, citing "erosions in the rule of law at the federal level." Ironically, Trump's lawlessness killed the surveillance push activists had warned about.</p>
+        </div>
+        
+        <div class="timeline-item warning">
+          <div class="timeline-marker">!</div>
+          <div class="timeline-year">NOW</div>
+          <div class="timeline-title">$15M Privatized Surveillance Pipeline</div>
+          <p class="timeline-desc">They're back—this time routing money through a private nonprofit to bypass the oversight that stopped them before.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Contractors -->
+  <section class="bg-alt">
+    <div class="container">
+      <div class="fade-in">
+        <div class="section-label">Who's Operating This</div>
+        <h2 class="section-title">A History of Problems</h2>
+        <p class="section-intro">
+          The Downtown Partnership outsources security to contractors with documented histories of abuse. These are the entities that would control $15 million in surveillance equipment.
+        </p>
+      </div>
+      
+      <div class="contractor-with-image fade-in">
+        <div class="contractor-image">
+          <img src="https://storage.googleapis.com/intelechia-content/im/Screenshot%202025-11-24%20at%204.56.58%E2%80%AFPM.png" alt="WSMV4 news report on Solaren imposter cops violations" />
+        </div>
+        <div>
+          <h3 class="contractor-name">Solaren Risk Management</h3>
+          <p class="contractor-desc">
+            Fined for <strong>62 counts of police impersonation</strong>. State investigators found their officers wore badges, uniforms, and gear designed to make the public believe they were actual law enforcement.
+          </p>
+          <p class="contractor-source">Source: WSMV4 "Thin Blurred Line" Investigation</p>
+        </div>
+      </div>
+      
+      <div class="contractor-with-image reverse fade-in">
+        <div class="contractor-image explosion-gallery">
+          <img src="https://i0.wp.com/nashvillebanner.com/wp-content/uploads/2025/07/Downtown-library-garage-fire-damage-sub-07.jpg?resize=2000%2C1125&quality=89&ssl=1" alt="Fire damage in downtown library parking garage" />
+          <img src="https://i0.wp.com/nashvillebanner.com/wp-content/uploads/2025/07/Downtown-library-garage-fire-damage-sub-10.jpg?resize=2000%2C1500&quality=89&ssl=1" alt="Structural damage from parking garage explosion" />
+        </div>
+        <div>
+          <h3 class="contractor-name">Block by Block</h3>
+          <p class="contractor-desc">
+            Their negligent equipment storage practices caused an <strong>explosion in the downtown library parking garage</strong>, damaging public infrastructure and endangering lives.
+          </p>
+          <p class="contractor-source">Source: Nashville Banner</p>
+        </div>
+      </div>
+      
+      <p class="fade-in" style="text-align: center; font-style: italic; color: var(--text-muted); margin-top: 2rem;">
+        These entities would operate $15 million in surveillance equipment—with zero Metro oversight.
+      </p>
+    </div>
+  </section>
+
+  <!-- Audience Pages Section -->
+  <section class="audience-section">
+    <div class="container-wide">
+      <div class="fade-in">
+        <div class="section-label">Learn More</div>
+        <h2 class="section-title">What This Means For You</h2>
+        <p class="section-intro">
+          Different communities face different risks from this surveillance infrastructure. Find information tailored to your concerns:
+        </p>
+      </div>
+      
+      <div class="audience-grid fade-in">
+        <a href="immigrant-communities.html" class="audience-card">
+          <div class="audience-card-icon">🌎</div>
+          <div class="audience-card-title">Immigrant Communities</div>
+          <div class="audience-card-desc">ICE connections, sanctuary implications, and how this surveillance could enable federal enforcement</div>
+        </a>
+        
+        <a href="downtown-residents.html" class="audience-card">
+          <div class="audience-card-icon">🏙️</div>
+          <div class="audience-card-title">Downtown Residents & Workers</div>
+          <div class="audience-card-desc">What cameras and monitoring in your neighborhood actually means for daily life</div>
+        </a>
+        
+        <a href="fiscal-accountability.html" class="audience-card">
+          <div class="audience-card-icon">📊</div>
+          <div class="audience-card-title">Fiscal Conservatives</div>
+          <div class="audience-card-desc">$15M in spending with zero oversight, problematic contractors, and accountability failures</div>
+        </a>
+        
+        <a href="privacy-advocates.html" class="audience-card">
+          <div class="audience-card-icon">🔐</div>
+          <div class="audience-card-title">Privacy & Civil Liberties</div>
+          <div class="audience-card-desc">Technical details on Fivecast, data collection scope, and surveillance architecture</div>
+        </a>
+        
+        <a href="organizers-activists.html" class="audience-card">
+          <div class="audience-card-icon">✊</div>
+          <div class="audience-card-title">Organizers & Activists</div>
+          <div class="audience-card-desc">Social media monitoring, network mapping, and protest surveillance implications</div>
+        </a>
+        
+        <a href="faith-communities.html" class="audience-card">
+          <div class="audience-card-icon">⛪</div>
+          <div class="audience-card-title">Faith Communities</div>
+          <div class="audience-card-desc">Protecting vulnerable congregants, moral implications, and sanctuary considerations</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Take Action -->
+  <section id="take-action" class="action-section">
+    <div class="container" style="text-align: center;">
+      <div class="fade-in">
+        <div class="section-label">Your Turn</div>
+        <h2 class="section-title">We've Done This Before.<br>Let's Do It Again.</h2>
+        <p class="section-intro">
+          The Mayor signed the agreement, but the MOU cannot take effect without Council approval. Your council member needs to hear from you before December 4.
+        </p>
+      </div>
+      
+      <a 
+        href="https://www.nashville.gov/departments/council/council-members"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-action fade-in"
+      >
+        Find Your Council Member →
+      </a>
+      
+      <div class="email-actions fade-in">
+        <button onclick="copyAllEmails(this)">
+          Copy All Council Emails
+        </button>
+        <button onclick="launchEmailApp()">
+          📧 Open in Email App
+        </button>
+      </div>
+      
+      <div class="message-template fade-in">
+        <div class="message-header">
+          <h3 class="message-title">Your Message:</h3>
+          <button class="btn-regenerate" onclick="generateNewMessage()">🔄 Generate New Message</button>
+        </div>
+        
+        <!-- Subject Line -->
+        <div class="copy-section">
+          <div class="copy-header">
+            <span class="copy-label">SUBJECT LINE</span>
+            <button onclick="copyToClipboard('subject-text', this)" class="btn-copy">Copy</button>
+          </div>
+          <div id="subject-text" class="subject-content"></div>
+        </div>
+        
+        <!-- Message Body -->
+        <div class="copy-section">
+          <div class="copy-header">
+            <span class="copy-label">MESSAGE</span>
+            <button onclick="copyToClipboard('message-text', this)" class="btn-copy">Copy</button>
+          </div>
+          <div id="message-text" class="message-content"></div>
+        </div>
+        
+        <p class="template-note">
+          <strong>Quick send:</strong> Click "Open in Email App" to send to all council members at once, or copy individual sections. Click "Generate New Message" for a fresh version. Don't forget to fill in your personal story!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share -->
+  <section>
+    <div class="container" style="text-align: center;">
+      <div class="fade-in">
+        <h2 class="section-title">Spread the Word</h2>
+        <p class="section-intro" style="margin-bottom: 1rem;">
+          This vote is happening fast. Share this page with your neighborhood groups, unions, and community organizations.
+        </p>
+        
+        <div class="share-buttons">
+          <a href="https://twitter.com/intent/tweet?text=Nashville%20Council%20votes%20Dec%204%20on%20%2415M%20surveillance%20deal%20with%20zero%20oversight.%20We%20stopped%20FUSUS.%20Let%27s%20stop%20this%20too.&url=" target="_blank" rel="noopener noreferrer" class="share-btn twitter">
+            𝕏 Share on Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener noreferrer" class="share-btn facebook">
+            f Share on Facebook
+          </a>
+          <button onclick="copyPageLink(this)" class="share-btn copy-link">
+            🔗 Copy Link
+          </button>
+        </div>
+        
+        <p style="font-family: 'Archivo', sans-serif; font-weight: 700; color: var(--accent-teal); margin-top: 1.5rem;">
+          Public pressure is the only counterweight to surveillance expansion.
+        </p>
+        <p style="margin-top: 1.5rem;">
+          <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--accent-teal); color: white; text-decoration: none; border-radius: 4px; font-family: 'Archivo', sans-serif; font-weight: 700; transition: background 0.2s ease;">
+            📸 Follow on Instagram for Updates
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-about">
+          <h3>About Nashville Community Safety Network</h3>
+          <p>
+            We're a coalition of Nashville residents, organizers, and advocates working to protect civil liberties and ensure democratic accountability in public safety policy.
+          </p>
+          <p>
+            Since 2022, we've fought surveillance overreach through public education, council testimony, and grassroots organizing. We helped defeat FUSUS through three years of sustained advocacy—and we're not stopping now.
+          </p>
+          <p>
+            <strong>Questions?</strong> Reach us on <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal);">Instagram</a>.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#the-bypass">How the Bypass Works</a></li>
+            <li><a href="#whats-in-it">Equipment List</a></li>
+            <li><a href="#track-record">Nashville's Track Record</a></li>
+            <li><a href="#take-action">Take Action</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">Nashville Community Safety Network</div>
+        <p class="footer-tagline">Nashville's surveillance resistance continues.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Countdown Timer
+    function updateCountdown() {
+      const voteDate = new Date('2025-12-04T18:00:00-06:00'); // 6 PM CST
+      const now = new Date();
+      const diff = voteDate - now;
+      
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+    
+    // Sticky CTA
+    const stickyCta = document.getElementById('stickyCta');
+    const heroSection = document.querySelector('.hero');
+    
+    window.addEventListener('scroll', () => {
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      if (window.scrollY > heroBottom) {
+        stickyCta.classList.add('visible');
+      } else {
+        stickyCta.classList.remove('visible');
+      }
+    });
+    
+    // Council member emails
+    const councilEmails = [
+      'Angie.Henderson@nashville.gov',
+      'Antoinette.Lee@nashville.gov',
+      'Bob.Nash@nashville.gov',
+      'Brandon.Taylor@nashville.gov',
+      'Brenda.Gadd@nashville.gov',
+      'Burkley.Allen@nashville.gov',
+      'clay.capp@nashville.gov',
+      'Courtney.Johnston@nashville.gov',
+      'David.Benton@nashville.gov',
+      'Delishia.Porterfield@nashville.gov',
+      'Deonte.Harrell@nashville.gov',
+      'Emily.Benedict@nashville.gov',
+      'Erin.Evans@nashville.gov',
+      'Ginny.Welsch@nashville.gov',
+      'Jacob.Kupin@nashville.gov',
+      'Jason.Spain@nashville.gov',
+      'Jeff.Eslick@nashville.gov',
+      'Jeff.Gregg@nashville.gov',
+      'Jeff.Preptit@nashville.gov',
+      'Jennifer.Gamble@nashville.gov',
+      'Jennifer.Webb@nashville.gov',
+      'John.Rutherford@nashville.gov',
+      'Jordan.Huffman@nashville.gov',
+      'Joy.Kimbrough@nashville.gov',
+      'Joy.Styles@nashville.gov',
+      'Kyonzte.Toombs@nashville.gov',
+      'Mike.Cortese@nashville.gov',
+      'Olivia.Hill@nashville.gov',
+      'Quin.EvansSegall@nashville.gov',
+      'Rollin.Horton@nashville.gov',
+      'Russ.Bradford@nashville.gov',
+      'Sandra.Sepulveda@nashville.gov',
+      'Sandy.Ewing@nashville.gov',
+      'Sheri.Weiner@nashville.gov',
+      'Tasha.Ellis@nashville.gov',
+      'Terry.Vo@nashville.gov',
+      'Thom.Druffel@nashville.gov',
+      'Tom.Cash@nashville.gov',
+      'Tonya.Hancock@nashville.gov',
+      'Zulfat.Suara@nashville.gov'
+    ];
+    
+    // Message Generator
+    const messageVariants = {
+      subjectTemplates: {
+        actions: ['Vote NO on', 'Please Oppose', 'Reject', 'Stop', 'Block', 'Vote Against', 'Urging NO Vote on', 'Constituent Request: NO on', 'Please Reject', 'Opposing', 'Against', 'NO on', 'Do Not Approve', 'Vote Down', 'Please Stop', 'Concerned About', 'Request to Oppose'],
+        descriptors: ['the Downtown Partnership', 'the NDP', 'the Surveillance', 'the $15M', 'this', 'the Proposed', 'the December 4'],
+        things: ['MOU', 'Agreement', 'Deal', 'Proposal', 'Surveillance Deal', 'Funding Agreement', 'Surveillance MOU', 'Surveillance Agreement'],
+        additions: ['', ' — Protect Nashville', ' on December 4', ' — Your Constituent', ' Before Dec 4', ' (December 4 Vote)', '', '', '']
+      },
+      greetings: [
+        "Dear Council Member,",
+        "Hello,",
+        "Good morning,",
+        "Good afternoon,",
+        "Hi there,",
+        "Hello Council Member,",
+        "Greetings,",
+        "Dear Council Member,"
+      ],
+      openers: [
+        "I'm writing as a concerned Nashville resident to urge you to vote NO on the MOU that would transfer $15 million in surveillance and policing funds to the Nashville Downtown Partnership.",
+        "As your constituent, I'm asking you to oppose the MOU transferring $15 million to the Nashville Downtown Partnership for surveillance equipment and policing hardware.",
+        "I'm reaching out to ask that you vote against the Downtown Partnership MOU, which would hand $15 million in surveillance funding to a private nonprofit.",
+        "Please vote NO on the MOU giving the Nashville Downtown Partnership $15 million for surveillance technology, armored vehicles, and monitoring equipment.",
+        "I urge you to reject the proposed MOU that transfers $15 million in state surveillance funds to the Downtown Partnership—a private entity with no public accountability.",
+        "I live in your district and I'm writing to ask you to vote NO on the Downtown Partnership surveillance MOU.",
+        "As someone who voted for you, I'm asking you to stand against the MOU that would give $15 million in surveillance funds to a private nonprofit.",
+        "I'm a Nashville resident concerned about the MOU before Council on December 4, 2025. Please vote NO.",
+        "I'm writing about the Downtown Partnership MOU and asking you to oppose it.",
+        "This email is regarding the $15 million surveillance MOU. I urge you to vote against it."
+      ],
+      problems: [
+        "This agreement essentially recreates the FUSUS surveillance network that Nashville already rejected—but worse. It hands control of cameras, armored vehicles, and social media monitoring tools to a private nonprofit, completely bypassing Metro oversight. Once these funds are transferred, Metro Council will have no authority over how they're spent.",
+        
+        "The MOU mirrors the FUSUS model Nashville fought for three years—through multiple council votes and finally forcing the Mayor to abandon it in April 2025. Now it's back, routed through a private corporation to avoid the democratic oversight that stopped it. Metro explicitly agrees not to apply for these funds, and once they're transferred, Council loses all control over how surveillance tools are deployed in our city.",
+        
+        "This deal bypasses the public accountability that killed FUSUS. After three years of resistance—through multiple council votes and withdrawals—O'Connell finally abandoned FUSUS in April 2025. Now the Downtown Partnership—a private BID operator—would control armored vehicles, real-time camera networks, and Fivecast social media monitoring (the same tool used by ICE). Metro Council would have zero oversight once the money changes hands.",
+        
+        "We fought FUSUS for three years because it threatened civil liberties without accountability. Through multiple council votes, withdrawals, and finally forcing its abandonment in April 2025, we showed that democratic oversight works. This MOU is the same surveillance infrastructure laundered through a private nonprofit to avoid Council oversight. The equipment list includes armored vehicles, command centers, and social media surveillance tools—all controlled by an entity with documented contractor problems.",
+        
+        "The Downtown Partnership has a troubling track record. Their contractors include Solaren, fined for 62 counts of police impersonation, and Block by Block, whose negligence caused a parking garage explosion. These are the entities that would operate $15 million in surveillance equipment with zero Metro oversight.",
+        
+        "This MOU requires Metro to agree not to even apply for these funds—ensuring control stays with a private nonprofit. That's a deliberate structure designed to bypass Council authority. Nashville voters have no recourse once this money is transferred.",
+        
+        "The equipment list is alarming: armored vehicles, mobile command posts, rapid-deployment cameras, noise surveillance, and Fivecast—a social media monitoring tool used by ICE and CBP. This isn't public safety. This is a surveillance apparatus controlled by private interests."
+      ],
+      personalPrompt: "[Write 1-2 sentences about why this matters to you personally—your neighborhood, privacy concerns, why democratic oversight matters to you, etc.]",
+      closers: [
+        "Please vote NO on December 4, 2025.",
+        "I'm asking you to vote NO on this MOU.",
+        "Please oppose this agreement on December 4.",
+        "I hope you'll stand with your constituents and vote NO.",
+        "Please reject this MOU and protect Nashville's democratic oversight.",
+        "Vote NO and show Nashville that accountability still matters.",
+        "Please do the right thing and oppose this deal.",
+        "I trust you'll vote NO on December 4.",
+        "Nashville is counting on you to reject this MOU.",
+        "Please stand with the residents who elected you and vote NO."
+      ],
+      signoffs: [
+        "Thank you for your time,",
+        "Respectfully,",
+        "Thank you,",
+        "Sincerely,",
+        "With appreciation,",
+        "Grateful for your consideration,",
+        "Thank you for listening,",
+        "Best regards,",
+        "Respectfully yours,",
+        "With respect,"
+      ]
+    };
+    
+    function pickRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+    
+    function generateSubject() {
+      const action = pickRandom(messageVariants.subjectTemplates.actions);
+      const descriptor = pickRandom(messageVariants.subjectTemplates.descriptors);
+      const thing = pickRandom(messageVariants.subjectTemplates.things);
+      const addition = pickRandom(messageVariants.subjectTemplates.additions);
+      return `${action} ${descriptor} ${thing}${addition}`;
+    }
+    
+    function generateNewMessage() {
+      const subject = generateSubject();
+      const greeting = pickRandom(messageVariants.greetings);
+      const opener = pickRandom(messageVariants.openers);
+      const problem = pickRandom(messageVariants.problems);
+      const closer = pickRandom(messageVariants.closers);
+      const signoff = pickRandom(messageVariants.signoffs);
+      
+      document.getElementById('subject-text').textContent = subject;
+      
+      document.getElementById('message-text').innerHTML = `
+        <p>${greeting}</p>
+        <p>${opener}</p>
+        <p>${problem}</p>
+        <div class="personal-input">${messageVariants.personalPrompt}</div>
+        <p>${closer}</p>
+        <p>${signoff}<br>[Your Name]<br>[Your Address]</p>
+      `;
+    }
+    
+    function copyToClipboard(elementId, button) {
+      const element = document.getElementById(elementId);
+      const text = element.innerText;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      });
+    }
+    
+    function copyAllEmails(button) {
+      const emailString = councilEmails.join(', ');
+      
+      navigator.clipboard.writeText(emailString).then(() => {
+        const originalText = button.textContent;
+        button.textContent = '✓ Copied!';
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+        }, 2000);
+      });
+    }
+    
+    function launchEmailApp() {
+      const subject = document.getElementById('subject-text').textContent;
+      const messageElement = document.getElementById('message-text');
+      const messageText = messageElement.innerText;
+      
+      const bccEmails = councilEmails.join(',');
+      const encodedSubject = encodeURIComponent(subject);
+      const encodedBody = encodeURIComponent(messageText);
+      
+      const mailtoUrl = `mailto:?bcc=${bccEmails}&subject=${encodedSubject}&body=${encodedBody}`;
+      window.location.href = mailtoUrl;
+    }
+    
+    function copyPageLink(button) {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const originalText = button.innerHTML;
+        button.innerHTML = '✓ Link Copied!';
+        
+        setTimeout(() => {
+          button.innerHTML = originalText;
+        }, 2000);
+      });
+    }
+    
+    // Generate on page load
+    generateNewMessage();
+    
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

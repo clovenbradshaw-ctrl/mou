@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What This Means for Immigrant Communities | Nashville Community Safety Network</title>
+  <meta name="description" content="The surveillance MOU includes tools used by ICE and CBP. Learn how this threatens immigrant families and Nashville's sanctuary values.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-teal-dark: #3A6359;
+      --accent-rust: #B85C38;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+      --accent-blue: #4A6B8C;
+    }
+    
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    
+    ::selection {
+      background: var(--accent-blue);
+      color: white;
+    }
+    
+    /* Header */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+    }
+    
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .site-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .site-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    .back-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    
+    .back-link:hover {
+      color: var(--accent-teal);
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 4rem 1.5rem 3rem;
+      background: linear-gradient(135deg, #4A6B8C 0%, #3A5A7C 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .hero-inner {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Content */
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    section {
+      padding: 3.5rem 0;
+    }
+    
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    
+    p {
+      margin-bottom: 1.25rem;
+    }
+    
+    /* Key Facts Box */
+    .key-facts {
+      background: white;
+      border: 3px solid var(--accent-rust);
+      border-radius: 6px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .key-facts-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-rust);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+    }
+    
+    .key-fact {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      align-items: flex-start;
+    }
+    
+    .key-fact:last-child {
+      margin-bottom: 0;
+    }
+    
+    .key-fact-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .key-fact-text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .key-fact-text strong {
+      color: var(--text-dark);
+    }
+    
+    /* Evidence Card */
+    .evidence-card {
+      background: var(--bg-cream-dark);
+      border-left: 4px solid var(--accent-blue);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .evidence-card h4 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 0.75rem;
+    }
+    
+    .evidence-card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    
+    /* Timeline Section */
+    .history-section {
+      background: var(--bg-cream-dark);
+      border-top: 2px solid var(--border-light);
+      border-bottom: 2px solid var(--border-light);
+    }
+    
+    .timeline-mini {
+      margin-top: 1.5rem;
+    }
+    
+    .timeline-mini-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      align-items: flex-start;
+    }
+    
+    .timeline-mini-year {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      flex-shrink: 0;
+      width: 50px;
+    }
+    
+    .timeline-mini-content {
+      flex: 1;
+    }
+    
+    .timeline-mini-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .timeline-mini-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    /* Quote Block */
+    .quote-block {
+      background: var(--highlight-yellow);
+      border-left: 4px solid var(--accent-rust);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    
+    .quote-source {
+      font-style: normal;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: var(--accent-blue);
+      color: white;
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+    }
+    
+    .cta-section .section-title {
+      color: white;
+    }
+    
+    .cta-section p {
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .btn-cta {
+      display: inline-block;
+      background: white;
+      color: var(--accent-blue);
+      padding: 1rem 2rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 2rem 1.5rem;
+      border-top: 2px solid var(--border-light);
+      text-align: center;
+      background: var(--bg-cream-dark);
+    }
+    
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      margin-bottom: 0.25rem;
+    }
+    
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .footer-links {
+      margin-top: 1rem;
+    }
+    
+    .footer-links a {
+      color: var(--accent-teal);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 0.75rem;
+    }
+    
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive */
+    @media (max-width: 640px) {
+      section {
+        padding: 2.5rem 0;
+      }
+      
+      .hero {
+        padding: 3rem 1rem 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
+      <a href="index.html" class="back-link">← Back to Main Page</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-icon">🌎</div>
+      <div class="hero-label">What This Means For</div>
+      <h1 class="hero-title">Immigrant Communities in Nashville</h1>
+      <p class="hero-subtitle">
+        The surveillance tools in this MOU are the same ones used by ICE and CBP. Here's what you need to know.
+      </p>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section>
+    <div class="container">
+      <div class="key-facts">
+        <div class="key-facts-title">What You Need to Know</div>
+        
+        <div class="key-fact">
+          <span class="key-fact-icon">🔍</span>
+          <p class="key-fact-text">
+            <strong>Fivecast ONYX</strong>—included in this MOU—is the same AI surveillance tool that <strong>ICE paid $3.3 million</strong> and <strong>CBP paid $3.4 million</strong> to use for immigration enforcement.
+          </p>
+        </div>
+        
+        <div class="key-fact">
+          <span class="key-fact-icon">📱</span>
+          <p class="key-fact-text">
+            Fivecast monitors social media, builds <strong>relationship networks</strong>, and uses AI to detect "sentiment and emotion"—including flagging content as potential "radicalization."
+          </p>
+        </div>
+        
+        <div class="key-fact">
+          <span class="key-fact-icon">🏢</span>
+          <p class="key-fact-text">
+            This equipment would be controlled by the <strong>Nashville Downtown Partnership</strong>—a private nonprofit with <strong>no public accountability</strong> and no obligation to protect immigrant communities.
+          </p>
+        </div>
+        
+        <div class="key-fact">
+          <span class="key-fact-icon">⚠️</span>
+          <p class="key-fact-text">
+            Once these surveillance tools are in place, there's <strong>nothing stopping data sharing</strong> with federal agencies—and no Metro oversight to prevent it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The ICE Connection -->
+  <section style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title">The ICE Connection</h2>
+      
+      <p>
+        The MOU includes Fivecast ONYX—an AI-powered social media surveillance platform developed with Five Eyes intelligence agencies. This isn't speculative. Federal contracts show exactly how immigration enforcement uses this technology:
+      </p>
+      
+      <div class="evidence-card">
+        <h4>CBP Contract: $3.4 Million</h4>
+        <p>
+          Customs and Border Protection uses Fivecast to analyze travelers' social media, detecting "sentiment and emotion" in posts. The system flags people for additional scrutiny based on AI interpretation of their online activity.
+        </p>
+      </div>
+      
+      <div class="evidence-card">
+        <h4>ICE Contract: $3.3 Million</h4>
+        <p>
+          Immigration and Customs Enforcement uses Fivecast for immigration investigations. The platform's network mapping capabilities help identify family members, associates, and community connections.
+        </p>
+      </div>
+      
+      <p>
+        Fivecast maintains a database of <strong>8 billion people</strong>. It scrapes data from social media platforms, forums, the deep web, and dark web. It builds relationship graphs showing who knows whom, maps "digital footprints," and assigns automated risk scores.
+      </p>
+      
+      <p>
+        Now imagine this technology in Nashville—operated by a private nonprofit with no accountability to voters, no Metro oversight, and no legal barriers to federal data sharing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Nashville's History -->
+  <section class="history-section">
+    <div class="container">
+      <h2 class="section-title">Nashville Has Stood Up Before</h2>
+      
+      <p>
+        Nashville has a history of protecting immigrant communities from federal overreach. This MOU threatens those protections.
+      </p>
+      
+      <div class="timeline-mini">
+        <div class="timeline-mini-item">
+          <div class="timeline-mini-year">2007</div>
+          <div class="timeline-mini-content">
+            <div class="timeline-mini-title">Juana Villegas Case</div>
+            <div class="timeline-mini-desc">A pregnant woman was shackled during labor under the 287(g) program, sparking national outrage.</div>
+          </div>
+        </div>
+        
+        <div class="timeline-mini-item">
+          <div class="timeline-mini-year">2012</div>
+          <div class="timeline-mini-content">
+            <div class="timeline-mini-title">287(g) Agreement Ended</div>
+            <div class="timeline-mini-desc">After years of community pressure, Davidson County's agreement with ICE was not renewed.</div>
+          </div>
+        </div>
+        
+        <div class="timeline-mini-item">
+          <div class="timeline-mini-year">2017</div>
+          <div class="timeline-mini-content">
+            <div class="timeline-mini-title">Surveillance Oversight Passed</div>
+            <div class="timeline-mini-desc">Metro Council required approval before police deploy surveillance technology or share data with private entities.</div>
+          </div>
+        </div>
+        
+        <div class="timeline-mini-item">
+          <div class="timeline-mini-year">2025</div>
+          <div class="timeline-mini-content">
+            <div class="timeline-mini-title">Now: The MOU Bypass</div>
+            <div class="timeline-mini-desc">This MOU routes surveillance funds through a private nonprofit to avoid the democratic oversight Nashville built.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Matters -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Why Private Control Makes This Worse</h2>
+      
+      <p>
+        When surveillance technology is operated by government agencies, there are at least some legal constraints—FOIA requests, civil rights protections, elected oversight. When it's operated by a private nonprofit like the Downtown Partnership, those protections evaporate.
+      </p>
+      
+      <p>
+        The Downtown Partnership has no obligation to:
+      </p>
+      
+      <ul style="margin: 1.5rem 0 1.5rem 1.5rem;">
+        <li style="margin-bottom: 0.5rem;">Respond to public records requests</li>
+        <li style="margin-bottom: 0.5rem;">Follow Metro's surveillance ordinances</li>
+        <li style="margin-bottom: 0.5rem;">Report data sharing to Council or the public</li>
+        <li style="margin-bottom: 0.5rem;">Restrict cooperation with federal immigration enforcement</li>
+      </ul>
+      
+      <p>
+        The contractors they use—like Solaren, which was fined for 62 counts of police impersonation—have their own troubling records. These are the entities that would control surveillance tools used by ICE.
+      </p>
+      
+      <div class="quote-block">
+        "Once these funds are transferred, Metro Council will have no authority over how they're spent—or who gets access to the data collected."
+        <div class="quote-source">— From the MOU analysis</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Can Do -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="section-title">Your Voice Matters</h2>
+      <p>
+        Nashville ended the 287(g) agreement because immigrant communities and their allies spoke up. The same organizing power can stop this MOU. Contact your council member before December 4.
+      </p>
+      <a href="index.html#take-action" class="btn-cta">Take Action Now →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">Nashville Community Safety Network</div>
+    <p class="footer-tagline">Protecting civil liberties through democratic accountability.</p>
+    <div class="footer-links">
+      <a href="index.html">Main Page</a>
+      <a href="index.html#take-action">Take Action</a>
+      <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>

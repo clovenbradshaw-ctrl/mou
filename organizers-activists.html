@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>They're Watching Organizers | Nashville Community Safety Network</title>
+  <meta name="description" content="Social media monitoring, network mapping, 'radicalization' detection, and protest surveillance. What activists need to know about the MOU.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-rust: #B85C38;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+      --accent-red: #C0392B;
+    }
+    
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    
+    ::selection {
+      background: var(--accent-red);
+      color: white;
+    }
+    
+    /* Header */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+    }
+    
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .site-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .site-name a { color: inherit; text-decoration: none; }
+    
+    .back-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    
+    .back-link:hover { color: var(--accent-teal); }
+    
+    /* Hero */
+    .hero {
+      padding: 4rem 1.5rem 3rem;
+      background: linear-gradient(135deg, #C0392B 0%, #922B21 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .hero-inner {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Content */
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    section {
+      padding: 3.5rem 0;
+    }
+    
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    
+    p { margin-bottom: 1.25rem; }
+    
+    /* Threat Cards */
+    .threat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    
+    .threat-card {
+      background: white;
+      border: 2px solid var(--accent-red);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+    
+    .threat-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .threat-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: 0.5rem;
+    }
+    
+    .threat-desc {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+    
+    /* Scenario Section */
+    .scenario-section {
+      background: #FDF8F3;
+    }
+    
+    .scenario {
+      background: white;
+      border-left: 4px solid var(--accent-red);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .scenario-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+    
+    .scenario-text {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      margin-bottom: 0;
+    }
+    
+    /* Network Visual */
+    .network-section {
+      background: var(--bg-cream-dark);
+      border-top: 2px solid var(--border-light);
+      border-bottom: 2px solid var(--border-light);
+    }
+    
+    .network-box {
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    
+    .network-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: 1rem;
+    }
+    
+    .network-visual {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .network-node {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .network-node.you {
+      background: var(--accent-red);
+      color: white;
+    }
+    
+    .network-node.first {
+      background: var(--highlight-yellow);
+      color: var(--text-dark);
+    }
+    
+    .network-node.second {
+      background: var(--bg-cream);
+      color: var(--text-muted);
+      border: 1px solid var(--border-light);
+    }
+    
+    .network-caption {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    
+    /* History Section */
+    .history-item {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      align-items: flex-start;
+    }
+    
+    .history-year {
+      flex-shrink: 0;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      width: 60px;
+    }
+    
+    .history-content {
+      flex: 1;
+    }
+    
+    .history-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .history-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    /* Warning Box */
+    .warning-box {
+      background: var(--highlight-yellow);
+      border: 2px solid var(--accent-rust);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .warning-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-rust);
+      margin-bottom: 0.75rem;
+    }
+    
+    .warning-text {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    
+    /* Quote Block */
+    .quote-block {
+      background: white;
+      border-left: 4px solid var(--accent-red);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    
+    /* Practical Tips */
+    .tips-section {
+      background: var(--bg-cream-dark);
+    }
+    
+    .tip {
+      display: flex;
+      gap: 1rem;
+      margin: 1.25rem 0;
+      align-items: flex-start;
+    }
+    
+    .tip-icon {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent-teal);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    
+    .tip-text {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+    
+    .tip-text strong {
+      font-family: 'Archivo', sans-serif;
+      color: var(--text-dark);
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: var(--accent-red);
+      color: white;
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+    }
+    
+    .cta-section .section-title { color: white; }
+    
+    .cta-section p {
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .btn-cta {
+      display: inline-block;
+      background: white;
+      color: var(--accent-red);
+      padding: 1rem 2rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 2rem 1.5rem;
+      border-top: 2px solid var(--border-light);
+      text-align: center;
+      background: var(--bg-cream-dark);
+    }
+    
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      margin-bottom: 0.25rem;
+    }
+    
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .footer-links {
+      margin-top: 1rem;
+    }
+    
+    .footer-links a {
+      color: var(--accent-teal);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 0.75rem;
+    }
+    
+    .footer-links a:hover { text-decoration: underline; }
+    
+    @media (max-width: 640px) {
+      section { padding: 2.5rem 0; }
+      .hero { padding: 3rem 1rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
+      <a href="index.html" class="back-link">← Back to Main Page</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-icon">✊</div>
+      <div class="hero-label">What This Means For</div>
+      <h1 class="hero-title">Organizers & Activists</h1>
+      <p class="hero-subtitle">
+        Social media surveillance, network mapping, and "radicalization" detection. This infrastructure is built to monitor movements.
+      </p>
+    </div>
+  </section>
+
+  <!-- The Threats -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Tools Built to Monitor Movements</h2>
+      
+      <p>
+        The surveillance tools in this MOU aren't designed for solving crimes. They're designed for monitoring populations—tracking relationships, analyzing sentiment, and identifying "threats" before any crime occurs. This is the infrastructure of political surveillance.
+      </p>
+      
+      <div class="threat-grid">
+        <div class="threat-card">
+          <div class="threat-icon">📱</div>
+          <div class="threat-title">Social Media Monitoring</div>
+          <div class="threat-desc">
+            Fivecast ONYX tracks posts across platforms, forums, and even the dark web. Every organizing post, every call to action, every shared article—aggregated and analyzed.
+          </div>
+        </div>
+        
+        <div class="threat-card">
+          <div class="threat-icon">🔗</div>
+          <div class="threat-title">Network Mapping</div>
+          <div class="threat-desc">
+            The platform builds relationship graphs showing who knows whom. Target one organizer and their entire network—members, allies, family—becomes visible.
+          </div>
+        </div>
+        
+        <div class="threat-card">
+          <div class="threat-icon">😠</div>
+          <div class="threat-title">Emotion Detection</div>
+          <div class="threat-desc">
+            AI flags posts showing "anger" or "negative sentiment." Passionate advocacy, frustration with injustice, calls for change—all potential red flags.
+          </div>
+        </div>
+        
+        <div class="threat-card">
+          <div class="threat-icon">⚠️</div>
+          <div class="threat-title">"Radicalization" Flagging</div>
+          <div class="threat-desc">
+            Automated systems flag content matching "radicalization" patterns—undefined criteria that historically target activists, not actual threats.
+          </div>
+        </div>
+        
+        <div class="threat-card">
+          <div class="threat-icon">📹</div>
+          <div class="threat-title">Event Surveillance</div>
+          <div class="threat-desc">
+            Mobile command posts and rapid-deploy cameras can be positioned at any public gathering. Everyone who attends is documented.
+          </div>
+        </div>
+        
+        <div class="threat-card">
+          <div class="threat-icon">🔊</div>
+          <div class="threat-title">Audio Monitoring</div>
+          <div class="threat-desc">
+            "Noise surveillance" technology monitors public spaces—conversations, chants, speeches all potentially captured.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network Mapping -->
+  <section class="network-section">
+    <div class="container">
+      <h2 class="section-title">How Network Mapping Works</h2>
+      
+      <p>
+        Fivecast doesn't just monitor individuals—it maps entire social networks. When you become a target, everyone connected to you becomes visible.
+      </p>
+      
+      <div class="network-box">
+        <div class="network-title">Your Digital Network Becomes Their Intelligence</div>
+        <div class="network-visual">
+          <span class="network-node second">Coworker</span>
+          <span class="network-node first">Org Member</span>
+          <span class="network-node second">Their Partner</span>
+          <span class="network-node first">Coalition Partner</span>
+          <span class="network-node you">You</span>
+          <span class="network-node first">Fellow Organizer</span>
+          <span class="network-node second">Their Family</span>
+          <span class="network-node first">Union Contact</span>
+          <span class="network-node second">Friend</span>
+        </div>
+        <p class="network-caption">
+          Surveilling one person means surveilling their entire network. First-degree connections lead to second-degree, and so on.
+        </p>
+      </div>
+      
+      <p>
+        This is why network mapping is so dangerous for organizers. It's not just about you—it's about everyone you work with, everyone in your organization, everyone in your coalition. One person under surveillance compromises an entire movement.
+      </p>
+    </div>
+  </section>
+
+  <!-- What This Looks Like -->
+  <section class="scenario-section">
+    <div class="container">
+      <h2 class="section-title">What This Looks Like in Practice</h2>
+      
+      <p>
+        These aren't hypotheticals. This is how surveillance infrastructure is used against organizing:
+      </p>
+      
+      <div class="scenario">
+        <div class="scenario-title">Planning a Rally</div>
+        <p class="scenario-text">
+          You create a Facebook event. Fivecast captures the event, everyone who RSVPs, everyone who shares it. AI analyzes the language for "negative sentiment." The network map expands to include all participants and their connections.
+        </p>
+      </div>
+      
+      <div class="scenario">
+        <div class="scenario-title">Coordinating on Social Media</div>
+        <p class="scenario-text">
+          Your organizing group uses Twitter to coordinate. Every post, reply, and DM (if accessible) feeds into the system. Relationship graphs show who talks to whom, how often, about what topics.
+        </p>
+      </div>
+      
+      <div class="scenario">
+        <div class="scenario-title">Attending a Protest Downtown</div>
+        <p class="scenario-text">
+          Mobile command posts are deployed. Rapid-deploy cameras document everyone present. Your phone's location data, your social media check-in, your face in the crowd—all captured and correlated.
+        </p>
+      </div>
+      
+      <div class="scenario">
+        <div class="scenario-title">Posting Criticism of Authorities</div>
+        <p class="scenario-text">
+          You share an article critical of city policy. The AI flags it as "negative sentiment" toward authorities. Combined with your organizing history, your risk score increases. No human ever reviews this—it's all automated.
+        </p>
+      </div>
+      
+      <div class="scenario">
+        <div class="scenario-title">Building a Coalition</div>
+        <p class="scenario-text">
+          Your group partners with other organizations. The network map now connects all groups through you. A comprehensive picture of the local movement emerges—leadership, members, supporters, and sympathizers all mapped.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Historical Context -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">This Has Happened Before</h2>
+      
+      <p>
+        The surveillance of political organizers isn't new. What's new is the technology that makes it comprehensive, automated, and invisible.
+      </p>
+      
+      <div class="history-item">
+        <div class="history-year">1960s</div>
+        <div class="history-content">
+          <div class="history-title">COINTELPRO</div>
+          <div class="history-desc">FBI surveillance and disruption of civil rights, anti-war, and other movements. Required extensive manual effort.</div>
+        </div>
+      </div>
+      
+      <div class="history-item">
+        <div class="history-year">2010s</div>
+        <div class="history-content">
+          <div class="history-title">Black Lives Matter Surveillance</div>
+          <div class="history-desc">DHS and FBI monitored BLM organizers using social media surveillance tools. Classified protesters as potential threats.</div>
+        </div>
+      </div>
+      
+      <div class="history-item">
+        <div class="history-year">2020</div>
+        <div class="history-content">
+          <div class="history-title">George Floyd Protest Monitoring</div>
+          <div class="history-desc">Federal agencies used aerial surveillance, social media monitoring, and cell phone tracking to monitor protests nationwide.</div>
+        </div>
+      </div>
+      
+      <div class="history-item">
+        <div class="history-year">NOW</div>
+        <div class="history-content">
+          <div class="history-title">Privatized Infrastructure</div>
+          <div class="history-desc">The same capabilities, but operated by private entities with no public accountability and no legal constraints on use.</div>
+        </div>
+      </div>
+      
+      <div class="warning-box">
+        <div class="warning-title">The Private Entity Problem</div>
+        <p class="warning-text">
+          When government agencies surveilled movements, there were at least some constraints—FOIA requests, civil rights laws, congressional oversight. The Downtown Partnership operates outside all of these. No public records access. No civil liberties protections. No elected oversight.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It's Worse -->
+  <section style="background: #FDF8F3;">
+    <div class="container">
+      <h2 class="section-title">Why This Structure Is Worse</h2>
+      
+      <p>
+        The MOU doesn't just bring surveillance tools to Nashville—it places them outside democratic control entirely.
+      </p>
+      
+      <div class="quote-block">
+        "Once these funds are transferred, Metro Council has no authority over how they're spent—or who gets access to the data collected."
+      </div>
+      
+      <p>
+        The Downtown Partnership:
+      </p>
+      
+      <ul style="margin: 1.5rem 0 1.5rem 1.5rem;">
+        <li style="margin-bottom: 0.5rem;">Is not subject to Nashville's surveillance oversight ordinance</li>
+        <li style="margin-bottom: 0.5rem;">Does not have to respond to public records requests</li>
+        <li style="margin-bottom: 0.5rem;">Has no restrictions on sharing data with federal agencies</li>
+        <li style="margin-bottom: 0.5rem;">Answers to property owners, not Nashville voters</li>
+        <li style="margin-bottom: 0.5rem;">Uses contractors with documented histories of abuse (Solaren: 62 counts police impersonation)</li>
+      </ul>
+      
+      <p>
+        This is surveillance infrastructure specifically designed to operate outside the democratic accountability that organizers have historically relied on to expose and challenge government overreach.
+      </p>
+    </div>
+  </section>
+
+  <!-- What We Can Do -->
+  <section class="tips-section">
+    <div class="container">
+      <h2 class="section-title">What Organizers Can Do</h2>
+      
+      <p>
+        The vote is December 4. Here's how to mobilize:
+      </p>
+      
+      <div class="tip">
+        <div class="tip-icon">📧</div>
+        <div class="tip-text">
+          <strong>Contact Your Council Member</strong><br>
+          Personal messages from constituents matter. Explain why movement surveillance concerns you as an organizer.
+        </div>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-icon">📢</div>
+        <div class="tip-text">
+          <strong>Brief Your Networks</strong><br>
+          Share this information with your organizations, coalitions, and allied groups. This affects everyone who organizes.
+        </div>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-icon">🎤</div>
+        <div class="tip-text">
+          <strong>Show Up December 4</strong><br>
+          Public comment at Council meetings matters. Visible opposition puts pressure on fence-sitting members.
+        </div>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-icon">🔗</div>
+        <div class="tip-text">
+          <strong>Connect the Dots</strong><br>
+          This isn't just a privacy issue—it's a labor issue, an immigrant rights issue, a racial justice issue. Build the coalition.
+        </div>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-icon">📝</div>
+        <div class="tip-text">
+          <strong>Document and Share</strong><br>
+          Record your concerns now. If this passes, those records become evidence for future accountability campaigns.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="section-title">They Want to Watch Us.<br>Let's Stop Them.</h2>
+      <p>
+        Nashville has defeated surveillance overreach before. Organizers made that happen. Now it's time to do it again—contact your council member before December 4.
+      </p>
+      <a href="index.html#take-action" class="btn-cta">Take Action Now →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">Nashville Community Safety Network</div>
+    <p class="footer-tagline">Protecting civil liberties through democratic accountability.</p>
+    <div class="footer-links">
+      <a href="index.html">Main Page</a>
+      <a href="index.html#take-action">Take Action</a>
+      <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>
