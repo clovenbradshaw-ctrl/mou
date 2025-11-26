@@ -2834,18 +2834,38 @@
     });
     
     // Smooth scroll for anchor links
+    function scrollToHash(hash) {
+      if (!hash) return;
+      const targetId = hash.startsWith('#') ? hash.substring(1) : hash;
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+
+    // Handle clicks on anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        scrollToHash(targetId);
       });
+    });
+
+    // Handle initial page load with hash (e.g., direct links to #take-action)
+    if (window.location.hash) {
+      // Use setTimeout to ensure page is fully loaded and rendered
+      setTimeout(() => {
+        scrollToHash(window.location.hash);
+      }, 100);
+    }
+
+    // Handle hash changes (critical for embedded contexts like Google Sites)
+    window.addEventListener('hashchange', function() {
+      scrollToHash(window.location.hash);
     });
   </script>
 
