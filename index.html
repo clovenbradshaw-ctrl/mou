@@ -2578,6 +2578,15 @@
       }
     });
 
+    // Check URL query parameters on page load
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('affect')) {
+        // Small delay to ensure DOM is ready and page has scrolled to top
+        setTimeout(openAudienceModal, 100);
+      }
+    })();
+
     // Countdown Timer
     function updateCountdown() {
       const voteDate = new Date('2025-12-04T18:30:00-06:00'); // 6:30 PM CT
