@@ -21,10 +21,23 @@
     
     html {
       scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
     }
-    
+
     section[id] {
       scroll-margin-top: 20px;
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+    }
+
+    /* Dragging cursor */
+    body.dragging {
+      cursor: grabbing !important;
+      user-select: none;
+    }
+
+    body.draggable {
+      cursor: grab;
     }
     
     :root {
@@ -1647,6 +1660,80 @@
       color: var(--accent-rust);
       margin-bottom: 0.5rem;
     }
+
+    /* Progress Indicator */
+    .scroll-progress-indicator {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border-light);
+      border: 2px solid var(--bg-cream);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .progress-dot:hover {
+      background: var(--accent-teal);
+      transform: scale(1.3);
+    }
+
+    .progress-dot.active {
+      background: var(--accent-rust);
+      transform: scale(1.4);
+      box-shadow: 0 0 0 4px rgba(184, 92, 56, 0.2);
+    }
+
+    .progress-dot::after {
+      content: attr(data-label);
+      position: absolute;
+      right: 120%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--text-dark);
+      color: white;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .progress-dot:hover::after {
+      opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .scroll-progress-indicator {
+        right: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .scroll-progress-indicator {
+        display: none;
+      }
+    }
+
+    /* Modal swipe-to-close */
+    .audience-modal.swiping {
+      transition: none;
+    }
   </style>
 </head>
 <body>
@@ -2562,6 +2649,17 @@
     </div>
   </footer>
 
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-indicator" id="progressIndicator">
+    <div class="progress-dot" data-section="hero" data-label="Top"></div>
+    <div class="progress-dot" data-section="the-bypass" data-label="The Bypass"></div>
+    <div class="progress-dot" data-section="whats-in-it" data-label="Equipment"></div>
+    <div class="progress-dot" data-section="track-record" data-label="Track Record"></div>
+    <div class="progress-dot" data-section="contradiction" data-label="Double Standard"></div>
+    <div class="progress-dot" data-section="leosight" data-label="LeoSight"></div>
+    <div class="progress-dot" data-section="take-action" data-label="Take Action"></div>
+  </div>
+
   <script>
     // Audience Modal Functions
     function openAudienceModal() {
@@ -2882,6 +2980,272 @@
     // Handle hash changes (critical for embedded contexts like Google Sites)
     window.addEventListener('hashchange', function() {
       scrollToHash(window.location.hash);
+    });
+
+    // ========================================
+    // ENHANCED NAVIGATION FEATURES
+    // ========================================
+
+    // Get all navigable sections
+    const navSections = [
+      { id: 'hero', element: document.querySelector('.hero') },
+      { id: 'the-bypass', element: document.getElementById('the-bypass') },
+      { id: 'whats-in-it', element: document.getElementById('whats-in-it') },
+      { id: 'track-record', element: document.getElementById('track-record') },
+      { id: 'contradiction', element: document.getElementById('contradiction') },
+      { id: 'leosight', element: document.getElementById('leosight') },
+      { id: 'take-action', element: document.getElementById('take-action') }
+    ];
+
+    let currentSectionIndex = 0;
+
+    // Helper function to navigate to section
+    function navigateToSection(index) {
+      if (index >= 0 && index < navSections.length) {
+        currentSectionIndex = index;
+        const section = navSections[index];
+        if (section.element) {
+          section.element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    // Get current section index based on scroll position
+    function getCurrentSectionIndex() {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      for (let i = navSections.length - 1; i >= 0; i--) {
+        const section = navSections[i];
+        if (section.element && section.element.offsetTop <= scrollPosition) {
+          return i;
+        }
+      }
+      return 0;
+    }
+
+    // ========================================
+    // 1. KEYBOARD ARROW NAVIGATION
+    // ========================================
+    document.addEventListener('keydown', function(e) {
+      // Don't interfere with modal or input fields
+      if (document.getElementById('audienceModal').classList.contains('active')) return;
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        e.preventDefault();
+        currentSectionIndex = getCurrentSectionIndex();
+        navigateToSection(currentSectionIndex + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        currentSectionIndex = getCurrentSectionIndex();
+        navigateToSection(currentSectionIndex - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        navigateToSection(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        navigateToSection(navSections.length - 1);
+      }
+    });
+
+    // ========================================
+    // 2. TOUCH SWIPE GESTURES FOR MOBILE
+    // ========================================
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 60;
+
+    document.addEventListener('touchstart', function(e) {
+      // Don't interfere with modal
+      if (document.getElementById('audienceModal').classList.contains('active')) return;
+
+      touchStartY = e.changedTouches[0].screenY;
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      // Don't interfere with modal
+      if (document.getElementById('audienceModal').classList.contains('active')) return;
+
+      touchEndY = e.changedTouches[0].screenY;
+      touchEndX = e.changedTouches[0].screenX;
+
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const verticalDiff = touchStartY - touchEndY;
+      const horizontalDiff = Math.abs(touchStartX - touchEndX);
+
+      // Only trigger if mostly vertical swipe
+      if (horizontalDiff > swipeThreshold) return;
+
+      if (Math.abs(verticalDiff) > swipeThreshold) {
+        currentSectionIndex = getCurrentSectionIndex();
+
+        if (verticalDiff > 0) {
+          // Swipe up - go to next section
+          navigateToSection(currentSectionIndex + 1);
+        } else {
+          // Swipe down - go to previous section
+          navigateToSection(currentSectionIndex - 1);
+        }
+      }
+    }
+
+    // ========================================
+    // 3. VISUAL PROGRESS INDICATOR
+    // ========================================
+    const progressDots = document.querySelectorAll('.progress-dot');
+
+    // Update active dot based on scroll position
+    function updateProgressIndicator() {
+      const currentIndex = getCurrentSectionIndex();
+
+      progressDots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Click handler for progress dots
+    progressDots.forEach((dot, index) => {
+      dot.addEventListener('click', function() {
+        navigateToSection(index);
+      });
+    });
+
+    // Update progress indicator on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateProgressIndicator, 50);
+    }, { passive: true });
+
+    // Initialize progress indicator
+    updateProgressIndicator();
+
+    // ========================================
+    // 4. SWIPE-TO-CLOSE MODAL GESTURE
+    // ========================================
+    const modal = document.querySelector('.audience-modal');
+    const modalOverlay = document.getElementById('audienceModal');
+    let modalTouchStartY = 0;
+    let modalTouchCurrentY = 0;
+    let isModalSwiping = false;
+
+    modal.addEventListener('touchstart', function(e) {
+      modalTouchStartY = e.touches[0].clientY;
+      isModalSwiping = true;
+    }, { passive: true });
+
+    modal.addEventListener('touchmove', function(e) {
+      if (!isModalSwiping) return;
+
+      modalTouchCurrentY = e.touches[0].clientY;
+      const diff = modalTouchCurrentY - modalTouchStartY;
+
+      // Only allow downward swipes
+      if (diff > 0) {
+        modal.classList.add('swiping');
+        modal.style.transform = `translateY(${diff}px)`;
+        modalOverlay.style.opacity = 1 - (diff / 300);
+      }
+    }, { passive: true });
+
+    modal.addEventListener('touchend', function(e) {
+      if (!isModalSwiping) return;
+
+      const endY = e.changedTouches[0].clientY;
+      const diff = endY - modalTouchStartY;
+
+      modal.classList.remove('swiping');
+
+      // Close if swiped down more than 100px
+      if (diff > 100) {
+        closeAudienceModal();
+      } else {
+        // Reset position
+        modal.style.transform = '';
+        modalOverlay.style.opacity = '';
+      }
+
+      isModalSwiping = false;
+    }, { passive: true });
+
+    // ========================================
+    // 5. MOUSE/TRACKPAD DRAG NAVIGATION
+    // ========================================
+    let isDragging = false;
+    let dragStartY = 0;
+    let dragStartScrollTop = 0;
+    let lastDragY = 0;
+    let dragVelocity = 0;
+
+    document.addEventListener('mousedown', function(e) {
+      // Don't interfere with links, buttons, or modal
+      if (e.target.closest('a, button, .audience-modal')) return;
+
+      isDragging = true;
+      dragStartY = e.pageY;
+      lastDragY = e.pageY;
+      dragStartScrollTop = window.pageYOffset;
+      dragVelocity = 0;
+
+      document.body.classList.add('dragging');
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+
+      const currentY = e.pageY;
+      const deltaY = dragStartY - currentY;
+      dragVelocity = lastDragY - currentY;
+      lastDragY = currentY;
+
+      // Multiply by 2 for faster scrolling
+      window.scrollTo(0, dragStartScrollTop + deltaY * 2);
+
+      e.preventDefault();
+    });
+
+    document.addEventListener('mouseup', function(e) {
+      if (!isDragging) return;
+
+      isDragging = false;
+      document.body.classList.remove('dragging');
+
+      // Apply momentum if dragged with velocity
+      if (Math.abs(dragVelocity) > 2) {
+        const momentum = dragVelocity * 15;
+        const targetScroll = window.pageYOffset + momentum;
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+    });
+
+    // Cancel drag if mouse leaves window
+    document.addEventListener('mouseleave', function() {
+      if (isDragging) {
+        isDragging = false;
+        document.body.classList.remove('dragging');
+      }
+    });
+
+    // Show grab cursor on hoverable areas
+    document.addEventListener('mousemove', function(e) {
+      if (isDragging) return;
+
+      if (!e.target.closest('a, button, input, textarea, .audience-modal')) {
+        document.body.classList.add('draggable');
+      } else {
+        document.body.classList.remove('draggable');
+      }
     });
   </script>
 
