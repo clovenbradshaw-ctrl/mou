@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More | Nashville Community Safety Network</title>
+  <meta name="description" content="Learn more about the surveillance MOU and what you can do to protect Nashville's civil liberties.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-rust: #B85C38;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::selection {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .site-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .site-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .back-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--accent-teal);
+    }
+
+    /* Page Title */
+    .page-header {
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent-teal) 0%, #3A6359 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    /* Embed Container */
+    .embed-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background: white;
+    }
+
+    .embed-container iframe {
+      flex: 1;
+      width: 100%;
+      min-height: 80vh;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: white;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .embed-container {
+        padding: 0.5rem;
+      }
+
+      .embed-container iframe {
+        min-height: 70vh;
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
+      <a href="index.html" class="back-link">← Back to Main Page</a>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Learn More</h1>
+  </div>
+
+  <!-- Embed Container -->
+  <div class="embed-container">
+    <iframe src="https://docs.google.com/document/d/e/2PACX-1vT4uspWrbYN-6SlL_ZQd16Pk_9i8OlDcuutCums8w9nEwWFdEF-Q6n5YeHjsDVmKNmJIGKY7SjZ1hyG/pub?embedded=true"></iframe>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">Nashville Community Safety Network</div>
+    <p class="footer-tagline">Protecting civil liberties through democratic accountability.</p>
+    <div class="footer-links">
+      <a href="index.html">Main Page</a>
+      <a href="index.html#take-action">Take Action</a>
+      <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>
