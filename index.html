@@ -1329,6 +1329,18 @@
         font-size: 0.7rem;
         padding: 0.35rem 0.6rem;
       }
+
+      /* Center Learn More link on mobile */
+      .learn-more-link {
+        width: 100%;
+        text-align: center;
+        background: var(--accent-teal);
+        color: white !important;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 600 !important;
+        order: -1;
+      }
     }
     
     /* Alternating backgrounds */
@@ -2079,7 +2091,7 @@
     <div class="header-inner">
       <div class="site-name">Nashville Community Safety Network</div>
       <nav class="nav-links">
-        <a href="learn-more.html">Learn More</a>
+        <a href="learn-more.html" class="learn-more-link">Learn More</a>
         <a href="print-flyer.html">Print a Flyer</a>
         <button class="affect-tab" onclick="openAudienceModal()">How does this affect you?</button>
         <a href="#the-bypass">How It Works</a>
