@@ -99,12 +99,20 @@
     }
 
     /* Embed Container */
-    .embed-container {
+    .embed-section {
       flex: 1;
       display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+      background: var(--bg-cream-dark);
+    }
+
+    .embed-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
       flex-direction: column;
-      padding: 1rem;
-      background: white;
     }
 
     .embed-container iframe {
@@ -113,7 +121,8 @@
       min-height: 80vh;
       border: none;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      background: white;
     }
 
     /* Footer */
@@ -158,14 +167,26 @@
       opacity: 1;
     }
 
-    @media (max-width: 640px) {
-      .embed-container {
-        padding: 0.5rem;
+    @media (max-width: 768px) {
+      .embed-section {
+        padding: 1rem 0.75rem;
       }
 
       .embed-container iframe {
         min-height: 70vh;
+        border-radius: 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .embed-section {
+        padding: 0.75rem 0.5rem;
+      }
+
+      .embed-container iframe {
+        min-height: 65vh;
         border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       }
     }
   </style>
@@ -186,8 +207,10 @@
   </div>
 
   <!-- Embed Container -->
-  <div class="embed-container">
-    <iframe src="https://docs.google.com/document/d/e/2PACX-1vT4uspWrbYN-6SlL_ZQd16Pk_9i8OlDcuutCums8w9nEwWFdEF-Q6n5YeHjsDVmKNmJIGKY7SjZ1hyG/pub?embedded=true"></iframe>
+  <div class="embed-section">
+    <div class="embed-container">
+      <iframe src="https://docs.google.com/document/d/e/2PACX-1vT4uspWrbYN-6SlL_ZQd16Pk_9i8OlDcuutCums8w9nEwWFdEF-Q6n5YeHjsDVmKNmJIGKY7SjZ1hyG/pub?embedded=true"></iframe>
+    </div>
   </div>
 
   <!-- Footer -->
