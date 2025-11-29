@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print a Flyer | Nashville Community Safety Network</title>
+  <meta name="description" content="Download and print flyers to help spread the word about the surveillance MOU in your community.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-rust: #B85C38;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::selection {
+      background: var(--accent-rust);
+      color: white;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .site-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .site-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .back-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--accent-teal);
+    }
+
+    /* Page Title */
+    .page-header {
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent-rust) 0%, #943d20 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Embed Container */
+    .embed-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background: white;
+    }
+
+    .embed-wrapper {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      min-height: 80vh;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .embed-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .canva-link {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-cream);
+    }
+
+    .canva-link a {
+      display: inline-block;
+      background: var(--accent-rust);
+      color: white;
+      padding: 0.875rem 2rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .canva-link a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(184, 92, 56, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: white;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .embed-container {
+        padding: 0.5rem;
+      }
+
+      .embed-wrapper {
+        min-height: 70vh;
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
+      <a href="index.html" class="back-link">← Back to Main Page</a>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Print a Flyer</h1>
+    <p>Download and share in your community</p>
+  </div>
+
+  <!-- Embed Container -->
+  <div class="embed-container">
+    <div class="embed-wrapper">
+      <iframe loading="lazy" src="https://www.canva.com/design/DAG5ueDlLp8/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+    </div>
+  </div>
+
+  <!-- Direct Link -->
+  <div class="canva-link">
+    <a href="https://www.canva.com/design/DAG5ueDlLp8/f8W2EG9wNEBqEb1-GBJgEQ/view" target="_blank" rel="noopener noreferrer">Open in Canva to Download →</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">Nashville Community Safety Network</div>
+    <p class="footer-tagline">Protecting civil liberties through democratic accountability.</p>
+    <div class="footer-links">
+      <a href="index.html">Main Page</a>
+      <a href="index.html#take-action">Take Action</a>
+      <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>
