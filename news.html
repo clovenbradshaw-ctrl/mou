@@ -36,6 +36,7 @@
       --accent-rust-light: #D4714A;
       --border-light: #D4CFC3;
       --highlight-yellow: #F9E4B7;
+      --accent-purple: #6B5B7A;
     }
 
     body {
@@ -59,7 +60,7 @@
     }
 
     .header-inner {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -95,7 +96,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 3rem 1.5rem 2.5rem;
+      padding: 2.5rem 1.5rem 2rem;
       text-align: center;
       border-bottom: 2px solid var(--border-light);
       background: linear-gradient(135deg, #4A7C6F 0%, #3A6359 100%);
@@ -107,123 +108,183 @@
       margin: 0 auto;
     }
 
-    .hero-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
     .hero-label {
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.8;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(2rem, 6vw, 3rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      opacity: 0.9;
-    }
-
-    /* Featured Article */
-    .featured-section {
-      padding: 3rem 1.5rem;
-      background: var(--bg-cream-dark);
-      border-bottom: 2px solid var(--border-light);
-    }
-
-    .featured-label {
       font-family: 'Archivo', sans-serif;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent-rust);
-      margin-bottom: 1rem;
-      text-align: center;
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
     }
 
-    .article-card {
-      max-width: 800px;
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
+
+    /* Coverage Section */
+    .coverage-section {
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .coverage-inner {
+      max-width: 1000px;
       margin: 0 auto;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.6rem 1.25rem;
+      border: 2px solid var(--border-light);
+      background: white;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-muted);
+    }
+
+    .filter-tab:hover {
+      border-color: var(--accent-teal);
+      color: var(--accent-teal);
+    }
+
+    .filter-tab.active {
+      background: var(--accent-teal);
+      border-color: var(--accent-teal);
+      color: white;
+    }
+
+    .filter-tab .count {
+      display: inline-block;
+      background: rgba(0,0,0,0.1);
+      padding: 0.1rem 0.5rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      margin-left: 0.4rem;
+    }
+
+    .filter-tab.active .count {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Featured Article */
+    .featured-article {
+      margin-bottom: 2rem;
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       background: white;
       border: 2px solid var(--border-light);
-      border-radius: 6px;
+      border-radius: 8px;
       overflow: hidden;
       text-decoration: none;
       color: inherit;
-      display: block;
       transition: all 0.2s ease;
     }
 
-    .article-card:hover {
+    .featured-card:hover {
       border-color: var(--accent-teal);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      transform: translateY(-3px);
     }
 
-    .article-image {
+    .featured-image {
       width: 100%;
-      height: 400px;
+      height: 100%;
+      min-height: 320px;
       object-fit: cover;
       display: block;
     }
 
-    .article-content {
+    .featured-content {
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .article-source {
+    .featured-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       font-family: 'Archivo', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent-teal);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      width: fit-content;
     }
 
-    .article-title {
+    .badge-news {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    .badge-blog {
+      background: var(--accent-purple);
+      color: white;
+    }
+
+    .featured-source {
       font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
       font-weight: 800;
       color: var(--text-dark);
       line-height: 1.25;
       margin-bottom: 0.75rem;
     }
 
-    .article-meta {
+    .featured-meta {
       font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       margin-bottom: 1rem;
     }
 
-    .article-meta .author {
+    .featured-meta .author {
       color: var(--accent-rust);
       font-weight: 600;
     }
 
-    .article-excerpt {
-      font-size: 1.05rem;
+    .featured-excerpt {
+      font-size: 0.95rem;
       line-height: 1.7;
       color: var(--text-body);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .read-more {
@@ -231,177 +292,172 @@
       align-items: center;
       gap: 0.5rem;
       font-family: 'Archivo', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: var(--accent-teal);
     }
 
-    .article-card:hover .read-more {
+    .featured-card:hover .read-more {
       color: var(--accent-teal-dark);
     }
 
-    /* Key Points Section */
-    .key-points-section {
-      padding: 3rem 1.5rem;
-      background: var(--accent-rust);
-      color: white;
+    /* Coverage Grid */
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
     }
 
-    .key-points-inner {
-      max-width: 800px;
-      margin: 0 auto;
+    .coverage-card {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
     }
 
-    .key-points-label {
+    .coverage-card:hover {
+      border-color: var(--accent-teal);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .coverage-card-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .coverage-card-content {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .coverage-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .coverage-badge {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .coverage-source {
       font-family: 'Archivo', sans-serif;
       font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .coverage-card-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.05rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.8;
-      margin-bottom: 0.75rem;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .coverage-card-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .coverage-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .coverage-card-date {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .coverage-card-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-teal);
+    }
+
+    .coverage-card:hover .coverage-card-link {
+      color: var(--accent-teal-dark);
+    }
+
+    /* Key Points Callout */
+    .key-points-callout {
+      background: linear-gradient(135deg, var(--accent-rust) 0%, #9A4A2B 100%);
+      border-radius: 8px;
+      padding: 2rem;
+      color: white;
+      margin-top: 2.5rem;
+    }
+
+    .key-points-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .key-points-icon {
+      font-size: 1.5rem;
     }
 
     .key-points-title {
       font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: 1.25rem;
       font-weight: 800;
-      margin-bottom: 1.5rem;
     }
 
-    .key-points-grid {
+    .key-points-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
     }
 
     .key-point {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .key-point-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-
-    .key-point-text {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .key-point-text strong {
-      color: var(--highlight-yellow);
-    }
-
-    /* Article Details Section */
-    .article-details {
-      padding: 3rem 1.5rem;
-    }
-
-    .container {
-      max-width: 750px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      color: var(--accent-rust);
-    }
-
-    .section-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
-
-    .article-body p {
-      margin-bottom: 1.5rem;
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .article-body strong {
-      color: var(--text-dark);
-    }
-
-    .quote-block {
-      padding: 1.5rem;
-      background: var(--highlight-yellow);
-      border-left: 4px solid var(--accent-rust);
-      margin: 2rem 0;
-      font-style: italic;
-      font-size: 1.1rem;
-    }
-
-    .quote-attribution {
-      display: block;
-      margin-top: 0.75rem;
-      font-style: normal;
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent-rust);
-    }
-
-    /* Equipment List */
-    .equipment-section {
-      padding: 2.5rem;
-      background: #FDF8F3;
-      border: 2px solid var(--border-light);
-      border-radius: 6px;
-      margin: 2rem 0;
-    }
-
-    .equipment-section h3 {
-      font-family: 'Archivo', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .equipment-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .equipment-item {
-      display: flex;
-      align-items: flex-start;
       gap: 0.75rem;
-      padding: 1rem;
-      background: white;
-      border-radius: 4px;
-      border: 1px solid var(--border-light);
-    }
-
-    .equipment-icon {
-      font-size: 1.25rem;
-      flex-shrink: 0;
-    }
-
-    .equipment-text {
       font-size: 0.95rem;
-      color: var(--text-body);
+      line-height: 1.5;
     }
 
-    .equipment-text strong {
-      display: block;
-      font-family: 'Archivo', sans-serif;
-      color: var(--text-dark);
-      margin-bottom: 0.25rem;
+    .key-point-bullet {
+      width: 6px;
+      height: 6px;
+      background: var(--highlight-yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+    }
+
+    .key-point strong {
+      color: var(--highlight-yellow);
     }
 
     /* CTA Section */
@@ -417,25 +473,27 @@
       margin: 0 auto;
     }
 
-    .cta-section .section-title {
-      color: white;
-      margin-bottom: 1rem;
+    .cta-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
     }
 
-    .cta-section p {
-      font-size: 1.1rem;
+    .cta-text {
+      font-size: 1.05rem;
       opacity: 0.9;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn-primary {
       display: inline-block;
       background: white;
       color: var(--accent-teal);
-      padding: 1rem 2rem;
+      padding: 0.9rem 1.75rem;
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       border: none;
       border-radius: 4px;
       text-decoration: none;
@@ -449,13 +507,13 @@
 
     /* Footer */
     footer {
-      padding: 3rem 1.5rem 2rem;
+      padding: 2.5rem 1.5rem 2rem;
       background: var(--bg-cream-dark);
       border-top: 2px solid var(--border-light);
     }
 
     .footer-inner {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -495,127 +553,47 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .article-image {
-        height: 250px;
+      .featured-card {
+        grid-template-columns: 1fr;
       }
 
-      .article-content {
+      .featured-image {
+        min-height: 200px;
+        max-height: 250px;
+      }
+
+      .featured-content {
         padding: 1.5rem;
+      }
+
+      .coverage-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .key-points-list {
+        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 480px) {
-      .article-image {
-        height: 200px;
-      }
-
       .header-inner {
         justify-content: center;
         text-align: center;
       }
+
+      .filter-tabs {
+        gap: 0.4rem;
+      }
+
+      .filter-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
     }
 
-    /* Blog Section */
-    .blog-section {
-      padding: 3rem 1.5rem;
-      background: var(--bg-cream-dark);
-      border-top: 2px solid var(--border-light);
-    }
-
-    .blog-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .blog-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .blog-label {
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent-rust);
-      margin-bottom: 0.5rem;
-    }
-
-    .blog-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 800;
-      color: var(--text-dark);
-    }
-
-    .blog-subtitle {
-      font-style: italic;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-    }
-
-    .blog-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .blog-card {
-      display: block;
-      background: white;
-      border: 2px solid var(--border-light);
-      border-radius: 6px;
-      padding: 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .blog-card:hover {
-      border-color: var(--accent-teal);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
-    }
-
-    .blog-card-source {
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent-teal);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-
-    .blog-card-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.3;
-      margin-bottom: 0.5rem;
-    }
-
-    .blog-card-excerpt {
-      font-size: 0.95rem;
-      color: var(--text-body);
-      line-height: 1.6;
-    }
-
-    .blog-card-read {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent-teal);
-      margin-top: 0.75rem;
-    }
-
-    .blog-card:hover .blog-card-read {
-      color: var(--accent-teal-dark);
+    /* Hidden class for filtering */
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
@@ -632,238 +610,187 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-icon">📰</div>
       <div class="hero-label">Stay Informed</div>
-      <h1 class="hero-title">News & Updates</h1>
-      <p class="hero-subtitle">The latest coverage on Nashville's surveillance policy and community advocacy</p>
+      <h1 class="hero-title">News & Coverage</h1>
+      <p class="hero-subtitle">Media coverage and independent analysis on Nashville's surveillance policy</p>
     </div>
   </section>
 
-  <!-- Featured Article -->
-  <section class="featured-section">
-    <div class="featured-label">Latest Coverage</div>
-    <a href="https://www.nashvillescene.com/news/pithinthewind/mayors-office-downtown-surveillance/article_651e0aa9-e3f4-4ddc-9531-27803c5c149e.html" target="_blank" rel="noopener noreferrer" class="article-card">
-      <img
-        src="https://bloximages.newyork1.vip.townnews.com/nashvillescene.com/content/tncms/assets/v3/editorial/1/e3/1e30d1b4-3a75-5095-bfcf-5f40a54f6e39/674ca4285f330.image.jpg"
-        alt="LiveView Technologies surveillance trailer in a McDonald's parking lot"
-        class="article-image"
-      />
-      <div class="article-content">
-        <div class="article-source">
-          <span>Nashville Scene</span>
-        </div>
-        <h2 class="article-title">Mayor's Office Files Resolution to Allow Surveillance Use</h2>
-        <div class="article-meta">
-          By <span class="author">Steven Hale</span> · December 1, 2025
-        </div>
-        <p class="article-excerpt">
-          Grant from state to Nashville Downtown Partnership for security uses is likely to be deferred after negative council feedback. Mayor Freddie O'Connell's office quietly filed a resolution with the Metro Council before the Thanksgiving holiday that could bring increased police capabilities and surveillance technology to downtown Nashville.
-        </p>
-        <span class="read-more">
-          Read Full Article at Nashville Scene →
-        </span>
+  <!-- Unified Coverage Section -->
+  <section class="coverage-section">
+    <div class="coverage-inner">
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Coverage <span class="count">7</span></button>
+        <button class="filter-tab" data-filter="news">News <span class="count">2</span></button>
+        <button class="filter-tab" data-filter="blog">Analysis <span class="count">5</span></button>
       </div>
-    </a>
 
-    <div class="featured-label" style="margin-top: 2rem;">More Coverage</div>
-    <a href="https://nashvillebanner.com/2025/12/01/nashville-downtown-partnership-fusus-tennessee-grant/" target="_blank" rel="noopener noreferrer" class="article-card">
-      <img
-        src="https://i0.wp.com/nashvillebanner.com/wp-content/uploads/2024/12/MNPD-FUSUS-09-scaled.jpg?resize=1568%2C1176&quality=89&ssl=1"
-        alt="Officers monitor data at MNPD headquarters"
-        class="article-image"
-      />
-      <div class="article-content">
-        <div class="article-source">
-          <span>Nashville Banner</span>
-        </div>
-        <h2 class="article-title">Mayor's Office Quietly Files Resolution to Allow Surveillance Use by Downtown Partnership</h2>
-        <div class="article-meta">
-          By <span class="author">Steven Hale</span> · December 1, 2025
-        </div>
-        <p class="article-excerpt">
-          Mayor Freddie O'Connell's office quietly filed a resolution with the Metro Council before the Thanksgiving holiday that could bring increased police capabilities and surveillance technology to downtown Nashville. As word of the proposal spread last week, it sparked a backlash among some close Metro observers who described it as a backdoor attempt to implement policies, like Fusus, that have been previously rejected.
-        </p>
-        <span class="read-more">
-          Read Full Article at Nashville Banner →
-        </span>
-      </div>
-    </a>
-  </section>
-
-  <!-- Key Points -->
-  <section class="key-points-section">
-    <div class="key-points-inner">
-      <div class="key-points-label">Key Takeaways</div>
-      <h2 class="key-points-title">What You Need to Know</h2>
-      <div class="key-points-grid">
-        <div class="key-point">
-          <span class="key-point-icon">📋</span>
-          <div class="key-point-text">
-            <strong>Resolution filed quietly</strong> before Thanksgiving holiday, drawing criticism for lack of transparency
-          </div>
-        </div>
-        <div class="key-point">
-          <span class="key-point-icon">💰</span>
-          <div class="key-point-text">
-            <strong>$15 million grant</strong> from Gov. Bill Lee's Downtown Public Safety Grant Fund
-          </div>
-        </div>
-        <div class="key-point">
-          <span class="key-point-icon">📹</span>
-          <div class="key-point-text">
-            <strong>Surveillance equipment</strong> including cameras, "video wall" for live monitoring, and real-time surveillance software
-          </div>
-        </div>
-        <div class="key-point">
-          <span class="key-point-icon">🚔</span>
-          <div class="key-point-text">
-            <strong>Armored vehicle and mobile command post</strong> for SWAT and event deployment
-          </div>
-        </div>
-        <div class="key-point">
-          <span class="key-point-icon">⏸️</span>
-          <div class="key-point-text">
-            <strong>Likely deferral</strong> expected after negative Council feedback
-          </div>
-        </div>
-        <div class="key-point">
-          <span class="key-point-icon">🔄</span>
-          <div class="key-point-text">
-            <strong>Fusus redux</strong> — critics see this as a backdoor attempt after previous rejection
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Article Details -->
-  <section class="article-details">
-    <div class="container">
-      <div class="section-label">From the Article</div>
-      <h2 class="section-title">The Proposed MOU</h2>
-
-      <div class="article-body">
-        <p>
-          The resolution is a proposed memorandum of understanding between Metro and the <strong>Nashville Downtown Partnership (NDP)</strong>, a private nonprofit composed of downtown property owners and businesses. The MOU outlines how the NDP would use the $15 million grant announced in October.
-        </p>
-
-        <div class="quote-block">
-          "Under this MOU, NDP agrees to limit the uses of the funds to a finite list, all of which are already permitted by Metro. Absent the MOU, NDP has the option to apply the funds to a wider list of uses, though they've stated they will not do so."
-          <span class="quote-attribution">— Julie Oaks Smith, Mayor's Office Communications Director</span>
-        </div>
-
-        <p>
-          Councilmember <strong>Erin Evans</strong>, former chair of the Public Health and Safety Committee, told the Banner she anticipated many members will seek to defer the resolution. The administration has said it will not oppose those efforts.
-        </p>
-
-        <div class="equipment-section">
-          <h3>Equipment Included in the MOU</h3>
-          <div class="equipment-grid">
-            <div class="equipment-item">
-              <span class="equipment-icon">📹</span>
-              <div class="equipment-text">
-                <strong>Security Cameras</strong>
-                Downtown surveillance network
-              </div>
+      <!-- Featured Article -->
+      <div class="featured-article" data-type="news">
+        <a href="https://www.nashvillescene.com/news/pithinthewind/mayors-office-downtown-surveillance/article_651e0aa9-e3f4-4ddc-9531-27803c5c149e.html" target="_blank" rel="noopener noreferrer" class="featured-card">
+          <img
+            src="https://bloximages.newyork1.vip.townnews.com/nashvillescene.com/content/tncms/assets/v3/editorial/1/e3/1e30d1b4-3a75-5095-bfcf-5f40a54f6e39/674ca4285f330.image.jpg"
+            alt="LiveView Technologies surveillance trailer"
+            class="featured-image"
+          />
+          <div class="featured-content">
+            <span class="featured-badge badge-news">News</span>
+            <div class="featured-source">Nashville Scene</div>
+            <h2 class="featured-title">Mayor's Office Files Resolution to Allow Surveillance Use</h2>
+            <div class="featured-meta">
+              By <span class="author">Steven Hale</span> · December 1, 2025
             </div>
-            <div class="equipment-item">
-              <span class="equipment-icon">🔊</span>
-              <div class="equipment-text">
-                <strong>Noise Camera Technology</strong>
-                For noise ordinance enforcement
-              </div>
-            </div>
-            <div class="equipment-item">
-              <span class="equipment-icon">🖥️</span>
-              <div class="equipment-text">
-                <strong>Video Wall</strong>
-                For monitoring live camera feeds
-              </div>
-            </div>
-            <div class="equipment-item">
-              <span class="equipment-icon">📊</span>
-              <div class="equipment-text">
-                <strong>Surveillance Software</strong>
-                Two platforms for real-time data analysis
-              </div>
-            </div>
-            <div class="equipment-item">
-              <span class="equipment-icon">🚐</span>
-              <div class="equipment-text">
-                <strong>Armored Rescue Vehicle</strong>
-                For MNPD SWAT response
-              </div>
-            </div>
-            <div class="equipment-item">
-              <span class="equipment-icon">📡</span>
-              <div class="equipment-text">
-                <strong>Mobile Command Post</strong>
-                For events and holidays
-              </div>
-            </div>
+            <p class="featured-excerpt">
+              Grant from state to Nashville Downtown Partnership for security uses is likely to be deferred after negative council feedback. Mayor Freddie O'Connell's office quietly filed a resolution before Thanksgiving that could bring surveillance technology to downtown Nashville.
+            </p>
+            <span class="read-more">Read Full Article →</span>
           </div>
-        </div>
-
-        <p>
-          This new proposal comes near the end of a year marked by debate in Nashville over police surveillance technology. After a contentious months-long discussion over Fusus—a system that would have given police easier access to private security footage—<strong>O'Connell backed off the idea in April</strong>, citing overreach at the federal level by President Trump's administration.
-        </p>
-
-        <p>
-          Local debate over the deployment of <strong>license plate readers</strong> has also split along the same lines that emerged during the Fusus controversy.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog Section -->
-  <section class="blog-section">
-    <div class="blog-inner">
-      <div class="blog-header">
-        <div class="blog-label">Blog Coverage</div>
-        <h2 class="blog-title">From Rich Text</h2>
-        <p class="blog-subtitle">Independent analysis and commentary on Nashville surveillance policy</p>
-      </div>
-      <div class="blog-grid">
-        <a href="https://readrichtext.substack.com/p/debunking-the-mayors-offices-surveillance" target="_blank" rel="noopener noreferrer" class="blog-card">
-          <div class="blog-card-source">Rich Text</div>
-          <h3 class="blog-card-title">Debunking the Mayor's Office's Surveillance Myths</h3>
-          <p class="blog-card-excerpt">Fact-checking the administration's claims about the Downtown Partnership surveillance proposal and examining what the data actually shows.</p>
-          <span class="blog-card-read">Read Article →</span>
-        </a>
-        <a href="https://readrichtext.substack.com/p/downtown-partnerships-specially-assessed" target="_blank" rel="noopener noreferrer" class="blog-card">
-          <div class="blog-card-source">Rich Text</div>
-          <h3 class="blog-card-title">Downtown Partnership's Specially Assessed Surveillance District</h3>
-          <p class="blog-card-excerpt">How the Downtown Partnership's funding structure and special assessment district enables surveillance expansion in Nashville.</p>
-          <span class="blog-card-read">Read Article →</span>
-        </a>
-        <a href="https://readrichtext.substack.com/p/from-the-makers-of-fusus-literally" target="_blank" rel="noopener noreferrer" class="blog-card">
-          <div class="blog-card-source">Rich Text</div>
-          <h3 class="blog-card-title">From the Makers of Fusus, Literally</h3>
-          <p class="blog-card-excerpt">Tracing the connections between the current surveillance proposal and the previously rejected Fusus system.</p>
-          <span class="blog-card-read">Read Article →</span>
-        </a>
-        <a href="https://readrichtext.substack.com/p/no-means-no-freddie-the-mayors-office" target="_blank" rel="noopener noreferrer" class="blog-card">
-          <div class="blog-card-source">Rich Text</div>
-          <h3 class="blog-card-title">No Means No, Freddie: The Mayor's Office Ignores Council Feedback</h3>
-          <p class="blog-card-excerpt">Analysis of the administration's continued push for surveillance technology despite Metro Council opposition.</p>
-          <span class="blog-card-read">Read Article →</span>
-        </a>
-        <a href="https://readrichtext.substack.com/p/sunday-rewind-freddie-oconnell-strong" target="_blank" rel="noopener noreferrer" class="blog-card">
-          <div class="blog-card-source">Rich Text</div>
-          <h3 class="blog-card-title">Sunday Rewind: Freddie O'Connell's Strong Mayor Push</h3>
-          <p class="blog-card-excerpt">A look back at the mayor's approach to governance and how it relates to the current surveillance debate.</p>
-          <span class="blog-card-read">Read Article →</span>
         </a>
       </div>
+
+      <!-- Coverage Grid -->
+      <div class="coverage-grid">
+
+        <!-- Nashville Banner Article -->
+        <a href="https://nashvillebanner.com/2025/12/01/nashville-downtown-partnership-fusus-tennessee-grant/" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="news">
+          <img
+            src="https://i0.wp.com/nashvillebanner.com/wp-content/uploads/2024/12/MNPD-FUSUS-09-scaled.jpg?resize=1568%2C1176&quality=89&ssl=1"
+            alt="Officers monitor data at MNPD headquarters"
+            class="coverage-card-image"
+          />
+          <div class="coverage-card-content">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-news">News</span>
+              <span class="coverage-source">Nashville Banner</span>
+            </div>
+            <h3 class="coverage-card-title">Mayor's Office Quietly Files Resolution to Allow Surveillance Use</h3>
+            <p class="coverage-card-excerpt">Proposal sparks backlash from Metro observers who see it as a backdoor attempt to implement policies like Fusus.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Dec 1, 2025</span>
+              <span class="coverage-card-link">Read Article →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Blog: Debunking Myths -->
+        <a href="https://readrichtext.substack.com/p/debunking-the-mayors-offices-surveillance" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="blog">
+          <div class="coverage-card-content" style="padding-top: 1.5rem;">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-blog">Analysis</span>
+              <span class="coverage-source">Rich Text</span>
+            </div>
+            <h3 class="coverage-card-title">Debunking the Mayor's Office's Surveillance Myths</h3>
+            <p class="coverage-card-excerpt">Fact-checking the administration's claims about the Downtown Partnership surveillance proposal and examining what the data actually shows.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Nov 2025</span>
+              <span class="coverage-card-link">Read Analysis →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Blog: Specially Assessed -->
+        <a href="https://readrichtext.substack.com/p/downtown-partnerships-specially-assessed" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="blog">
+          <div class="coverage-card-content" style="padding-top: 1.5rem;">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-blog">Analysis</span>
+              <span class="coverage-source">Rich Text</span>
+            </div>
+            <h3 class="coverage-card-title">Downtown Partnership's Specially Assessed Surveillance District</h3>
+            <p class="coverage-card-excerpt">How the Downtown Partnership's funding structure and special assessment district enables surveillance expansion.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Nov 2025</span>
+              <span class="coverage-card-link">Read Analysis →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Blog: From the Makers -->
+        <a href="https://readrichtext.substack.com/p/from-the-makers-of-fusus-literally" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="blog">
+          <div class="coverage-card-content" style="padding-top: 1.5rem;">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-blog">Analysis</span>
+              <span class="coverage-source">Rich Text</span>
+            </div>
+            <h3 class="coverage-card-title">From the Makers of Fusus, Literally</h3>
+            <p class="coverage-card-excerpt">Tracing the connections between the current surveillance proposal and the previously rejected Fusus system.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Nov 2025</span>
+              <span class="coverage-card-link">Read Analysis →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Blog: No Means No -->
+        <a href="https://readrichtext.substack.com/p/no-means-no-freddie-the-mayors-office" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="blog">
+          <div class="coverage-card-content" style="padding-top: 1.5rem;">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-blog">Analysis</span>
+              <span class="coverage-source">Rich Text</span>
+            </div>
+            <h3 class="coverage-card-title">No Means No, Freddie: The Mayor's Office Ignores Council Feedback</h3>
+            <p class="coverage-card-excerpt">Analysis of the administration's continued push for surveillance technology despite Metro Council opposition.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Nov 2025</span>
+              <span class="coverage-card-link">Read Analysis →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Blog: Sunday Rewind -->
+        <a href="https://readrichtext.substack.com/p/sunday-rewind-freddie-oconnell-strong" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="blog">
+          <div class="coverage-card-content" style="padding-top: 1.5rem;">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-blog">Analysis</span>
+              <span class="coverage-source">Rich Text</span>
+            </div>
+            <h3 class="coverage-card-title">Sunday Rewind: Freddie O'Connell's Strong Mayor Push</h3>
+            <p class="coverage-card-excerpt">A look back at the mayor's approach to governance and how it relates to the current surveillance debate.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Nov 2025</span>
+              <span class="coverage-card-link">Read Analysis →</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Key Points Callout -->
+      <div class="key-points-callout">
+        <div class="key-points-header">
+          <span class="key-points-icon">📋</span>
+          <h3 class="key-points-title">Key Takeaways from Coverage</h3>
+        </div>
+        <div class="key-points-list">
+          <div class="key-point">
+            <span class="key-point-bullet"></span>
+            <span><strong>$15 million grant</strong> from Gov. Bill Lee's Downtown Public Safety Grant Fund for surveillance equipment</span>
+          </div>
+          <div class="key-point">
+            <span class="key-point-bullet"></span>
+            <span><strong>Resolution filed quietly</strong> before Thanksgiving holiday, drawing criticism for lack of transparency</span>
+          </div>
+          <div class="key-point">
+            <span class="key-point-bullet"></span>
+            <span><strong>Equipment includes</strong> cameras, video wall, real-time surveillance software, armored vehicle, and mobile command post</span>
+          </div>
+          <div class="key-point">
+            <span class="key-point-bullet"></span>
+            <span><strong>Fusus redux</strong> — critics see this as a backdoor attempt after previous surveillance proposal was rejected</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- CTA Section -->
   <section class="cta-section">
     <div class="cta-inner">
-      <h2 class="section-title">Take Action</h2>
-      <p>
-        The Metro Council is set to consider this resolution. Your voice matters in shaping Nashville's approach to surveillance and public safety.
+      <h2 class="cta-title">Take Action</h2>
+      <p class="cta-text">
+        The Metro Council is set to consider this resolution. Your voice matters in shaping Nashville's approach to surveillance.
       </p>
       <a href="index.html#take-action" class="btn-primary">Contact Your Councilmember</a>
     </div>
@@ -882,6 +809,41 @@
       </div>
     </div>
   </footer>
+
+  <!-- Filter Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.filter-tab');
+      const featuredArticle = document.querySelector('.featured-article');
+      const cards = document.querySelectorAll('.coverage-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // Update active tab
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+
+          const filter = this.dataset.filter;
+
+          // Filter featured article
+          if (filter === 'all' || featuredArticle.dataset.type === filter) {
+            featuredArticle.classList.remove('hidden');
+          } else {
+            featuredArticle.classList.add('hidden');
+          }
+
+          // Filter cards
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.type === filter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
