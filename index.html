@@ -145,7 +145,38 @@
       color: var(--accent-teal);
       font-weight: 600;
     }
-    
+
+    /* Mobile Hamburger Menu */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 101;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent-teal);
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     /* Hero Section */
     .hero {
       padding: 4rem 1.5rem 3rem;
@@ -1302,33 +1333,63 @@
         gap: 0.75rem;
       }
 
-      /* Mobile navbar fixes */
+      /* Mobile hamburger menu */
       .site-header {
         padding: 0.5rem 1rem;
+        position: relative;
       }
 
       .header-inner {
-        justify-content: center;
-        text-align: center;
-        gap: 0.5rem;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 0;
       }
 
       .site-name {
         font-size: 0.75rem;
+        flex: 1;
+      }
+
+      .hamburger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
       .nav-links {
-        justify-content: center;
-        gap: 0.5rem 0.75rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-cream);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.75rem;
+        border-bottom: 2px solid var(--border-light);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      .nav-links a {
-        font-size: 0.7rem;
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a,
+      .nav-links .affect-tab {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        text-align: center;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
       }
 
       .affect-tab {
-        font-size: 0.7rem;
-        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+        margin: 0.25rem 0;
       }
     }
     
@@ -2079,7 +2140,12 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="site-name">Nashville Community Safety Network</div>
-      <nav class="nav-links">
+      <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
         <a href="news.html">News</a>
         <a href="resource-page.html">Resource Page</a>
         <a href="print-flyer.html">Print a Flyer</a>
@@ -2972,6 +3038,29 @@
       document.getElementById('audienceModal').classList.remove('active');
       document.body.style.overflow = '';
     }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const navLinks = document.getElementById('navLinks');
+      const hamburgerBtn = document.querySelector('.hamburger-btn');
+      navLinks.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking a link
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          const navContainer = document.getElementById('navLinks');
+          const hamburgerBtn = document.querySelector('.hamburger-btn');
+          if (window.innerWidth <= 640) {
+            navContainer.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+          }
+        });
+      });
+    });
 
     // Set up modal event handling after DOM loads
     (function() {
