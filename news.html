@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | Nashville Community Safety Network</title>
+  <link rel="icon" type="image/png" href="https://storage.googleapis.com/intelechia-content/Screenshot%202025-11-28%20at%207.34.59%E2%80%AFPM.png">
+  <meta name="description" content="Latest news and updates about Nashville's surveillance policy, Downtown Partnership, and community advocacy.">
+  <meta property="og:title" content="News | Nashville Community Safety Network">
+  <meta property="og:description" content="Latest news about Nashville's surveillance policy and community advocacy.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-teal-dark: #3A6359;
+      --accent-rust: #B85C38;
+      --accent-rust-light: #D4714A;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    ::selection {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+    }
+
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .site-name a {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .back-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--accent-rust);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-link:hover {
+      color: var(--accent-rust-light);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      border-bottom: 2px solid var(--border-light);
+      background: linear-gradient(135deg, #4A7C6F 0%, #3A6359 100%);
+      color: white;
+    }
+
+    .hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      opacity: 0.9;
+    }
+
+    /* Featured Article */
+    .featured-section {
+      padding: 3rem 1.5rem;
+      background: var(--bg-cream-dark);
+      border-bottom: 2px solid var(--border-light);
+    }
+
+    .featured-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-rust);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .article-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s ease;
+    }
+
+    .article-card:hover {
+      border-color: var(--accent-teal);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .article-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-content {
+      padding: 2rem;
+    }
+
+    .article-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .article-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .article-meta {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .article-meta .author {
+      color: var(--accent-rust);
+      font-weight: 600;
+    }
+
+    .article-excerpt {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+    }
+
+    .article-card:hover .read-more {
+      color: var(--accent-teal-dark);
+    }
+
+    /* Key Points Section */
+    .key-points-section {
+      padding: 3rem 1.5rem;
+      background: var(--accent-rust);
+      color: white;
+    }
+
+    .key-points-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .key-points-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .key-points-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .key-points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .key-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .key-point-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .key-point-text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .key-point-text strong {
+      color: var(--highlight-yellow);
+    }
+
+    /* Article Details Section */
+    .article-details {
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      color: var(--accent-rust);
+    }
+
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .article-body p {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .article-body strong {
+      color: var(--text-dark);
+    }
+
+    .quote-block {
+      padding: 1.5rem;
+      background: var(--highlight-yellow);
+      border-left: 4px solid var(--accent-rust);
+      margin: 2rem 0;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .quote-attribution {
+      display: block;
+      margin-top: 0.75rem;
+      font-style: normal;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-rust);
+    }
+
+    /* Equipment List */
+    .equipment-section {
+      padding: 2.5rem;
+      background: #FDF8F3;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+      margin: 2rem 0;
+    }
+
+    .equipment-section h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .equipment-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 4px;
+      border: 1px solid var(--border-light);
+    }
+
+    .equipment-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .equipment-text {
+      font-size: 0.95rem;
+      color: var(--text-body);
+    }
+
+    .equipment-text strong {
+      display: block;
+      font-family: 'Archivo', sans-serif;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 3rem 1.5rem;
+      background: var(--accent-teal);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-section .section-title {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: white;
+      color: var(--accent-teal);
+      padding: 1rem 2rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 1.5rem 2rem;
+      background: var(--bg-cream-dark);
+      border-top: 2px solid var(--border-light);
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--accent-teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .article-image {
+        height: 250px;
+      }
+
+      .article-content {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .article-image {
+        height: 200px;
+      }
+
+      .header-inner {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
+      <a href="index.html" class="back-link">← Back to Main Site</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-icon">📰</div>
+      <div class="hero-label">Stay Informed</div>
+      <h1 class="hero-title">News & Updates</h1>
+      <p class="hero-subtitle">The latest coverage on Nashville's surveillance policy and community advocacy</p>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="featured-section">
+    <div class="featured-label">Latest Coverage</div>
+    <a href="https://nashvillebanner.com/2025/12/01/nashville-downtown-partnership-fusus-tennessee-grant/" target="_blank" rel="noopener noreferrer" class="article-card">
+      <img
+        src="https://i0.wp.com/nashvillebanner.com/wp-content/uploads/2024/12/MNPD-FUSUS-09-scaled.jpg?resize=1568%2C1176&quality=89&ssl=1"
+        alt="Officers monitor data at MNPD headquarters"
+        class="article-image"
+      />
+      <div class="article-content">
+        <div class="article-source">
+          <span>Nashville Banner</span>
+        </div>
+        <h2 class="article-title">Mayor's Office Quietly Files Resolution to Allow Surveillance Use by Downtown Partnership</h2>
+        <div class="article-meta">
+          By <span class="author">Steven Hale</span> · December 1, 2025
+        </div>
+        <p class="article-excerpt">
+          Mayor Freddie O'Connell's office quietly filed a resolution with the Metro Council before the Thanksgiving holiday that could bring increased police capabilities and surveillance technology to downtown Nashville. As word of the proposal spread last week, it sparked a backlash among some close Metro observers who described it as a backdoor attempt to implement policies, like Fusus, that have been previously rejected.
+        </p>
+        <span class="read-more">
+          Read Full Article at Nashville Banner →
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Key Points -->
+  <section class="key-points-section">
+    <div class="key-points-inner">
+      <div class="key-points-label">Key Takeaways</div>
+      <h2 class="key-points-title">What You Need to Know</h2>
+      <div class="key-points-grid">
+        <div class="key-point">
+          <span class="key-point-icon">📋</span>
+          <div class="key-point-text">
+            <strong>Resolution filed quietly</strong> before Thanksgiving holiday, drawing criticism for lack of transparency
+          </div>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">💰</span>
+          <div class="key-point-text">
+            <strong>$15 million grant</strong> from Gov. Bill Lee's Downtown Public Safety Grant Fund
+          </div>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">📹</span>
+          <div class="key-point-text">
+            <strong>Surveillance equipment</strong> including cameras, "video wall" for live monitoring, and real-time surveillance software
+          </div>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">🚔</span>
+          <div class="key-point-text">
+            <strong>Armored vehicle and mobile command post</strong> for SWAT and event deployment
+          </div>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">⏸️</span>
+          <div class="key-point-text">
+            <strong>Likely deferral</strong> expected after negative Council feedback
+          </div>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">🔄</span>
+          <div class="key-point-text">
+            <strong>Fusus redux</strong> — critics see this as a backdoor attempt after previous rejection
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Details -->
+  <section class="article-details">
+    <div class="container">
+      <div class="section-label">From the Article</div>
+      <h2 class="section-title">The Proposed MOU</h2>
+
+      <div class="article-body">
+        <p>
+          The resolution is a proposed memorandum of understanding between Metro and the <strong>Nashville Downtown Partnership (NDP)</strong>, a private nonprofit composed of downtown property owners and businesses. The MOU outlines how the NDP would use the $15 million grant announced in October.
+        </p>
+
+        <div class="quote-block">
+          "Under this MOU, NDP agrees to limit the uses of the funds to a finite list, all of which are already permitted by Metro. Absent the MOU, NDP has the option to apply the funds to a wider list of uses, though they've stated they will not do so."
+          <span class="quote-attribution">— Julie Oaks Smith, Mayor's Office Communications Director</span>
+        </div>
+
+        <p>
+          Councilmember <strong>Erin Evans</strong>, former chair of the Public Health and Safety Committee, told the Banner she anticipated many members will seek to defer the resolution. The administration has said it will not oppose those efforts.
+        </p>
+
+        <div class="equipment-section">
+          <h3>Equipment Included in the MOU</h3>
+          <div class="equipment-grid">
+            <div class="equipment-item">
+              <span class="equipment-icon">📹</span>
+              <div class="equipment-text">
+                <strong>Security Cameras</strong>
+                Downtown surveillance network
+              </div>
+            </div>
+            <div class="equipment-item">
+              <span class="equipment-icon">🔊</span>
+              <div class="equipment-text">
+                <strong>Noise Camera Technology</strong>
+                For noise ordinance enforcement
+              </div>
+            </div>
+            <div class="equipment-item">
+              <span class="equipment-icon">🖥️</span>
+              <div class="equipment-text">
+                <strong>Video Wall</strong>
+                For monitoring live camera feeds
+              </div>
+            </div>
+            <div class="equipment-item">
+              <span class="equipment-icon">📊</span>
+              <div class="equipment-text">
+                <strong>Surveillance Software</strong>
+                Two platforms for real-time data analysis
+              </div>
+            </div>
+            <div class="equipment-item">
+              <span class="equipment-icon">🚐</span>
+              <div class="equipment-text">
+                <strong>Armored Rescue Vehicle</strong>
+                For MNPD SWAT response
+              </div>
+            </div>
+            <div class="equipment-item">
+              <span class="equipment-icon">📡</span>
+              <div class="equipment-text">
+                <strong>Mobile Command Post</strong>
+                For events and holidays
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          This new proposal comes near the end of a year marked by debate in Nashville over police surveillance technology. After a contentious months-long discussion over Fusus—a system that would have given police easier access to private security footage—<strong>O'Connell backed off the idea in April</strong>, citing overreach at the federal level by President Trump's administration.
+        </p>
+
+        <p>
+          Local debate over the deployment of <strong>license plate readers</strong> has also split along the same lines that emerged during the Fusus controversy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="section-title">Take Action</h2>
+      <p>
+        The Metro Council is set to consider this resolution. Your voice matters in shaping Nashville's approach to surveillance and public safety.
+      </p>
+      <a href="index.html#take-action" class="btn-primary">Contact Your Councilmember</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Nashville Community Safety Network</div>
+      <p class="footer-tagline">Nashville's surveillance resistance continues.</p>
+      <div class="footer-links">
+        <a href="index.html">Main Site</a>
+        <a href="index.html#take-action">Take Action</a>
+        <a href="resource-page.html">Resource Page</a>
+        <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
