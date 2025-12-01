@@ -514,6 +514,109 @@
         text-align: center;
       }
     }
+
+    /* Blog Section */
+    .blog-section {
+      padding: 3rem 1.5rem;
+      background: var(--bg-cream-dark);
+      border-top: 2px solid var(--border-light);
+    }
+
+    .blog-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .blog-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-rust);
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .blog-subtitle {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .blog-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .blog-card {
+      display: block;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .blog-card:hover {
+      border-color: var(--accent-teal);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .blog-card-source {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    .blog-card-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-teal);
+      margin-top: 0.75rem;
+    }
+
+    .blog-card:hover .blog-card-read {
+      color: var(--accent-teal-dark);
+    }
   </style>
 </head>
 <body>
@@ -684,6 +787,49 @@
         <p>
           Local debate over the deployment of <strong>license plate readers</strong> has also split along the same lines that emerged during the Fusus controversy.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog-section">
+    <div class="blog-inner">
+      <div class="blog-header">
+        <div class="blog-label">Blog Coverage</div>
+        <h2 class="blog-title">From Rich Text</h2>
+        <p class="blog-subtitle">Independent analysis and commentary on Nashville surveillance policy</p>
+      </div>
+      <div class="blog-grid">
+        <a href="https://readrichtext.substack.com/p/debunking-the-mayors-offices-surveillance" target="_blank" rel="noopener noreferrer" class="blog-card">
+          <div class="blog-card-source">Rich Text</div>
+          <h3 class="blog-card-title">Debunking the Mayor's Office's Surveillance Myths</h3>
+          <p class="blog-card-excerpt">Fact-checking the administration's claims about the Downtown Partnership surveillance proposal and examining what the data actually shows.</p>
+          <span class="blog-card-read">Read Article →</span>
+        </a>
+        <a href="https://readrichtext.substack.com/p/downtown-partnerships-specially-assessed" target="_blank" rel="noopener noreferrer" class="blog-card">
+          <div class="blog-card-source">Rich Text</div>
+          <h3 class="blog-card-title">Downtown Partnership's Specially Assessed Surveillance District</h3>
+          <p class="blog-card-excerpt">How the Downtown Partnership's funding structure and special assessment district enables surveillance expansion in Nashville.</p>
+          <span class="blog-card-read">Read Article →</span>
+        </a>
+        <a href="https://readrichtext.substack.com/p/from-the-makers-of-fusus-literally" target="_blank" rel="noopener noreferrer" class="blog-card">
+          <div class="blog-card-source">Rich Text</div>
+          <h3 class="blog-card-title">From the Makers of Fusus, Literally</h3>
+          <p class="blog-card-excerpt">Tracing the connections between the current surveillance proposal and the previously rejected Fusus system.</p>
+          <span class="blog-card-read">Read Article →</span>
+        </a>
+        <a href="https://readrichtext.substack.com/p/no-means-no-freddie-the-mayors-office" target="_blank" rel="noopener noreferrer" class="blog-card">
+          <div class="blog-card-source">Rich Text</div>
+          <h3 class="blog-card-title">No Means No, Freddie: The Mayor's Office Ignores Council Feedback</h3>
+          <p class="blog-card-excerpt">Analysis of the administration's continued push for surveillance technology despite Metro Council opposition.</p>
+          <span class="blog-card-read">Read Article →</span>
+        </a>
+        <a href="https://readrichtext.substack.com/p/sunday-rewind-freddie-oconnell-strong" target="_blank" rel="noopener noreferrer" class="blog-card">
+          <div class="blog-card-source">Rich Text</div>
+          <h3 class="blog-card-title">Sunday Rewind: Freddie O'Connell's Strong Mayor Push</h3>
+          <p class="blog-card-excerpt">A look back at the mayor's approach to governance and how it relates to the current surveillance debate.</p>
+          <span class="blog-card-read">Read Article →</span>
+        </a>
       </div>
     </div>
   </section>
