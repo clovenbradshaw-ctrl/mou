@@ -3032,11 +3032,21 @@
     function openAudienceModal() {
       document.getElementById('audienceModal').classList.add('active');
       document.body.style.overflow = 'hidden';
+      // Update URL for shareability
+      const url = new URL(window.location);
+      url.searchParams.set('modal', 'audience');
+      url.searchParams.delete('section'); // Clear section param when modal opens
+      window.history.replaceState({}, '', url);
     }
 
     function closeAudienceModal() {
       document.getElementById('audienceModal').classList.remove('active');
       document.body.style.overflow = '';
+      // Remove modal param from URL
+      const url = new URL(window.location);
+      url.searchParams.delete('modal');
+      url.searchParams.delete('affect'); // Also clean up legacy param
+      window.history.replaceState({}, '', url);
     }
 
     // Mobile Menu Toggle
@@ -3119,7 +3129,49 @@
 
       // Check URL query parameters on page load
       const params = new URLSearchParams(window.location.search);
-      if (params.has('affect')) {
+
+      // Valid subpages for ?page= parameter
+      const validPages = {
+        'immigrant-communities': 'immigrant-communities.html',
+        'downtown-residents': 'downtown-residents.html',
+        'fiscal-accountability': 'fiscal-accountability.html',
+        'privacy-advocates': 'privacy-advocates.html',
+        'organizers-activists': 'organizers-activists.html',
+        'faith-communities': 'faith-communities.html',
+        'news': 'news.html',
+        'resource-page': 'resource-page.html',
+        'resources': 'resource-page.html',
+        'print-flyer': 'print-flyer.html',
+        'flyer': 'print-flyer.html'
+      };
+
+      // Valid sections for ?section= parameter
+      const validSections = ['the-bypass', 'whats-in-it', 'track-record', 'contradiction', 'leosight', 'take-action'];
+
+      // Handle ?page= parameter - redirect to subpage
+      if (params.has('page')) {
+        const pageName = params.get('page').toLowerCase();
+        if (validPages[pageName]) {
+          window.location.href = validPages[pageName];
+          return; // Stop further execution
+        }
+      }
+
+      // Handle ?section= parameter - scroll to section
+      if (params.has('section')) {
+        const sectionId = params.get('section').toLowerCase();
+        if (validSections.includes(sectionId)) {
+          setTimeout(() => {
+            const targetElement = document.getElementById(sectionId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 100);
+        }
+      }
+
+      // Handle ?modal=audience or ?affect - open audience modal
+      if (params.has('affect') || params.get('modal') === 'audience') {
         // Small delay to ensure DOM is ready and page has scrolled to top
         setTimeout(openAudienceModal, 100);
       }
@@ -3396,12 +3448,23 @@
       }
     }
 
+    // Valid sections for URL parameter updates
+    const shareableSections = ['the-bypass', 'whats-in-it', 'track-record', 'contradiction', 'leosight', 'take-action'];
+
     // Handle clicks on anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         scrollToHash(targetId);
+
+        // Update URL with section parameter for shareability
+        if (shareableSections.includes(targetId)) {
+          const url = new URL(window.location);
+          url.searchParams.set('section', targetId);
+          url.hash = ''; // Clear hash to use clean query params
+          window.history.replaceState({}, '', url);
+        }
       });
     });
 

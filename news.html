@@ -817,31 +817,56 @@
       const featuredArticle = document.querySelector('.featured-article');
       const cards = document.querySelectorAll('.coverage-card');
 
+      function applyFilter(filter) {
+        // Update active tab
+        tabs.forEach(t => {
+          if (t.dataset.filter === filter) {
+            t.classList.add('active');
+          } else {
+            t.classList.remove('active');
+          }
+        });
+
+        // Filter featured article
+        if (filter === 'all' || featuredArticle.dataset.type === filter) {
+          featuredArticle.classList.remove('hidden');
+        } else {
+          featuredArticle.classList.add('hidden');
+        }
+
+        // Filter cards
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.type === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Update URL without reload for shareability
+        const url = new URL(window.location);
+        if (filter === 'all') {
+          url.searchParams.delete('filter');
+        } else {
+          url.searchParams.set('filter', filter);
+        }
+        window.history.replaceState({}, '', url);
+      }
+
       tabs.forEach(tab => {
         tab.addEventListener('click', function() {
-          // Update active tab
-          tabs.forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-
-          const filter = this.dataset.filter;
-
-          // Filter featured article
-          if (filter === 'all' || featuredArticle.dataset.type === filter) {
-            featuredArticle.classList.remove('hidden');
-          } else {
-            featuredArticle.classList.add('hidden');
-          }
-
-          // Filter cards
-          cards.forEach(card => {
-            if (filter === 'all' || card.dataset.type === filter) {
-              card.classList.remove('hidden');
-            } else {
-              card.classList.add('hidden');
-            }
-          });
+          applyFilter(this.dataset.filter);
         });
       });
+
+      // Check URL parameters on page load
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('filter')) {
+        const filter = params.get('filter').toLowerCase();
+        if (['all', 'news', 'blog'].includes(filter)) {
+          applyFilter(filter);
+        }
+      }
     });
   </script>
 
