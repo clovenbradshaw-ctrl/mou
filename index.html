@@ -2075,6 +2075,150 @@
         font-size: 0.75rem;
       }
     }
+
+    /* Breaking News / Featured Article */
+    .breaking-news-section {
+      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    .breaking-news-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .breaking-news-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-rust);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(184, 92, 56, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(184, 92, 56, 0.8); }
+    }
+
+    .breaking-news-card {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .breaking-news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .breaking-news-image {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .breaking-news-content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .breaking-news-source {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      color: var(--accent-rust);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .breaking-news-category {
+      display: inline-block;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      background: var(--bg-cream-dark);
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      margin-bottom: 0.75rem;
+    }
+
+    .breaking-news-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .breaking-news-excerpt {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .breaking-news-meta {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .breaking-news-meta .author {
+      color: var(--accent-teal);
+      font-weight: 600;
+    }
+
+    .breaking-news-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+    }
+
+    .breaking-news-card:hover .breaking-news-cta {
+      color: var(--accent-teal-dark);
+    }
+
+    @media (max-width: 768px) {
+      .breaking-news-card {
+        grid-template-columns: 1fr;
+      }
+
+      .breaking-news-image {
+        min-height: 200px;
+        max-height: 250px;
+      }
+
+      .breaking-news-content {
+        padding: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2243,6 +2387,34 @@
           <span class="tldr-point-text"><strong>December 4 vote</strong>—contact your council member</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Breaking News: Truthout Article -->
+  <section class="breaking-news-section">
+    <div class="breaking-news-inner">
+      <div class="breaking-news-label">
+        National Coverage
+      </div>
+      <a href="https://truthout.org/articles/a-nashville-proposal-could-outsource-surveillance-and-policing-to-a-nonprofit/" target="_blank" rel="noopener noreferrer" class="breaking-news-card">
+        <img
+          src="https://truthout.org/app/uploads/2025/12/GettyImages-2165027943-1200x800.jpg"
+          alt="Nashville surveillance proposal coverage"
+          class="breaking-news-image"
+        />
+        <div class="breaking-news-content">
+          <div class="breaking-news-source">Truthout</div>
+          <div class="breaking-news-category">News Analysis | Prisons & Policing</div>
+          <h2 class="breaking-news-title">A Nashville Proposal Could Outsource Surveillance and Policing to a Nonprofit</h2>
+          <p class="breaking-news-excerpt">
+            "Nashville may be the latest city to leverage a local nonprofit to build a public-private panopticon."
+          </p>
+          <div class="breaking-news-meta">
+            By <span class="author">Mike Lacy & Ed Vogel</span> · December 2, 2025
+          </div>
+          <span class="breaking-news-cta">Read Full Analysis →</span>
+        </div>
+      </a>
     </div>
   </section>
 
