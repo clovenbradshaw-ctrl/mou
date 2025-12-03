@@ -252,6 +252,11 @@
       color: white;
     }
 
+    .badge-podcast {
+      background: #FF6B35;
+      color: white;
+    }
+
     .featured-source {
       font-family: 'Archivo', sans-serif;
       font-size: 0.8rem;
@@ -622,8 +627,9 @@
 
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">All Coverage <span class="count">10</span></button>
+        <button class="filter-tab active" data-filter="all">All Coverage <span class="count">11</span></button>
         <button class="filter-tab" data-filter="news">Legacy Media <span class="count">5</span></button>
+        <button class="filter-tab" data-filter="podcast">Podcasts <span class="count">1</span></button>
         <button class="filter-tab" data-filter="blog">Blogs <span class="count">5</span></button>
       </div>
 
@@ -652,6 +658,27 @@
 
       <!-- Coverage Grid -->
       <div class="coverage-grid">
+
+        <!-- City Cast Nashville Podcast -->
+        <a href="citycast-episode.html" class="coverage-card" data-type="podcast">
+          <img
+            src="https://cdn.sanity.io/images/9zm36frz/staging/a73f7ad19af9dac258a3b5fab539b90de5434fc6-3000x3000.png?w=1920&q=75&fit=max&auto=format"
+            alt="City Cast Nashville podcast logo"
+            class="coverage-card-image"
+          />
+          <div class="coverage-card-content">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-podcast">Podcast</span>
+              <span class="coverage-source">City Cast Nashville</span>
+            </div>
+            <h3 class="coverage-card-title">Downtown Surveillance MOU Discussion</h3>
+            <p class="coverage-card-excerpt">Stephen Hale joins Marissa Anderson and Whitney Pasternak to break down the $15 million state grant and surveillance proposal. Listen with synchronized transcript.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Dec 3, 2024</span>
+              <span class="coverage-card-link">Listen Now →</span>
+            </div>
+          </div>
+        </a>
 
         <!-- Nashville Scene Article -->
         <a href="https://www.nashvillescene.com/news/pithinthewind/mayors-office-downtown-surveillance/article_651e0aa9-e3f4-4ddc-9531-27803c5c149e.html" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="news">
@@ -883,7 +910,7 @@
       const params = new URLSearchParams(window.location.search);
       if (params.has('filter')) {
         const filter = params.get('filter').toLowerCase();
-        if (['all', 'news', 'blog'].includes(filter)) {
+        if (['all', 'news', 'podcast', 'blog'].includes(filter)) {
           applyFilter(filter);
         }
       }
