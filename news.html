@@ -252,6 +252,11 @@
       color: white;
     }
 
+    .badge-podcast {
+      background: #E85D04;
+      color: white;
+    }
+
     .featured-source {
       font-family: 'Archivo', sans-serif;
       font-size: 0.8rem;
@@ -622,8 +627,9 @@
 
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">All Coverage <span class="count">10</span></button>
+        <button class="filter-tab active" data-filter="all">All Coverage <span class="count">11</span></button>
         <button class="filter-tab" data-filter="news">Legacy Media <span class="count">5</span></button>
+        <button class="filter-tab" data-filter="podcast">Podcasts <span class="count">1</span></button>
         <button class="filter-tab" data-filter="blog">Blogs <span class="count">5</span></button>
       </div>
 
@@ -728,6 +734,27 @@
             <div class="coverage-card-footer">
               <span class="coverage-card-date">Dec 1, 2025</span>
               <span class="coverage-card-link">Read Article →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Podcast: City Cast Nashville -->
+        <a href="https://podcasts.apple.com/us/podcast/city-cast-nashville/id1750493520?i=1000739487646" target="_blank" rel="noopener noreferrer" class="coverage-card" data-type="podcast">
+          <img
+            src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/d0/85/53/d0855371-0d81-cc68-f34e-ee4b92d9c8a3/mza_11508097129215498498.jpg/600x600bb.jpg"
+            alt="City Cast Nashville podcast episode art"
+            class="coverage-card-image"
+          />
+          <div class="coverage-card-content">
+            <div class="coverage-card-header">
+              <span class="coverage-badge badge-podcast">Podcast</span>
+              <span class="coverage-source">City Cast Nashville</span>
+            </div>
+            <h3 class="coverage-card-title">TN-07 Results! Plus, Is Downtown Getting Mass Surveillance?</h3>
+            <p class="coverage-card-excerpt">Nashville Banner reporter Steven Hale breaks down the $15M state grant to purchase a mass surveillance system and armored SWAT vehicle for the Downtown Partnership.</p>
+            <div class="coverage-card-footer">
+              <span class="coverage-card-date">Dec 3, 2025</span>
+              <span class="coverage-card-link">Listen Now →</span>
             </div>
           </div>
         </a>
@@ -883,7 +910,7 @@
       const params = new URLSearchParams(window.location.search);
       if (params.has('filter')) {
         const filter = params.get('filter').toLowerCase();
-        if (['all', 'news', 'blog'].includes(filter)) {
+        if (['all', 'news', 'podcast', 'blog'].includes(filter)) {
           applyFilter(filter);
         }
       }
