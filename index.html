@@ -2083,8 +2083,14 @@
     }
 
     .breaking-news-inner {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
+    }
+
+    .breaking-news-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
 
     .breaking-news-label {
@@ -2110,8 +2116,8 @@
     }
 
     .breaking-news-card {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
+      display: flex;
+      flex-direction: column;
       background: white;
       border-radius: 8px;
       overflow: hidden;
@@ -2128,8 +2134,7 @@
 
     .breaking-news-image {
       width: 100%;
-      height: 100%;
-      min-height: 300px;
+      height: 200px;
       object-fit: cover;
       display: block;
     }
@@ -2149,6 +2154,10 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
+    }
+
+    .breaking-news-source.blog-source {
+      color: var(--accent-purple);
     }
 
     .breaking-news-category {
@@ -2206,13 +2215,12 @@
     }
 
     @media (max-width: 768px) {
-      .breaking-news-card {
+      .breaking-news-grid {
         grid-template-columns: 1fr;
       }
 
       .breaking-news-image {
-        min-height: 200px;
-        max-height: 250px;
+        height: 180px;
       }
 
       .breaking-news-content {
@@ -2390,31 +2398,54 @@
     </div>
   </section>
 
-  <!-- Breaking News: Truthout Article -->
+  <!-- Breaking News: Featured Coverage -->
   <section class="breaking-news-section">
     <div class="breaking-news-inner">
       <div class="breaking-news-label">
-        National Coverage
+        Latest Coverage
       </div>
-      <a href="https://truthout.org/articles/a-nashville-proposal-could-outsource-surveillance-and-policing-to-a-nonprofit/" target="_blank" rel="noopener noreferrer" class="breaking-news-card">
-        <img
-          src="https://truthout.org/app/uploads/2025/12/GettyImages-2165027943-1200x800.jpg"
-          alt="Nashville surveillance proposal coverage"
-          class="breaking-news-image"
-        />
-        <div class="breaking-news-content">
-          <div class="breaking-news-source">Truthout</div>
-          <div class="breaking-news-category">News Analysis | Prisons & Policing</div>
-          <h2 class="breaking-news-title">A Nashville Proposal Could Outsource Surveillance and Policing to a Nonprofit</h2>
-          <p class="breaking-news-excerpt">
-            "Nashville may be the latest city to leverage a local nonprofit to build a public-private panopticon."
-          </p>
-          <div class="breaking-news-meta">
-            By <span class="author">Mike Lacy & Ed Vogel</span> · December 2, 2025
+      <div class="breaking-news-grid">
+        <!-- Truthout Article -->
+        <a href="https://truthout.org/articles/a-nashville-proposal-could-outsource-surveillance-and-policing-to-a-nonprofit/" target="_blank" rel="noopener noreferrer" class="breaking-news-card">
+          <img
+            src="https://truthout.org/app/uploads/2025/12/GettyImages-2165027943-1200x800.jpg"
+            alt="Nashville surveillance proposal coverage"
+            class="breaking-news-image"
+          />
+          <div class="breaking-news-content">
+            <div class="breaking-news-source">Truthout</div>
+            <div class="breaking-news-category">News Analysis | Prisons & Policing</div>
+            <h2 class="breaking-news-title">A Nashville Proposal Could Outsource Surveillance and Policing to a Nonprofit</h2>
+            <p class="breaking-news-excerpt">
+              "Nashville may be the latest city to leverage a local nonprofit to build a public-private panopticon."
+            </p>
+            <div class="breaking-news-meta">
+              By <span class="author">Mike Lacy & Ed Vogel</span> · December 2, 2025
+            </div>
+            <span class="breaking-news-cta">Read Full Analysis →</span>
           </div>
-          <span class="breaking-news-cta">Read Full Analysis →</span>
-        </div>
-      </a>
+        </a>
+        <!-- Latest Blog Post: State Records -->
+        <a href="https://readrichtext.substack.com/p/thanksgiving-mou-state-records-reveal-ndp-never-getting-15m" target="_blank" rel="noopener noreferrer" class="breaking-news-card">
+          <img
+            src="https://substack-post-media.s3.amazonaws.com/public/images/e4d79677-ab20-4167-8d7b-390baf37594f_1446x1838.png"
+            alt="Grant contract showing District Management Corporation as grantee"
+            class="breaking-news-image"
+          />
+          <div class="breaking-news-content">
+            <div class="breaking-news-source blog-source">Rich Text</div>
+            <div class="breaking-news-category">Investigation | State Records</div>
+            <h2 class="breaking-news-title">State Records Reveal Nashville Downtown Partnership Was Never Getting the $15M</h2>
+            <p class="breaking-news-excerpt">
+              "State documents show the District Management Corporation, not NDP, was awarded the grant."
+            </p>
+            <div class="breaking-news-meta">
+              December 4, 2025
+            </div>
+            <span class="breaking-news-cta">Read Analysis →</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
