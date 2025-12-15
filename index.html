@@ -4393,5 +4393,47 @@
     });
   </script>
 
+  <!-- Activity Tracking -->
+  <script>
+    (function() {
+      const ACTIVITY_API_URL = 'https://xvkq-pq7i-idtl.n7d.xano.io/api:Hj4C6PGO/activity';
+
+      // Track page view activity
+      async function trackActivity(eventType, eventData = {}) {
+        try {
+          const payload = {
+            event_type: eventType,
+            page: window.location.pathname,
+            url: window.location.href,
+            referrer: document.referrer || null,
+            timestamp: new Date().toISOString(),
+            user_agent: navigator.userAgent,
+            ...eventData
+          };
+
+          await fetch(ACTIVITY_API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          console.log('[Activity] Tracked:', eventType);
+        } catch (error) {
+          console.error('[Activity] Error tracking activity:', error);
+        }
+      }
+
+      // Track page view on load
+      document.addEventListener('DOMContentLoaded', function() {
+        trackActivity('page_view');
+      });
+
+      // Expose trackActivity globally for other event tracking
+      window.trackActivity = trackActivity;
+    })();
+  </script>
+
 </body>
 </html>
