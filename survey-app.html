@@ -2641,9 +2641,44 @@
       });
     }
 
-    // Load Data
-    fetch(SHEET_URL)
-      .then(res => res.text())
+    // Fetch with retry logic for VPN/network issues
+    async function fetchWithRetry(url, maxRetries = 3, baseDelayMs = 1000) {
+      let lastError;
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+          // Update loading message on retry
+          if (attempt > 0) {
+            document.getElementById('loading').innerHTML = `
+              <div class="spinner"></div>
+              <p style="margin-top: 12px;">Retrying... (attempt ${attempt + 1}/${maxRetries + 1})</p>
+            `;
+          }
+
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
+          return await response.text();
+        } catch (err) {
+          lastError = err;
+
+          // Don't wait after the last attempt
+          if (attempt < maxRetries) {
+            // Exponential backoff: 1s, 2s, 4s
+            const delay = baseDelayMs * Math.pow(2, attempt);
+            await new Promise(resolve => setTimeout(resolve, delay));
+          }
+        }
+      }
+
+      throw lastError;
+    }
+
+    // Load Data with retry support
+    fetchWithRetry(SHEET_URL)
       .then(text => {
         surveyData = parseCSV(text);
 
@@ -2659,11 +2694,28 @@
         renderFeedback(surveyData);
       })
       .catch(err => {
+        // Detect likely VPN/network issues
+        const isNetworkError = err.message.includes('Failed to fetch') ||
+                               err.message.includes('NetworkError') ||
+                               err.message.includes('403') ||
+                               err.message.includes('CORS');
+
+        const vpnHint = isNetworkError ? `
+          <div style="margin-top: 16px; padding: 12px; background: #fef3c7; border-radius: 8px; color: #92400e; font-size: 14px;">
+            <strong>Using a VPN?</strong> Google Sheets may block requests from VPN IP addresses.
+            Try temporarily disconnecting your VPN and refreshing the page.
+          </div>
+        ` : '';
+
         document.getElementById('loading').innerHTML = `
           <div style="color: #dc2626; text-align: center;">
             <div style="font-size: 24px; margin-bottom: 12px;">⚠️</div>
             <div style="font-weight: 600; margin-bottom: 8px;">Unable to load survey data</div>
-            <div style="color: #6b7280;">${err.message}</div>
+            <div style="color: #6b7280; margin-bottom: 8px;">${err.message}</div>
+            ${vpnHint}
+            <button onclick="location.reload()" style="margin-top: 16px; padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500;">
+              Try Again
+            </button>
           </div>
         `;
       });
