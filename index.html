@@ -96,14 +96,14 @@
     
     /* Header/Nav */
     .site-header {
-      padding: 1rem 1.5rem;
-      border-bottom: 2px solid var(--border-light);
+      padding: 0.5rem 1.5rem;
+      border-bottom: 1px solid var(--border-light);
       background: var(--bg-cream);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    
+
     .header-inner {
       max-width: 800px;
       margin: 0 auto;
@@ -111,27 +111,27 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.5rem;
     }
-    
+
     .site-name {
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: var(--accent-teal);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    
+
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
-    
+
     .nav-links a {
       font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
@@ -144,6 +144,58 @@
     .nav-links a[href*="instagram"] {
       color: var(--accent-teal);
       font-weight: 600;
+    }
+
+    /* Survey Results Banner */
+    .survey-banner {
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      padding: 0.5rem 1rem;
+    }
+
+    .survey-banner-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .survey-banner .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    .survey-banner-text {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: white;
+    }
+
+    .survey-banner-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .survey-banner-link:hover {
+      background: rgba(255, 255, 255, 0.35);
     }
 
     /* Mobile Hamburger Menu */
@@ -1409,9 +1461,27 @@
         gap: 0.75rem;
       }
 
+      /* Mobile survey banner */
+      .survey-banner {
+        padding: 0.4rem 0.75rem;
+      }
+
+      .survey-banner-inner {
+        gap: 0.5rem;
+      }
+
+      .survey-banner-text {
+        font-size: 0.7rem;
+      }
+
+      .survey-banner-link {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+      }
+
       /* Mobile hamburger menu */
       .site-header {
-        padding: 0.5rem 1rem;
+        padding: 0.35rem 0.75rem;
         position: relative;
       }
 
@@ -1422,7 +1492,7 @@
       }
 
       .site-name {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         flex: 1;
       }
 
@@ -1430,6 +1500,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 0.25rem;
+      }
+
+      .hamburger-btn span {
+        width: 20px;
+        height: 2px;
+        margin: 4px 0;
       }
 
       .nav-links {
@@ -1440,9 +1517,9 @@
         right: 0;
         background: var(--bg-cream);
         flex-direction: column;
-        padding: 1rem;
-        gap: 0.75rem;
-        border-bottom: 2px solid var(--border-light);
+        padding: 0.75rem;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border-light);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
@@ -1452,8 +1529,8 @@
 
       .nav-links a,
       .nav-links .affect-tab {
-        font-size: 0.9rem;
-        padding: 0.5rem 0;
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
         text-align: center;
         border-bottom: 1px solid var(--border-light);
       }
@@ -1463,9 +1540,9 @@
       }
 
       .affect-tab {
-        font-size: 0.85rem;
-        padding: 0.6rem 1rem;
-        margin: 0.25rem 0;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        margin: 0.2rem 0;
       }
     }
     
@@ -2563,6 +2640,15 @@
   <!-- Sticky CTA -->
   <div class="sticky-cta" id="stickyCta">
     <a href="#take-action">✊ Take Action Now</a>
+  </div>
+
+  <!-- Survey Results Banner -->
+  <div class="survey-banner">
+    <div class="survey-banner-inner">
+      <span class="live-dot"></span>
+      <span class="survey-banner-text">Community survey results are live</span>
+      <a href="community-feedback.html" class="survey-banner-link">View Results →</a>
+    </div>
   </div>
 
   <!-- Header -->
