@@ -197,24 +197,22 @@
     /* Navigation */
     .nav {
       display: flex;
-      gap: 4px;
-      padding: 0 8px 8px;
+      gap: 6px;
+      padding: 8px 8px 12px;
       max-width: 1200px;
       margin: 0 auto;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-
-    .nav::-webkit-scrollbar { display: none; }
 
     .nav-btn {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      padding: 6px 8px;
-      border-radius: 6px;
-      font-size: 10px;
+      justify-content: center;
+      gap: 4px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 11px;
       font-weight: 500;
       white-space: nowrap;
       border: 1px solid var(--gray-200);
@@ -222,7 +220,15 @@
       color: var(--gray-600);
       cursor: pointer;
       transition: all 0.15s;
-      flex-shrink: 0;
+    }
+
+    .nav-icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .nav-text {
+      display: none;
     }
 
     .nav-btn:hover {
@@ -236,18 +242,21 @@
     }
 
     @media (min-width: 360px) {
-      .nav { gap: 5px; padding: 0 10px 10px; }
-      .nav-btn { padding: 7px 10px; font-size: 11px; gap: 4px; border-radius: 7px; }
+      .nav { gap: 6px; padding: 8px 10px 12px; }
+      .nav-btn { padding: 8px 12px; }
+      .nav-text { display: inline; }
     }
 
     @media (min-width: 480px) {
-      .nav { gap: 8px; padding: 0 16px 16px; }
-      .nav-btn { padding: 10px 14px; font-size: 13px; gap: 6px; border-radius: 8px; }
+      .nav { gap: 8px; padding: 10px 16px 16px; }
+      .nav-btn { padding: 10px 14px; font-size: 12px; gap: 5px; border-radius: 10px; }
+      .nav-icon { font-size: 15px; }
     }
 
     @media (min-width: 640px) {
-      .nav { padding: 0 24px 24px; }
-      .nav-btn { padding: 10px 18px; font-size: 14px; }
+      .nav { gap: 10px; padding: 12px 24px 20px; }
+      .nav-btn { padding: 10px 16px; font-size: 13px; gap: 6px; }
+      .nav-icon { font-size: 16px; }
     }
 
     /* Main Content */
@@ -1610,6 +1619,53 @@
       .modal-no-responses-text { font-size: 15px; }
     }
 
+    /* Sticky Council Member Header - appears when scrolling */
+    .modal-sticky-header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      color: white;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+
+    .modal-sticky-header.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .modal-sticky-header .sticky-district {
+      font-weight: 700;
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .modal-sticky-header .sticky-member {
+      opacity: 0.95;
+    }
+
+    @media (min-width: 360px) {
+      .modal-sticky-header { padding: 10px 14px; font-size: 12px; gap: 8px; }
+      .modal-sticky-header .sticky-district { padding: 3px 10px; }
+    }
+
+    @media (min-width: 480px) {
+      .modal-sticky-header { padding: 12px 24px; font-size: 13px; }
+      .modal-sticky-header .sticky-district { padding: 4px 12px; border-radius: 6px; }
+    }
+
     /* Category Filter Pills */
     .filter-pills {
       display: flex;
@@ -1705,11 +1761,26 @@
   </div>
 
   <nav class="nav">
-    <button class="nav-btn active" data-tab="overview">📊 Overview</button>
-    <button class="nav-btn" data-tab="districts">🗺️ By District</button>
-    <button class="nav-btn" data-tab="priorities">📋 All Priorities</button>
-    <button class="nav-btn" data-tab="feedback">💬 Open Feedback</button>
-    <button class="nav-btn" data-tab="grant">📄 Grant Terms</button>
+    <button class="nav-btn active" data-tab="overview">
+      <span class="nav-icon">📊</span>
+      <span class="nav-text">Overview</span>
+    </button>
+    <button class="nav-btn" data-tab="districts">
+      <span class="nav-icon">🗺️</span>
+      <span class="nav-text">Districts</span>
+    </button>
+    <button class="nav-btn" data-tab="priorities">
+      <span class="nav-icon">📋</span>
+      <span class="nav-text">Priorities</span>
+    </button>
+    <button class="nav-btn" data-tab="feedback">
+      <span class="nav-icon">💬</span>
+      <span class="nav-text">Feedback</span>
+    </button>
+    <button class="nav-btn" data-tab="grant">
+      <span class="nav-icon">📄</span>
+      <span class="nav-text">Grant</span>
+    </button>
   </nav>
 
   <main>
@@ -1933,7 +2004,7 @@
 
   <!-- District Modal -->
   <div id="district-modal" class="modal-overlay hidden">
-    <div class="modal">
+    <div class="modal" id="modal-container">
       <div class="modal-header">
         <div>
           <div class="modal-district-label">District</div>
@@ -1941,6 +2012,10 @@
           <div class="modal-council-member" id="modal-council-member"></div>
         </div>
         <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-sticky-header" id="modal-sticky-header">
+        <span class="sticky-district" id="sticky-district">—</span>
+        <span class="sticky-member" id="sticky-member"></span>
       </div>
       <div class="modal-stats" id="modal-stats"></div>
       <div class="modal-body" id="modal-body"></div>
@@ -2453,13 +2528,32 @@
     // District Modal
     const modal = document.getElementById('district-modal');
     const modalClose = document.getElementById('modal-close');
+    const modalContainer = document.getElementById('modal-container');
+    const stickyHeader = document.getElementById('modal-sticky-header');
+
+    // Handle sticky header visibility on scroll
+    modalContainer.addEventListener('scroll', function() {
+      const scrollTop = modalContainer.scrollTop;
+      if (scrollTop > 80) {
+        stickyHeader.classList.add('visible');
+      } else {
+        stickyHeader.classList.remove('visible');
+      }
+    });
 
     function openDistrictModal(districtNum) {
       const districtData = surveyData.filter(r => normalizeDistrict(r.district) === districtNum);
       const total = districtData.length;
+      const councilMember = COUNCIL_MEMBERS[districtNum] || '';
 
       document.getElementById('modal-district-num').textContent = districtNum;
-      document.getElementById('modal-council-member').textContent = COUNCIL_MEMBERS[districtNum] || '';
+      document.getElementById('modal-council-member').textContent = councilMember;
+
+      // Set sticky header content
+      document.getElementById('sticky-district').textContent = 'District ' + districtNum;
+      document.getElementById('sticky-member').textContent = councilMember;
+      stickyHeader.classList.remove('visible');
+      modalContainer.scrollTop = 0;
 
       if (total === 0) {
         document.getElementById('modal-stats').innerHTML = '';
