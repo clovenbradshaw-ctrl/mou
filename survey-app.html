@@ -1110,6 +1110,21 @@
       .modal-district-num { font-size: 36px; }
     }
 
+    .modal-council-member {
+      font-size: 12px;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 360px) {
+      .modal-council-member { font-size: 13px; margin-top: 5px; }
+    }
+
+    @media (min-width: 480px) {
+      .modal-council-member { font-size: 15px; margin-top: 6px; }
+    }
+
     .modal-close {
       background: rgba(255,255,255,0.2);
       border: none;
@@ -1768,8 +1783,8 @@
             </div>
           </div>
           <div class="note-box">
-            <strong>Note:</strong> Some respondents entered council member names instead of district numbers.
-            These are mapped where identifiable (e.g., "Clay Capp" → District 4).
+            <strong>Note:</strong> Council member names are automatically mapped to their districts (e.g., "Clay Capp" → District 6).
+            Invalid entries such as Congressional districts or out-of-range numbers are filtered out.
           </div>
         </div>
       </div>
@@ -1923,6 +1938,7 @@
         <div>
           <div class="modal-district-label">District</div>
           <div class="modal-district-num" id="modal-district-num">—</div>
+          <div class="modal-council-member" id="modal-council-member"></div>
         </div>
         <button class="modal-close" id="modal-close">&times;</button>
       </div>
@@ -1994,6 +2010,124 @@
       { pattern: /lived experience|peer/i, theme: 'Lived experience hiring' }
     ];
 
+    // Metro Council Members by District (Nashville has 35 districts)
+    const COUNCIL_MEMBERS = {
+      1: 'Joy Kimbrough',
+      2: 'Kyonzté Toombs',
+      3: 'Jennifer Gamble',
+      4: 'Mike Cortese',
+      5: 'Sean Parker',
+      6: 'Clay Capp',
+      7: 'Emily Benedict',
+      8: 'Deonté Harrell',
+      9: 'Tonya Hancock',
+      10: 'Jennifer Frensley Webb',
+      11: 'Jeff Eslick',
+      12: 'Erin Evans',
+      13: 'Russ Bradford',
+      14: 'Jordan Huffman',
+      15: 'Jeff Gregg',
+      16: 'Ginny Welsch',
+      17: 'Terry Vo',
+      18: 'Tom Cash',
+      19: 'Jacob Kupin',
+      20: 'Rollin Horton',
+      21: 'Brandon Taylor',
+      22: 'Sheri Weiner',
+      23: 'Thom Druffel',
+      24: 'Brenda Gadd',
+      25: 'Jeff Preptit',
+      26: 'Courtney Johnston',
+      27: 'Robert (Bob) Nash',
+      28: 'David Benton',
+      29: 'Tasha Ellis',
+      30: 'Sandra Sepulveda',
+      31: 'John Rutherford',
+      32: 'Joy Styles',
+      33: 'Antoinette Lee',
+      34: 'Sandy Ewing',
+      35: 'Jason Spain'
+    };
+
+    // Mapping of council member names to districts (for normalizing user input)
+    const NAME_TO_DISTRICT = {
+      'joy kimbrough': 1,
+      'kimbrough': 1,
+      'kyonzte toombs': 2,
+      'kyonzté toombs': 2,
+      'toombs': 2,
+      'jennifer gamble': 3,
+      'gamble': 3,
+      'mike cortese': 4,
+      'cortese': 4,
+      'sean parker': 5,
+      'parker': 5,
+      'clay capp': 6,
+      'capp': 6,
+      'emily benedict': 7,
+      'benedict': 7,
+      'deonte harrell': 8,
+      'deonté harrell': 8,
+      'harrell': 8,
+      'tonya hancock': 9,
+      'tanya hancock': 9,
+      'hancock': 9,
+      'jennifer frensley webb': 10,
+      'frensley webb': 10,
+      'webb': 10,
+      'jeff eslick': 11,
+      'eslick': 11,
+      'erin evans': 12,
+      'evans': 12,
+      'russ bradford': 13,
+      'bradford': 13,
+      'jordan huffman': 14,
+      'huffman': 14,
+      'jeff gregg': 15,
+      'gregg': 15,
+      'ginny welsch': 16,
+      'welsch': 16,
+      'terry vo': 17,
+      'vo': 17,
+      'tom cash': 18,
+      'cash': 18,
+      'jacob kupin': 19,
+      'kupin': 19,
+      'rollin horton': 20,
+      'horton': 20,
+      'brandon taylor': 21,
+      'taylor': 21,
+      'sheri weiner': 22,
+      'weiner': 22,
+      'thom druffel': 23,
+      'druffel': 23,
+      'brenda gadd': 24,
+      'gadd': 24,
+      'jeff preptit': 25,
+      'preptit': 25,
+      'courtney johnston': 26,
+      'johnston': 26,
+      'robert nash': 27,
+      'bob nash': 27,
+      'nash': 27,
+      'david benton': 28,
+      'benton': 28,
+      'tasha ellis': 29,
+      'ellis': 29,
+      'sandra sepulveda': 30,
+      'sepulveda': 30,
+      'john rutherford': 31,
+      'rutherford': 31,
+      'joy styles': 32,
+      'styles': 32,
+      'antoinette lee': 33,
+      'lee': 33,
+      'sandy ewing': 34,
+      'ewing': 34,
+      'jason spain': 35,
+      'spain': 35
+    };
+
     let surveyData = [];
     let currentFilter = 'all';
 
@@ -2037,8 +2171,58 @@
 
     function normalizeDistrict(d) {
       if (!d) return null;
+
+      const input = d.trim().toLowerCase();
+
+      // Filter out invalid entries
+      // Congressional district references (CD 5, 6th Congressional District, etc.)
+      if (/congressional/i.test(d) || /^cd\s*\d/i.test(d)) return null;
+
+      // Generic location entries without specific district
+      if (/^davidson(\s+county)?$/i.test(d.trim())) return null;
+
+      // Entries like "Visitor" or other non-district text
+      if (/^visitor$/i.test(d.trim())) return null;
+
+      // Check if it matches a council member name
+      for (const [name, district] of Object.entries(NAME_TO_DISTRICT)) {
+        if (input.includes(name)) {
+          return district;
+        }
+      }
+
+      // Extract numeric district (e.g., "District 7", "D07", "7", "Seventh")
+      // Handle word-based numbers
+      const wordToNum = {
+        'first': 1, 'second': 2, 'third': 3, 'fourth': 4, 'fifth': 5,
+        'sixth': 6, 'seventh': 7, 'eighth': 8, 'ninth': 9, 'tenth': 10,
+        'eleventh': 11, 'twelfth': 12, 'thirteenth': 13, 'fourteenth': 14,
+        'fifteenth': 15, 'sixteenth': 16, 'seventeenth': 17, 'eighteenth': 18,
+        'nineteenth': 19, 'twentieth': 20, 'twenty-first': 21, 'twenty-second': 22,
+        'twenty-third': 23, 'twenty-fourth': 24, 'twenty-fifth': 25,
+        'twenty-sixth': 26, 'twenty-seventh': 27, 'twenty-eighth': 28,
+        'twenty-ninth': 29, 'thirtieth': 30, 'thirty-first': 31,
+        'thirty-second': 32, 'thirty-third': 33, 'thirty-fourth': 34,
+        'thirty-fifth': 35
+      };
+
+      for (const [word, num] of Object.entries(wordToNum)) {
+        if (input.includes(word)) {
+          return num;
+        }
+      }
+
+      // Extract first numeric value
       const match = d.match(/\d+/);
-      return match ? parseInt(match[0]) : null;
+      if (match) {
+        const num = parseInt(match[0]);
+        // Only return if it's a valid Metro Council district (1-35)
+        if (num >= 1 && num <= 35) {
+          return num;
+        }
+      }
+
+      return null;
     }
 
     function countItems(data, field) {
@@ -2275,6 +2459,7 @@
       const total = districtData.length;
 
       document.getElementById('modal-district-num').textContent = districtNum;
+      document.getElementById('modal-council-member').textContent = COUNCIL_MEMBERS[districtNum] || '';
 
       if (total === 0) {
         document.getElementById('modal-stats').innerHTML = '';
