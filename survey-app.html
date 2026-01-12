@@ -1619,53 +1619,6 @@
       .modal-no-responses-text { font-size: 15px; }
     }
 
-    /* Sticky Council Member Header - appears when scrolling */
-    .modal-sticky-header {
-      position: sticky;
-      top: 0;
-      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-      color: white;
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateY(-100%);
-      transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-    }
-
-    .modal-sticky-header.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .modal-sticky-header .sticky-district {
-      font-weight: 700;
-      background: rgba(255,255,255,0.2);
-      padding: 2px 8px;
-      border-radius: 4px;
-    }
-
-    .modal-sticky-header .sticky-member {
-      opacity: 0.95;
-    }
-
-    @media (min-width: 360px) {
-      .modal-sticky-header { padding: 10px 14px; font-size: 12px; gap: 8px; }
-      .modal-sticky-header .sticky-district { padding: 3px 10px; }
-    }
-
-    @media (min-width: 480px) {
-      .modal-sticky-header { padding: 12px 24px; font-size: 13px; }
-      .modal-sticky-header .sticky-district { padding: 4px 12px; border-radius: 6px; }
-    }
-
     /* Category Filter Pills */
     .filter-pills {
       display: flex;
@@ -2012,10 +1965,6 @@
           <div class="modal-council-member" id="modal-council-member"></div>
         </div>
         <button class="modal-close" id="modal-close">&times;</button>
-      </div>
-      <div class="modal-sticky-header" id="modal-sticky-header">
-        <span class="sticky-district" id="sticky-district">—</span>
-        <span class="sticky-member" id="sticky-member"></span>
       </div>
       <div class="modal-stats" id="modal-stats"></div>
       <div class="modal-body" id="modal-body"></div>
@@ -2530,17 +2479,6 @@
     const modal = document.getElementById('district-modal');
     const modalClose = document.getElementById('modal-close');
     const modalContainer = document.getElementById('modal-container');
-    const stickyHeader = document.getElementById('modal-sticky-header');
-
-    // Handle sticky header visibility on scroll
-    modalContainer.addEventListener('scroll', function() {
-      const scrollTop = modalContainer.scrollTop;
-      if (scrollTop > 80) {
-        stickyHeader.classList.add('visible');
-      } else {
-        stickyHeader.classList.remove('visible');
-      }
-    });
 
     function openDistrictModal(districtNum) {
       const districtData = surveyData.filter(r => normalizeDistrict(r.district) === districtNum);
@@ -2549,11 +2487,6 @@
 
       document.getElementById('modal-district-num').textContent = districtNum;
       document.getElementById('modal-council-member').textContent = councilMember;
-
-      // Set sticky header content
-      document.getElementById('sticky-district').textContent = 'District ' + districtNum;
-      document.getElementById('sticky-member').textContent = councilMember;
-      stickyHeader.classList.remove('visible');
       modalContainer.scrollTop = 0;
 
       if (total === 0) {
