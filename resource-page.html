@@ -189,6 +189,103 @@
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       }
     }
+
+    /* Key Documents Section */
+    .documents-section {
+      padding: 2rem 1.5rem;
+      background: var(--bg-cream);
+    }
+
+    .documents-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .update-alert {
+      background: linear-gradient(135deg, #C53030 0%, #9B2C2C 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .update-alert-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .update-alert a {
+      color: white;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--accent-rust);
+    }
+
+    .document-category {
+      margin-bottom: 2rem;
+    }
+
+    .category-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .document-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .document-card {
+      display: block;
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: var(--text-body);
+      transition: all 0.2s ease;
+    }
+
+    .document-card:hover {
+      border-color: var(--accent-teal);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .document-card-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .document-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .document-card-cost {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      color: var(--accent-rust);
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -206,6 +303,82 @@
     <h1>Resource Page</h1>
   </div>
 
+  <!-- Key Documents Section -->
+  <div class="documents-section">
+    <div class="documents-inner">
+
+      <!-- Update Alert -->
+      <div class="update-alert">
+        <div class="update-alert-title">January 2026 Update</div>
+        <p>After Council deferred the $15M MOU on December 17, 2025, Mayor O'Connell filed four new resolutions on January 9, 2026 to accept surveillance equipment as direct donations, bypassing the deferred MOU structure. <a href="resolutions.html">View the January 2026 Resolutions →</a></p>
+      </div>
+
+      <h2 class="section-title">Key Documents</h2>
+
+      <!-- January 2026 Resolutions -->
+      <div class="document-category">
+        <div class="category-title">January 2026 Resolutions (Council Vote: January 21, 2026)</div>
+        <div class="document-grid">
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13811-Resolution-donation-NDP-MNPD-video%20cameras.pdf" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">RS2026-13811: Video Cameras</div>
+            <div class="document-card-desc">15 Axis Video Cameras</div>
+            <div class="document-card-cost">$150,000</div>
+          </a>
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13812-Resolution-donation-NDP-MNPD-armored%20rescue%20vehicle.pdf" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">RS2026-13812: Armored Vehicle</div>
+            <div class="document-card-desc">Terradyne Gurkha MPV Armored Rescue Vehicle</div>
+            <div class="document-card-cost">$430,000</div>
+          </a>
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13813-Resolution-donation-NDP-MNPD-mobile%20command%20post.pdf" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">RS2026-13813: Mobile Command Trailers</div>
+            <div class="document-card-desc">2 ATC 48' Command Trailers + 2 Ford F-550s</div>
+            <div class="document-card-cost">$2,000,000</div>
+          </a>
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13814-Resolution-donation-NDP-MNPD-tactical%20support%20post.pdf" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">RS2026-13814: Command/Equipment Truck</div>
+            <div class="document-card-desc">International CV Command/Equipment Truck</div>
+            <div class="document-card-cost">$800,000</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Legal & Policy -->
+      <div class="document-category">
+        <div class="category-title">Legal & Policy References</div>
+        <div class="document-grid">
+          <a href="https://library.municode.com/tn/metropolitan_government_of_nashville_and_davidson_county/codes/code_of_ordinances?nodeId=CD_TIT13DINGS_CH13.08CACOEQ_13.08.080SUTE" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">Metro Code 13.08.080</div>
+            <div class="document-card-desc">Surveillance Technology Ordinance requiring public hearings and civil liberties review</div>
+          </a>
+          <a href="https://www.nashville.gov/departments/council/council-meetings" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">Council Meeting Archive</div>
+            <div class="document-card-desc">Video and minutes from Metro Council meetings</div>
+          </a>
+          <a href="https://www.tn.gov/theme/public-safety-grants.html" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">TN Downtown Public Safety Grant</div>
+            <div class="document-card-desc">State grant program funding the surveillance equipment</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Background Research -->
+      <div class="document-category">
+        <div class="category-title">Background Research</div>
+        <div class="document-grid">
+          <a href="https://www.splcenter.org/resources/hatewatch/stephen-millers-affinity-white-nationalism-revealed-leaked-emails/" target="_blank" rel="noopener noreferrer" class="document-card">
+            <div class="document-card-title">SPLC: Stephen Miller Investigation</div>
+            <div class="document-card-desc">Leaked emails reveal affinity for white nationalism</div>
+          </a>
+          <a href="resolutions.html" class="document-card">
+            <div class="document-card-title">January 2026 Resolutions Analysis</div>
+            <div class="document-card-desc">Detailed breakdown of each resolution and why they matter</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Embed Container -->
   <div class="embed-section">
     <div class="embed-container">
@@ -219,6 +392,7 @@
     <p class="footer-tagline">Protecting civil liberties through democratic accountability.</p>
     <div class="footer-links">
       <a href="index.html">Main Page</a>
+      <a href="resolutions.html">January Resolutions</a>
       <a href="index.html#take-action">Take Action</a>
       <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank">Instagram</a>
     </div>

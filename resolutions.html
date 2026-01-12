@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>January 2026 Resolutions | Nashville Community Safety Network</title>
+  <link rel="icon" type="image/png" href="https://storage.googleapis.com/intelechia-content/Screenshot%202025-11-28%20at%207.34.59%E2%80%AFPM.png">
+  <meta name="description" content="Four resolutions filed January 9, 2026 to accept surveillance equipment as donations, bypassing the deferred MOU and Metro Code 13.08.080.">
+  <meta property="og:title" content="January 2026 Resolutions: Bypassing the MOU | Nashville Community Safety Network">
+  <meta property="og:description" content="Mayor O'Connell filed 4 resolutions to accept $3.38M in surveillance equipment as donations, bypassing Council's MOU deferral and surveillance ordinance.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-teal-dark: #3A6359;
+      --accent-rust: #B85C38;
+      --accent-rust-light: #D4714A;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+      --alert-red: #C53030;
+      --alert-red-light: #FED7D7;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    ::selection {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .site-name a {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .back-link {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--accent-rust);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      color: var(--accent-rust-light);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid var(--border-light);
+      background: linear-gradient(135deg, var(--accent-rust) 0%, #8B3A22 100%);
+      color: white;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Vote Banner */
+    .vote-banner {
+      display: inline-block;
+      background: white;
+      color: var(--accent-rust);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .content-inner {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    /* Timeline Box */
+    .timeline-box {
+      background: var(--highlight-yellow);
+      border: 2px solid #E5C87A;
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-box-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-list {
+      list-style: none;
+    }
+
+    .timeline-list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .timeline-list li:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.9rem;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-rust);
+      border-radius: 50%;
+    }
+
+    .timeline-date {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--accent-rust);
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Resolution Cards */
+    .resolution-card {
+      background: white;
+      border: 2px solid var(--border-light);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .resolution-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .resolution-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .resolution-id {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-rust);
+      background: rgba(184, 92, 56, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+    }
+
+    .resolution-cost {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-rust);
+    }
+
+    .resolution-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .resolution-equipment {
+      background: var(--bg-cream-dark);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .resolution-equipment-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .resolution-equipment-value {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .claimed-purpose {
+      margin-bottom: 1rem;
+    }
+
+    .claimed-purpose-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      margin-bottom: 0.25rem;
+    }
+
+    .claimed-purpose-text {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .the-problem {
+      background: var(--alert-red-light);
+      border-left: 4px solid var(--alert-red);
+      padding: 1rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem;
+    }
+
+    .the-problem-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--alert-red);
+      margin-bottom: 0.25rem;
+    }
+
+    .resolution-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-teal);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .resolution-pdf:hover {
+      background: var(--accent-teal-dark);
+    }
+
+    /* Why This Matters Section */
+    .callout-box {
+      background: var(--bg-cream-dark);
+      border: 2px solid var(--border-light);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+
+    .callout-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .callout-list {
+      margin-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .callout-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .callout-highlight {
+      background: var(--highlight-yellow);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    /* Irony Section */
+    .irony-box {
+      background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+      color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+
+    .irony-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--highlight-yellow);
+      margin-bottom: 1rem;
+    }
+
+    .irony-quote {
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--highlight-yellow);
+    }
+
+    .irony-conclusion {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    /* Download Section */
+    .download-section {
+      background: var(--accent-teal);
+      color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+
+    .download-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .download-item {
+      display: block;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: white;
+      transition: background 0.2s ease;
+    }
+
+    .download-item:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .download-item-id {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      opacity: 0.8;
+    }
+
+    .download-item-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      margin: 0.25rem 0;
+    }
+
+    .download-item-cost {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .download-total {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid rgba(255,255,255,0.2);
+      text-align: center;
+    }
+
+    .download-total-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+    }
+
+    .download-total-value {
+      font-family: 'Archivo', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    /* Action Section */
+    .action-section {
+      background: white;
+      border: 3px solid var(--accent-rust);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+
+    .action-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-rust);
+      margin-bottom: 1rem;
+    }
+
+    .action-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .action-list li {
+      padding: 0.5rem 0;
+      padding-left: 2rem;
+      position: relative;
+    }
+
+    .action-list li::before {
+      content: '\\2713';
+      position: absolute;
+      left: 0;
+      color: var(--accent-teal);
+      font-weight: bold;
+    }
+
+    .action-cta {
+      display: inline-block;
+      background: var(--accent-rust);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .action-cta:hover {
+      background: #9A4A2A;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: white;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .resolution-header {
+        flex-direction: column;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
+      <a href="index.html" class="back-link">← Back to Main Page</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">January 2026 Update</div>
+      <h1 class="hero-title">Four Resolutions Filed January 9, 2026</h1>
+      <p class="hero-subtitle">
+        On January 9, 2026—the same day vigils were held for Renee Good, killed by ICE in Minneapolis—Mayor O'Connell filed four resolutions to accept surveillance equipment as direct donations, bypassing the deferred MOU structure.
+      </p>
+      <div class="vote-banner">Metro Council votes Tuesday, January 21, 2026</div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-inner">
+
+      <!-- Timeline Box -->
+      <div class="timeline-box">
+        <div class="timeline-box-title">Timeline</div>
+        <ul class="timeline-list">
+          <li><span class="timeline-date">December 17, 2025:</span> Council voted 19-17 to defer $15M MOU after stripping LeoSight and Fivecast platforms</li>
+          <li><span class="timeline-date">January 7, 2026:</span> Renee Good killed by ICE agent in Minneapolis</li>
+          <li><span class="timeline-date">January 9, 2026:</span> O'Connell filed these 4 resolutions</li>
+          <li><span class="timeline-date">January 21, 2026:</span> Council vote scheduled</li>
+        </ul>
+      </div>
+
+      <!-- Resolution Details Section -->
+      <h2 class="section-title">The Four Resolutions</h2>
+
+      <!-- Resolution RS2026-13811 -->
+      <div class="resolution-card">
+        <div class="resolution-header">
+          <span class="resolution-id">RS2026-13811</span>
+          <span class="resolution-cost">$150,000</span>
+        </div>
+        <h3 class="resolution-title">Video Cameras</h3>
+        <div class="resolution-equipment">
+          <div class="resolution-equipment-label">Equipment</div>
+          <div class="resolution-equipment-value">15 Axis Video Cameras</div>
+        </div>
+        <div class="claimed-purpose">
+          <div class="claimed-purpose-label">Claimed Purpose</div>
+          <p class="claimed-purpose-text">"Traditional video cameras, consistent with existing public safety cameras"</p>
+        </div>
+        <div class="the-problem">
+          <div class="the-problem-label">The Problem</div>
+          <p>Metro Code 13.08.080 covers "cameras capable of monitoring public areas"—no exemption for "traditional" cameras. Requires public hearing and civil liberties review.</p>
+        </div>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13811-Resolution-donation-NDP-MNPD-video%20cameras.pdf" target="_blank" rel="noopener noreferrer" class="resolution-pdf">
+          Download Resolution PDF
+        </a>
+      </div>
+
+      <!-- Resolution RS2026-13812 -->
+      <div class="resolution-card">
+        <div class="resolution-header">
+          <span class="resolution-id">RS2026-13812</span>
+          <span class="resolution-cost">$430,000</span>
+        </div>
+        <h3 class="resolution-title">Armored Rescue Vehicle</h3>
+        <div class="resolution-equipment">
+          <div class="resolution-equipment-label">Equipment</div>
+          <div class="resolution-equipment-value">1 Terradyne Gurkha MPV Armored Rescue Vehicle</div>
+        </div>
+        <div class="claimed-purpose">
+          <div class="claimed-purpose-label">Claimed Purpose</div>
+          <p class="claimed-purpose-text">"Ballistic protection for SWAT members for city wide call outs on barricaded subjects, hostage situations"</p>
+        </div>
+        <div class="the-problem">
+          <div class="the-problem-label">The Problem</div>
+          <p>Nashville's price runs $30,000-$115,000 HIGHER than comparable recent purchases nationwide. At this price point, likely includes surveillance tech (thermal imaging, PTZ cameras, LRAD) covered by 13.08.080.</p>
+        </div>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13812-Resolution-donation-NDP-MNPD-armored%20rescue%20vehicle.pdf" target="_blank" rel="noopener noreferrer" class="resolution-pdf">
+          Download Resolution PDF
+        </a>
+      </div>
+
+      <!-- Resolution RS2026-13813 -->
+      <div class="resolution-card">
+        <div class="resolution-header">
+          <span class="resolution-id">RS2026-13813</span>
+          <span class="resolution-cost">$2,000,000</span>
+        </div>
+        <h3 class="resolution-title">Mobile Command Trailers</h3>
+        <div class="resolution-equipment">
+          <div class="resolution-equipment-label">Equipment</div>
+          <div class="resolution-equipment-value">2 ATC Trailer 48' Custom Command/Office Trailers + 2 Ford F-550s</div>
+        </div>
+        <div class="claimed-purpose">
+          <div class="claimed-purpose-label">Claimed Purpose</div>
+          <p class="claimed-purpose-text">"Mobile meeting space and technology support for law enforcement incident management"</p>
+        </div>
+        <div class="the-problem">
+          <div class="the-problem-label">The Problem</div>
+          <p>These are surveillance integration platforms. Metro Code 13.08.080 covers vehicles "equipped with an electronic surveillance device."</p>
+        </div>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13813-Resolution-donation-NDP-MNPD-mobile%20command%20post.pdf" target="_blank" rel="noopener noreferrer" class="resolution-pdf">
+          Download Resolution PDF
+        </a>
+      </div>
+
+      <!-- Resolution RS2026-13814 -->
+      <div class="resolution-card">
+        <div class="resolution-header">
+          <span class="resolution-id">RS2026-13814</span>
+          <span class="resolution-cost">$800,000</span>
+        </div>
+        <h3 class="resolution-title">Command/Equipment Truck</h3>
+        <div class="resolution-equipment">
+          <div class="resolution-equipment-label">Equipment</div>
+          <div class="resolution-equipment-value">1 International CV Command/Equipment Truck</div>
+        </div>
+        <div class="claimed-purpose">
+          <div class="claimed-purpose-label">Claimed Purpose</div>
+          <p class="claimed-purpose-text">"Self-contained vehicle for incident commands to transport and store equipment used for critical incidents"</p>
+        </div>
+        <div class="the-problem">
+          <div class="the-problem-label">The Problem</div>
+          <p>Another surveillance integration platform covered by 13.08.080's vehicle provisions.</p>
+        </div>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13814-Resolution-donation-NDP-MNPD-tactical%20support%20post.pdf" target="_blank" rel="noopener noreferrer" class="resolution-pdf">
+          Download Resolution PDF
+        </a>
+      </div>
+
+      <!-- Why This Matters Section -->
+      <div class="callout-box">
+        <h2 class="callout-title">Why Filing These as "Donations" Matters</h2>
+        <p>The Mayor's Office previously claimed the MOU structure was necessary to "limit the Nashville Downtown Partnership." Now they're accepting the same equipment directly as donations, apparently to avoid:</p>
+        <ol class="callout-list">
+          <li>The MOU scrutiny that led to December's 19-17 deferral</li>
+          <li>Metro Code 13.08.080's requirements for public hearings and civil liberties review</li>
+          <li>Community input via The People's MOU process</li>
+        </ol>
+        <div class="callout-highlight">
+          <strong>The equipment still flows through Governor Lee's Downtown Public Safety Grant—the same fund that allocated $100M to the Memphis Safe Task Force (which includes ICE).</strong>
+        </div>
+      </div>
+
+      <!-- The Irony Section -->
+      <div class="irony-box">
+        <h2 class="irony-title">The Irony: O'Connell's Own Words</h2>
+        <p class="irony-quote">
+          In October 2021, Councilmember O'Connell warned about "the mass surveillance state" and called police traffic cameras "spying" and "security theater."
+        </p>
+        <p>He is now asking Council to accept Axis surveillance cameras—the same vendor he once criticized—without the public hearing he would have demanded.</p>
+        <div class="irony-conclusion">
+          <strong>Resolution 13811 cites $150,000 for cameras from "Axis Communications."</strong> At $10k per camera, these are the same high-end surveillance cameras he opposed as councilmember.
+        </div>
+      </div>
+
+      <!-- Download All Resolutions Section -->
+      <div class="download-section">
+        <h2 class="download-title">Download All Four Resolutions</h2>
+        <div class="download-grid">
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13811-Resolution-donation-NDP-MNPD-video%20cameras.pdf" target="_blank" rel="noopener noreferrer" class="download-item">
+            <div class="download-item-id">RS2026-13811</div>
+            <div class="download-item-title">Video Cameras</div>
+            <div class="download-item-cost">$150,000</div>
+          </a>
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13812-Resolution-donation-NDP-MNPD-armored%20rescue%20vehicle.pdf" target="_blank" rel="noopener noreferrer" class="download-item">
+            <div class="download-item-id">RS2026-13812</div>
+            <div class="download-item-title">Armored Rescue Vehicle</div>
+            <div class="download-item-cost">$430,000</div>
+          </a>
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13813-Resolution-donation-NDP-MNPD-mobile%20command%20post.pdf" target="_blank" rel="noopener noreferrer" class="download-item">
+            <div class="download-item-id">RS2026-13813</div>
+            <div class="download-item-title">Mobile Command Trailers</div>
+            <div class="download-item-cost">$2,000,000</div>
+          </a>
+          <a href="https://storage.googleapis.com/intelechia-content/im/mou/13814-Resolution-donation-NDP-MNPD-tactical%20support%20post.pdf" target="_blank" rel="noopener noreferrer" class="download-item">
+            <div class="download-item-id">RS2026-13814</div>
+            <div class="download-item-title">Command/Equipment Truck</div>
+            <div class="download-item-cost">$800,000</div>
+          </a>
+        </div>
+        <div class="download-total">
+          <div class="download-total-label">Total Equipment Value</div>
+          <div class="download-total-value">$3,380,000</div>
+        </div>
+      </div>
+
+      <!-- Action Section -->
+      <div class="action-section">
+        <h2 class="action-title">What Council Can Do</h2>
+        <ul class="action-list">
+          <li>Ask why Metro Code 13.08.080 was not invoked</li>
+          <li>Defer until a public hearing is held</li>
+          <li>Require the civil liberties review the law contemplates</li>
+          <li>Take feedback from The People's MOU and align funding with community desires</li>
+        </ul>
+        <p style="margin-bottom: 1rem;"><strong>Contact Your Council Member Before January 21</strong></p>
+        <a href="https://www.nashville.gov/departments/council/council-members" target="_blank" rel="noopener noreferrer" class="action-cta">Find Your Council Member</a>
+      </div>
+
+      <!-- Key Documents Section -->
+      <h2 class="section-title">Key Documents & Resources</h2>
+      <div class="resolution-card">
+        <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;">Reference Materials</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-light);">
+            <a href="https://library.municode.com/tn/metropolitan_government_of_nashville_and_davidson_county/codes/code_of_ordinances?nodeId=CD_TIT13DINGS_CH13.08CACOEQ_13.08.080SUTE" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); font-weight: 600; text-decoration: none;">Metro Code 13.08.080</a> — Surveillance Technology Ordinance
+          </li>
+          <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-light);">
+            <a href="https://www.nashville.gov/departments/council/council-meetings" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); font-weight: 600; text-decoration: none;">December 17, 2025 Council Meeting</a> — Video and Minutes
+          </li>
+          <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-light);">
+            <a href="https://www.tn.gov/theme/public-safety-grants.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); font-weight: 600; text-decoration: none;">Tennessee Downtown Public Safety Grant</a> — State Grant Information
+          </li>
+          <li style="padding: 0.75rem 0;">
+            <a href="https://www.splcenter.org/resources/hatewatch/stephen-millers-affinity-white-nationalism-revealed-leaked-emails/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); font-weight: 600; text-decoration: none;">SPLC Report on Stephen Miller</a> — White Nationalism Connections
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">Nashville Community Safety Network</div>
+    <p class="footer-tagline">Protecting civil liberties through democratic accountability.</p>
+    <div class="footer-links">
+      <a href="index.html">Main Page</a>
+      <a href="news.html">News</a>
+      <a href="resource-page.html">Resources</a>
+      <a href="index.html#take-action">Take Action</a>
+      <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>
