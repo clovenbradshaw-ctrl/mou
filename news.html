@@ -69,68 +69,73 @@
       gap: 1rem;
     }
 
-    .site-name a {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--accent-teal);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-    }
-
-    .back-link {
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
-      color: var(--accent-rust);
-      text-decoration: none;
-      font-weight: 600;
+    .site-name {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .back-link:hover {
-      color: var(--accent-rust-light);
+    .site-name a {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    /* Hero Section */
-    .hero {
-      padding: 2.5rem 1.5rem 2rem;
-      text-align: center;
-      border-bottom: 2px solid var(--border-light);
-      background: linear-gradient(135deg, #4A7C6F 0%, #3A6359 100%);
-      color: white;
+    .site-name a:hover {
+      color: var(--accent-teal);
     }
 
-    .hero-inner {
-      max-width: 700px;
+    .site-name svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .nav-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-teal);
+    }
+
+    /* Page title bar */
+    .page-title-bar {
+      padding: 1rem 1.5rem;
+      background: var(--bg-cream-dark);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .page-title-bar-inner {
+      max-width: 1000px;
       margin: 0 auto;
     }
 
-    .hero-label {
+    .page-title-bar h1 {
       font-family: 'Archivo', sans-serif;
-      font-size: 0.75rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.8;
-      margin-bottom: 0.5rem;
+      color: var(--text-dark);
     }
 
-    .hero-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-subtitle {
+    .page-title-bar p {
       font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      opacity: 0.9;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
     }
 
     /* Coverage Section */
@@ -640,19 +645,28 @@
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
-      <div class="site-name"><a href="index.html">Nashville Community Safety Network</a></div>
-      <a href="index.html" class="back-link">← Back to Main Site</a>
+      <div class="site-name">
+        <a href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Nashville Community Safety Network
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="resolutions.html">Resolutions</a>
+        <a href="community-feedback.html">Survey</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-label">Stay Informed</div>
-      <h1 class="hero-title">News & Coverage</h1>
-      <p class="hero-subtitle">Coverage of Nashville's surveillance policy</p>
+  <!-- Page Title -->
+  <div class="page-title-bar">
+    <div class="page-title-bar-inner">
+      <h1>News & Coverage</h1>
+      <p>Media coverage of Nashville's surveillance policy</p>
     </div>
-  </section>
+  </div>
 
   <!-- Unified Coverage Section -->
   <section class="coverage-section">
