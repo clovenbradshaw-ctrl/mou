@@ -2228,6 +2228,74 @@
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
 
+    /* Spotlight Featured Card Styles */
+    .spotlight-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      border: 2px solid var(--accent-rust);
+      margin-bottom: 1.5rem;
+      position: relative;
+      animation: spotlight-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes spotlight-glow {
+      0%, 100% { box-shadow: 0 8px 30px rgba(184, 92, 56, 0.4), 0 0 20px rgba(184, 92, 56, 0.2); }
+      50% { box-shadow: 0 12px 40px rgba(184, 92, 56, 0.6), 0 0 30px rgba(184, 92, 56, 0.3); }
+    }
+
+    .spotlight-card .breaking-news-content {
+      padding: 2.5rem;
+    }
+
+    .spotlight-card .breaking-news-source {
+      color: #F9E4B7;
+    }
+
+    .spotlight-card .breaking-news-category {
+      background: rgba(184, 92, 56, 0.3);
+      color: #F9E4B7;
+    }
+
+    .spotlight-title {
+      color: white;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    }
+
+    .spotlight-excerpt {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .spotlight-card .breaking-news-meta {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .spotlight-card .breaking-news-cta {
+      background: var(--accent-rust);
+      color: white;
+    }
+
+    .spotlight-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent-rust);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .spotlight-card:hover {
+      transform: translateY(-4px);
+      border-color: #F9E4B7;
+    }
+
     .breaking-news-image {
       width: 100%;
       height: 200px;
@@ -2515,7 +2583,26 @@
   <section class="breaking-news-section">
     <div class="breaking-news-inner">
       <div class="breaking-news-label">
-        Latest Coverage
+        Breaking News
+      </div>
+      <!-- Spotlight Featured Article -->
+      <a href="https://readrichtext.substack.com/p/in-wake-of-ice-killing-oconnell-files" target="_blank" rel="noopener noreferrer" class="breaking-news-card spotlight-card">
+        <div class="spotlight-badge">New Investigation</div>
+        <div class="breaking-news-content">
+          <div class="breaking-news-source blog-source">Rich Text</div>
+          <div class="breaking-news-category">Investigation | ICE Collaboration</div>
+          <h2 class="breaking-news-title spotlight-title">In Wake of ICE Killing, O'Connell Files for $3.3M in Policing Gear via Same Grant Used for ICE Collaboration</h2>
+          <p class="breaking-news-excerpt spotlight-excerpt">
+            Two days after Renee Good's killing, Nashville Mayor filed for policing equipment from a grant used for ICE and called for more federal law enforcement "coordination" with local agencies.
+          </p>
+          <div class="breaking-news-meta">
+            January 12, 2026
+          </div>
+          <span class="breaking-news-cta">Read Full Investigation →</span>
+        </div>
+      </a>
+      <div class="breaking-news-label" style="margin-top: 2rem;">
+        More Coverage
       </div>
       <div class="breaking-news-grid">
         <!-- Truthout Article -->
