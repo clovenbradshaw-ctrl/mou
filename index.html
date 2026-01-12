@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stop the Surveillance MOU | Nashville Community Safety Network</title>
   <link rel="icon" type="image/png" href="https://storage.googleapis.com/intelechia-content/Screenshot%202025-11-28%20at%207.34.59%E2%80%AFPM.png">
-  <meta name="description" content="Nashville has rejected surveillance overreach before. Now they're back with $15M and zero oversight. Take action before December 16.">
+  <meta name="description" content="Nashville has rejected surveillance overreach before. Now Mayor O'Connell filed 4 new resolutions to bypass the deferred MOU. Council votes January 20, 2026.">
   <meta property="og:title" content="Stop the Downtown Partnership Surveillance MOU">
-  <meta property="og:description" content="$15M in surveillance equipment, controlled by a private nonprofit, with zero Metro oversight. Nashville Council votes December 16.">
+  <meta property="og:description" content="After Council deferred the $15M MOU, Mayor O'Connell filed 4 new resolutions to accept surveillance equipment as donations. Council votes January 20, 2026.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -593,6 +593,82 @@
       font-size: 0.95rem;
     }
     
+    /* Urgent Alert Banner */
+    .urgent-alert {
+      background: linear-gradient(135deg, #C53030 0%, #9B2C2C 100%);
+      color: white;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+    }
+
+    .urgent-alert-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .urgent-alert-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .urgent-alert-text {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.95;
+    }
+
+    .urgent-alert-vote {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .urgent-alert-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .urgent-alert-links a {
+      color: white;
+      font-size: 0.85rem;
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+
+    .urgent-alert-links a:hover {
+      opacity: 1;
+    }
+
+    .urgent-alert-cta {
+      display: inline-block;
+      background: white;
+      color: #C53030;
+      padding: 0.6rem 1.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 0.75rem;
+      transition: transform 0.2s ease;
+    }
+
+    .urgent-alert-cta:hover {
+      transform: scale(1.05);
+    }
+
     /* Timeline */
     .timeline {
       margin-top: 2rem;
@@ -2318,6 +2394,7 @@
         <span></span>
       </button>
       <nav class="nav-links" id="navLinks">
+        <a href="resolutions.html" style="color: var(--accent-rust); font-weight: 700;">January Resolutions</a>
         <a href="news.html">News</a>
         <a href="resource-page.html">Resource Page</a>
         <a href="print-flyer.html">Print a Flyer</a>
@@ -2331,6 +2408,22 @@
       </nav>
     </div>
   </header>
+
+  <!-- Urgent Alert Banner -->
+  <div class="urgent-alert">
+    <div class="urgent-alert-inner">
+      <div class="urgent-alert-title">Urgent Update</div>
+      <p class="urgent-alert-text">After Council deferred the MOU, O'Connell filed 4 new resolutions to bypass the process</p>
+      <div class="urgent-alert-vote">Metro Council votes January 20, 2026</div>
+      <div class="urgent-alert-links">
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13811-Resolution-donation-NDP-MNPD-video%20cameras.pdf" target="_blank">RS2026-13811: Video Cameras</a>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13812-Resolution-donation-NDP-MNPD-armored%20rescue%20vehicle.pdf" target="_blank">RS2026-13812: Armored Vehicle</a>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13813-Resolution-donation-NDP-MNPD-mobile%20command%20post.pdf" target="_blank">RS2026-13813: Mobile Command</a>
+        <a href="https://storage.googleapis.com/intelechia-content/im/mou/13814-Resolution-donation-NDP-MNPD-tactical%20support%20post.pdf" target="_blank">RS2026-13814: Command Truck</a>
+      </div>
+      <a href="resolutions.html" class="urgent-alert-cta">Learn More About the January 2026 Resolutions</a>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -2379,7 +2472,7 @@
         </div>
         <div class="signature-text">
           <p class="signature-label">The Mayor Already Signed</p>
-          <p class="signature-detail">Council votes December 16, 2025</p>
+          <p class="signature-detail">Council votes January 20, 2026</p>
         </div>
       </div>
       
@@ -2412,7 +2505,7 @@
         </div>
         <div class="tldr-point">
           <span class="tldr-icon">📅</span>
-          <span class="tldr-point-text"><strong>December 16 vote</strong>—contact your council member</span>
+          <span class="tldr-point-text"><strong>January 20 vote</strong>—contact your council member</span>
         </div>
       </div>
     </div>
@@ -2777,9 +2870,30 @@
         
         <div class="timeline-item warning">
           <div class="timeline-marker">!</div>
-          <div class="timeline-year">NOW</div>
+          <div class="timeline-year">2025</div>
           <div class="timeline-title">$15M Privatized Surveillance Pipeline</div>
           <p class="timeline-desc">They're back—this time routing money through a private nonprofit to bypass the oversight that stopped them before.</p>
+        </div>
+
+        <div class="timeline-item victory">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-year">Dec 2025</div>
+          <div class="timeline-title">Council Defers MOU 19-17</div>
+          <p class="timeline-desc">After public outcry, Metro Council voted 19-17 to defer the $15M MOU after stripping the LeoSight and Fivecast surveillance platforms.</p>
+        </div>
+
+        <div class="timeline-item warning">
+          <div class="timeline-marker">!</div>
+          <div class="timeline-year">Jan 2026</div>
+          <div class="timeline-title">4 "Donation" Resolutions Filed</div>
+          <p class="timeline-desc">On January 9, O'Connell filed four resolutions to accept $3.38M in surveillance equipment as direct donations—bypassing the deferred MOU and Metro Code 13.08.080.</p>
+        </div>
+
+        <div class="timeline-item warning">
+          <div class="timeline-marker">!</div>
+          <div class="timeline-year">NOW</div>
+          <div class="timeline-title">Council Vote January 20, 2026</div>
+          <p class="timeline-desc">Metro Council will vote on the four donation resolutions. <a href="resolutions.html" style="color: var(--accent-rust);">Learn about the resolutions</a> and contact your council member before the vote.</p>
         </div>
       </div>
     </div>
@@ -2947,7 +3061,15 @@
             </div>
             <div style="padding-left: 1rem; border-left: 3px solid var(--accent-rust);">
               <strong style="color: var(--accent-rust);">November 2025</strong><br>
-              LeoSight appears in Downtown Partnership MOU—filed Friday before Thanksgiving, vote scheduled December 16
+              LeoSight appears in Downtown Partnership MOU—filed Friday before Thanksgiving
+            </div>
+            <div style="padding-left: 1rem; border-left: 3px solid var(--accent-teal);">
+              <strong style="color: var(--accent-teal);">December 2025</strong><br>
+              Council defers MOU 19-17 after stripping LeoSight and Fivecast
+            </div>
+            <div style="padding-left: 1rem; border-left: 3px solid var(--accent-rust);">
+              <strong style="color: var(--accent-rust);">January 2026</strong><br>
+              O'Connell files 4 new resolutions to accept equipment as donations, bypassing the MOU
             </div>
           </div>
         </div>
@@ -2996,7 +3118,7 @@
       </div>
 
       <div class="highlight-box fade-in" style="margin-top: 2rem; background: #fff5f5; border-left: 4px solid var(--accent-rust);">
-        <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.15rem; color: var(--accent-rust); margin-bottom: 1rem;">The Question for December 16</h3>
+        <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.15rem; color: var(--accent-rust); margin-bottom: 1rem;">The Question for January 20</h3>
         <p style="margin-bottom: 1rem;">
           <strong>Council members:</strong> Did you know the MOU includes surveillance software founded by Fusus's former Chief Revenue Officer?
         </p>
@@ -3129,7 +3251,7 @@
         <div class="section-label">Your Turn</div>
         <h2 class="section-title">We've Done This Before.<br>Let's Do It Again.</h2>
         <p class="section-intro">
-          The Mayor signed the agreement, but the MOU cannot take effect without Council approval. Your council member needs to hear from you before December 16.
+          The Mayor signed the agreement, but the MOU cannot take effect without Council approval. Your council member needs to hear from you before January 20.
         </p>
       </div>
       
@@ -3416,7 +3538,7 @@
 
     // Countdown Timer
     function updateCountdown() {
-      const voteDate = new Date('2025-12-16T18:30:00-05:00'); // 6:30 PM ET
+      const voteDate = new Date('2026-01-20T18:30:00-06:00'); // 6:30 PM CT - January 20, 2026
       const now = new Date();
       const diff = voteDate - now;
 
@@ -3503,9 +3625,9 @@
     const messageVariants = {
       subjectTemplates: {
         actions: ['Vote NO on', 'Please Oppose', 'Reject', 'Stop', 'Block', 'Vote Against', 'Urging NO Vote on', 'Constituent Request: NO on', 'Please Reject', 'Opposing', 'Against', 'NO on', 'Do Not Approve', 'Vote Down', 'Please Stop', 'Concerned About', 'Request to Oppose'],
-        descriptors: ['the Downtown Partnership', 'the NDP', 'the Surveillance', 'the $15M', 'this', 'the Proposed', 'the December 16'],
+        descriptors: ['the Downtown Partnership', 'the NDP', 'the Surveillance', 'the $15M', 'this', 'the Proposed', 'the January 20'],
         things: ['MOU', 'Agreement', 'Deal', 'Proposal', 'Surveillance Deal', 'Funding Agreement', 'Surveillance MOU', 'Surveillance Agreement'],
-        additions: ['', ' — Protect Nashville', ' on December 16', ' — Your Constituent', ' Before Dec 16', ' (December 16 Vote)', '', '', '']
+        additions: ['', ' — Protect Nashville', ' on January 20', ' — Your Constituent', ' Before Jan 20', ' (January 20 Vote)', '', '', '']
       },
       greetings: [
         "Dear Council Member,",
@@ -3525,7 +3647,7 @@
         "I urge you to reject the proposed MOU that transfers $15 million in state surveillance funds to the Downtown Partnership—a private entity with no public accountability.",
         "I live in your district and I'm writing to ask you to vote NO on the Downtown Partnership surveillance MOU.",
         "As someone who voted for you, I'm asking you to stand against the MOU that would give $15 million in surveillance funds to a private nonprofit.",
-        "I'm a Nashville resident concerned about the MOU before Council on December 16, 2025. Please vote NO.",
+        "I'm a Nashville resident concerned about the surveillance resolutions before Council on January 20, 2026. Please vote NO.",
         "I'm writing about the Downtown Partnership MOU and asking you to oppose it.",
         "This email is regarding the $15 million surveillance MOU. I urge you to vote against it."
       ],
@@ -3546,14 +3668,14 @@
       ],
       personalPrompt: "[Write 1-2 sentences about why this matters to you personally—your neighborhood, privacy concerns, why democratic oversight matters to you, etc.]",
       closers: [
-        "Please vote NO on December 16, 2025.",
+        "Please vote NO on January 20, 2026.",
         "I'm asking you to vote NO on this MOU.",
-        "Please oppose this agreement on December 16.",
+        "Please oppose these resolutions on January 20.",
         "I hope you'll stand with your constituents and vote NO.",
         "Please reject this MOU and protect Nashville's democratic oversight.",
         "Vote NO and show Nashville that accountability still matters.",
         "Please do the right thing and oppose this deal.",
-        "I trust you'll vote NO on December 16.",
+        "I trust you'll vote NO on January 20.",
         "Nashville is counting on you to reject this MOU.",
         "Please stand with the residents who elected you and vote NO."
       ],
