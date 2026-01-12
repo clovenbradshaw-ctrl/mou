@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Feedback: $15M Grant Survey Results | Nashville Community Safety Network</title>
+  <link rel="icon" type="image/png" href="https://storage.googleapis.com/intelechia-content/Screenshot%202025-11-28%20at%207.34.59%E2%80%AFPM.png">
+  <meta name="description" content="Live results from Nashville residents on how state public safety funds should be spent. See what your neighbors think about the $15M grant.">
+  <meta property="og:title" content="Community Feedback: $15M Grant Survey Results">
+  <meta property="og:description" content="Live results from Nashville residents on how state public safety funds should be spent. See what your neighbors think.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stopthemou.com/community-feedback.html">
+  <link rel="canonical" href="https://stopthemou.com/community-feedback.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-cream: #F5F0E6;
+      --bg-cream-dark: #EBE5D9;
+      --text-dark: #2C2C2C;
+      --text-body: #444444;
+      --text-muted: #666666;
+      --accent-teal: #4A7C6F;
+      --accent-teal-dark: #3A6359;
+      --accent-rust: #B85C38;
+      --accent-rust-light: #D4714A;
+      --border-light: #D4CFC3;
+      --highlight-yellow: #F9E4B7;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    ::selection {
+      background: var(--accent-teal);
+      color: white;
+    }
+
+    /* Header/Nav */
+    .site-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      background: var(--bg-cream);
+      flex-shrink: 0;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .site-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .site-name:hover {
+      color: var(--accent-teal-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-teal);
+    }
+
+    .nav-links a.active {
+      color: var(--accent-rust);
+      font-weight: 600;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--accent-teal);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      background: var(--bg-cream-dark);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .back-link:hover {
+      color: var(--accent-teal-dark);
+      background: var(--border-light);
+    }
+
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Page intro */
+    .page-intro {
+      padding: 1.5rem;
+      background: var(--accent-rust);
+      color: white;
+      text-align: center;
+    }
+
+    .page-intro-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-intro h1 {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-intro p {
+      font-size: 1rem;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+
+    .page-intro a {
+      color: var(--highlight-yellow);
+    }
+
+    /* Survey embed container */
+    .survey-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #f9fafb;
+    }
+
+    .survey-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      min-height: 800px;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      padding: 1.5rem;
+      background: var(--accent-teal);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-banner-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .cta-banner-inner {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .cta-banner p {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--accent-teal);
+      padding: 0.75rem 1.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      background: var(--highlight-yellow);
+      color: var(--text-dark);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 1.5rem;
+      background: var(--bg-cream-dark);
+      border-top: 2px solid var(--border-light);
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-inner p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0.25rem 0;
+    }
+
+    .footer-inner a {
+      color: var(--accent-teal);
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile hamburger */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent-teal);
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    @media (max-width: 640px) {
+      .hamburger-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-cream);
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+        border-bottom: 2px solid var(--border-light);
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .site-header {
+        position: relative;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-name">Nashville Community Safety Network</a>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="resolutions.html">Resolutions</a>
+        <a href="news.html">News</a>
+        <a href="community-feedback.html" class="active">Survey Results</a>
+      </nav>
+    </div>
+  </header>
+
+  <a href="index.html" class="back-link">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    Back to Main Site
+  </a>
+
+  <div class="page-intro">
+    <div class="page-intro-inner">
+      <h1>Community Feedback on the $15M Grant</h1>
+      <p>Live results from Nashville residents on how state public safety funds should actually be spent. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfExample/viewform" target="_blank">Take the survey yourself →</a></p>
+    </div>
+  </div>
+
+  <div class="survey-container">
+    <iframe
+      src="survey-app.html"
+      class="survey-iframe"
+      title="Community Survey Results Dashboard"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <div class="cta-banner">
+    <div class="cta-banner-inner">
+      <p>Make your voice heard before the January 20 vote</p>
+      <a href="index.html#take-action" class="cta-btn">
+        Contact Your Council Member →
+      </a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>Data collected via community survey · Ground Truth Nashville</p>
+      <p>Dashboard updates as new responses are submitted</p>
+      <p style="margin-top: 0.75rem;"><a href="index.html">Return to Stop the MOU</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

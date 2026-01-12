@@ -2323,6 +2323,119 @@
         padding: 1.5rem;
       }
     }
+
+    /* Survey Teaser Section */
+    .survey-teaser {
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      border-bottom: 2px solid var(--border-light);
+    }
+
+    .survey-teaser-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .survey-teaser-content {
+      flex: 1;
+    }
+
+    .survey-teaser-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .survey-teaser-badge .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .survey-teaser h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .survey-teaser p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .survey-teaser-cta {
+      flex-shrink: 0;
+    }
+
+    .survey-teaser-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: #2563eb;
+      padding: 0.875rem 1.5rem;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .survey-teaser-cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background: var(--highlight-yellow);
+      color: var(--text-dark);
+    }
+
+    @media (max-width: 640px) {
+      .survey-teaser {
+        padding: 1.5rem;
+      }
+
+      .survey-teaser-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+      }
+
+      .survey-teaser h3 {
+        font-size: 1.25rem;
+      }
+
+      .survey-teaser p {
+        font-size: 0.95rem;
+      }
+
+      .survey-teaser-cta a {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2557,6 +2670,25 @@
             </div>
             <span class="breaking-news-cta">Read Analysis →</span>
           </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Survey Teaser -->
+  <section class="survey-teaser">
+    <div class="survey-teaser-inner">
+      <div class="survey-teaser-content">
+        <div class="survey-teaser-badge">
+          <span class="live-dot"></span>
+          Live Results
+        </div>
+        <h3>What Should the $15M Actually Fund?</h3>
+        <p>See how Nashville residents think the grant money should be spent—updated in real time.</p>
+      </div>
+      <div class="survey-teaser-cta">
+        <a href="community-feedback.html">
+          View Survey Results →
         </a>
       </div>
     </div>
