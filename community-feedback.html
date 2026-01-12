@@ -75,27 +75,33 @@
 
     .site-name {
       font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--accent-teal);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .site-name:hover {
-      color: var(--accent-teal-dark);
+      color: var(--accent-teal);
+    }
+
+    .site-name svg {
+      width: 16px;
+      height: 16px;
     }
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.25rem;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
@@ -105,64 +111,32 @@
       color: var(--accent-teal);
     }
 
-    .nav-links a.active {
-      color: var(--accent-rust);
-      font-weight: 600;
-    }
-
-    /* Back link */
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
-      color: var(--accent-teal);
-      text-decoration: none;
-      font-weight: 600;
+    /* Page title bar */
+    .page-title-bar {
       padding: 1rem 1.5rem;
       background: var(--bg-cream-dark);
       border-bottom: 1px solid var(--border-light);
     }
 
-    .back-link:hover {
-      color: var(--accent-teal-dark);
-      background: var(--border-light);
-    }
-
-    .back-link svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Page intro */
-    .page-intro {
-      padding: 1.5rem;
-      background: var(--accent-rust);
-      color: white;
-      text-align: center;
-    }
-
-    .page-intro-inner {
-      max-width: 800px;
+    .page-title-bar h1 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .page-intro h1 {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 800;
-      margin-bottom: 0.5rem;
+    .page-title-bar p {
+      font-family: 'Lora', serif;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 1200px;
+      margin: 0.25rem auto 0;
     }
 
-    .page-intro p {
-      font-size: 1rem;
-      opacity: 0.95;
-      line-height: 1.5;
-    }
-
-    .page-intro a {
-      color: var(--highlight-yellow);
+    .page-title-bar a {
+      color: var(--accent-teal);
     }
 
     /* Survey embed container */
@@ -259,48 +233,17 @@
       text-decoration: underline;
     }
 
-    /* Mobile hamburger */
-    .hamburger-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .hamburger-btn span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--accent-teal);
-      margin: 5px 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    @media (max-width: 640px) {
-      .hamburger-btn {
-        display: block;
+    @media (max-width: 480px) {
+      .site-name {
+        font-size: 0.75rem;
       }
 
       .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-cream);
-        flex-direction: column;
-        padding: 1rem 1.5rem;
-        border-bottom: 2px solid var(--border-light);
-        gap: 1rem;
+        gap: 0.75rem;
       }
 
-      .nav-links.active {
-        display: flex;
-      }
-
-      .site-header {
-        position: relative;
+      .nav-links a {
+        font-size: 0.75rem;
       }
     }
   </style>
@@ -308,33 +251,22 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="site-name">Nashville Community Safety Network</a>
-      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <a href="index.html" class="site-name">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Nashville Community Safety Network
+      </a>
       <nav class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
         <a href="resolutions.html">Resolutions</a>
         <a href="news.html">News</a>
-        <a href="community-feedback.html" class="active">Survey Results</a>
       </nav>
     </div>
   </header>
 
-  <a href="index.html" class="back-link">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-    </svg>
-    Back to Main Site
-  </a>
-
-  <div class="page-intro">
-    <div class="page-intro-inner">
-      <h1>Community Feedback on the $15M Grant</h1>
-      <p>Live results from Nashville residents on how state public safety funds should actually be spent. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfExample/viewform" target="_blank">Take the survey yourself →</a></p>
-    </div>
+  <div class="page-title-bar">
+    <h1>Community Feedback on the $15M Grant</h1>
+    <p>Live survey results from Nashville residents. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfExample/viewform" target="_blank">Take the survey →</a></p>
   </div>
 
   <div class="survey-container">
@@ -363,15 +295,5 @@
     </div>
   </footer>
 
-  <script>
-    // Mobile nav toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    hamburgerBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      hamburgerBtn.classList.toggle('active');
-    });
-  </script>
 </body>
 </html>

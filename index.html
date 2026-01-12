@@ -140,10 +140,10 @@
     .nav-links a:hover {
       color: var(--accent-teal);
     }
-    
-    .nav-links a[href*="instagram"] {
-      color: var(--accent-teal);
-      font-weight: 600;
+
+    .nav-links a.nav-highlight {
+      color: var(--accent-rust);
+      font-weight: 700;
     }
 
     /* Survey Results Banner */
@@ -1479,64 +1479,25 @@
         padding: 0.25rem 0.6rem;
       }
 
-      /* Mobile hamburger menu */
+      /* Mobile nav - simplified */
       .site-header {
-        padding: 0.35rem 0.75rem;
-        position: relative;
+        padding: 0.5rem 0.75rem;
       }
 
       .header-inner {
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        gap: 0;
+        gap: 0.5rem;
       }
 
       .site-name {
-        font-size: 0.65rem;
-        flex: 1;
-      }
-
-      .hamburger-btn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0.25rem;
-      }
-
-      .hamburger-btn span {
-        width: 20px;
-        height: 2px;
-        margin: 4px 0;
+        font-size: 0.6rem;
       }
 
       .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-cream);
-        flex-direction: column;
-        padding: 0.75rem;
         gap: 0.5rem;
-        border-bottom: 1px solid var(--border-light);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-links a,
-      .nav-links .affect-tab {
-        font-size: 0.8rem;
-        padding: 0.4rem 0;
-        text-align: center;
-        border-bottom: 1px solid var(--border-light);
-      }
-
-      .nav-links a:last-child {
-        border-bottom: none;
+      .nav-links a {
+        font-size: 0.65rem;
       }
 
       .affect-tab {
@@ -2655,23 +2616,11 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="site-name">Nashville Community Safety Network</div>
-      <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
       <nav class="nav-links" id="navLinks">
-        <a href="resolutions.html" style="color: var(--accent-rust); font-weight: 700;">January Resolutions</a>
+        <a href="resolutions.html" class="nav-highlight">Resolutions</a>
         <a href="news.html">News</a>
-        <a href="resource-page.html">Resource Page</a>
-        <a href="print-flyer.html">Print a Flyer</a>
-        <button class="affect-tab" onclick="openAudienceModal()">How does this affect you?</button>
-        <a href="#the-bypass">How It Works</a>
-        <a href="#whats-in-it">Equipment</a>
-        <a href="#track-record">Track Record</a>
-        <a href="#contradiction">The Double Standard</a>
+        <a href="community-feedback.html">Survey</a>
         <a href="#take-action">Take Action</a>
-        <a href="https://www.instagram.com/nashcommunitysafetynetwork_/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
       </nav>
     </div>
   </header>
