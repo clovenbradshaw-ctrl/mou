@@ -2023,6 +2023,63 @@
       'Drink drugging prevention and interruption (e.g. training and drug coasters)': 'Drink Drugging Prevention'
     };
 
+    // Known items per category - used for smart parsing to handle items with commas
+    const KNOWN_ITEMS = {
+      building: [
+        'Fully accessible, regularly cleaned, 24/7 public restrooms',
+        'Renovations to existing properties to create permanently affordable housing',
+        'Renovate unused properties into accessible community centers and resource distribution sites',
+        'Contribute to the restoration of the Downtown Public Library for expedited re-opening'
+      ],
+      infrastructure: [
+        'Street lighting improvements',
+        'Traffic-calming infrastructure improvements',
+        'Comfortable benches without obtrusive bars',
+        'Drinkable water stations',
+        'Community little libraries'
+      ],
+      assistance: [
+        'Homeless outreach',
+        'Housing assistance',
+        'Transportation assistance',
+        'Food assistance',
+        'Clothing assistance',
+        'Community pantries',
+        'Job/career assistance'
+      ],
+      safety: [
+        'Credible messenger violence interruption',
+        'Community-based restorative justice programming',
+        'Mobile community-based mental health and crisis intervention teams',
+        'Mobile harm reduction teams',
+        'NARCAN distribution sites',
+        'Needle exchange bins',
+        'Drink drugging prevention and interruption (e.g. training and drug coasters)'
+      ]
+    };
+
+    // Smart parser that extracts known items from a cell value
+    // This handles items that contain commas (like "Fully accessible, regularly cleaned, 24/7 public restrooms")
+    function parseKnownItems(cellValue, category) {
+      if (!cellValue) return [];
+      const knownItems = KNOWN_ITEMS[category] || [];
+      const found = [];
+      let remaining = cellValue;
+
+      // Sort by length descending to match longer items first
+      const sortedItems = [...knownItems].sort((a, b) => b.length - a.length);
+
+      for (const item of sortedItems) {
+        if (remaining.includes(item)) {
+          found.push(item);
+          // Remove the matched item from remaining text
+          remaining = remaining.replace(item, '');
+        }
+      }
+
+      return found;
+    }
+
     const THEME_KEYWORDS = [
       { pattern: /pedestrian|walk|sidewalk|bike|bicycle|cycling/i, theme: 'Pedestrian/bike infrastructure' },
       { pattern: /transit|bus|wego|free/i, theme: 'Transit improvements' },
@@ -2183,10 +2240,10 @@
           data.push({
             timestamp: row[0],
             district: row[1],
-            building: row[2] ? row[2].split(', ').filter(Boolean) : [],
-            infrastructure: row[3] ? row[3].split(', ').filter(Boolean) : [],
-            assistance: row[4] ? row[4].split(', ').filter(Boolean) : [],
-            safety: row[5] ? row[5].split(', ').filter(Boolean) : [],
+            building: parseKnownItems(row[2], 'building'),
+            infrastructure: parseKnownItems(row[3], 'infrastructure'),
+            assistance: parseKnownItems(row[4], 'assistance'),
+            safety: parseKnownItems(row[5], 'safety'),
             ideas: row[6] || ''
           });
         }
