@@ -1680,6 +1680,152 @@
     @media (min-width: 480px) {
       .filter-pill .dot { width: 8px; height: 8px; }
     }
+    /* Embed Button */
+    .embed-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: 1px solid var(--gray-200);
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-size: 10px;
+      color: var(--gray-500);
+      cursor: pointer;
+      margin-left: auto;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .embed-btn:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+    .embed-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Embed Modal */
+    .embed-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .embed-modal-overlay.active {
+      display: flex;
+    }
+    .embed-modal {
+      background: white;
+      border-radius: 12px;
+      max-width: 560px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .embed-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .embed-modal-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+    .embed-modal-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--gray-500);
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .embed-modal-close:hover { color: var(--gray-800); }
+    .embed-modal-body {
+      padding: 20px;
+    }
+    .embed-modal-body p {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .embed-code-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .embed-code {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--gray-700);
+      line-height: 1.5;
+      word-break: break-all;
+      white-space: pre-wrap;
+      width: 100%;
+      min-height: 60px;
+      resize: none;
+      outline: none;
+    }
+    .embed-code:focus {
+      border-color: #2563eb;
+    }
+    .embed-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .embed-copy-btn:hover { background: #1d4ed8; }
+    .embed-copy-btn.copied {
+      background: #16a34a;
+    }
+    .embed-sizes {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .embed-size-btn {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .embed-size-btn:hover, .embed-size-btn.active {
+      background: #eff6ff;
+      border-color: #2563eb;
+      color: #2563eb;
+    }
+
+    @media (min-width: 360px) {
+      .embed-btn { font-size: 11px; padding: 4px 10px; }
+    }
   </style>
 </head>
 <body>
@@ -1746,19 +1892,34 @@
       <!-- Overview Tab -->
       <div id="tab-overview" class="tab-content active">
         <div class="takeaways">
-          <h2>🔑 Top Takeaways</h2>
+          <h2 style="display:flex;align-items:center;">🔑 Top Takeaways
+            <button class="embed-btn" onclick="openEmbedModal('takeaways', 'Key Takeaways &amp; Stats')" style="margin-left:auto;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+              Embed
+            </button>
+          </h2>
           <div class="takeaways-grid" id="takeaways-grid"></div>
         </div>
 
         <div class="grid-2">
           <div class="card">
-            <div class="card-title">Responses by Category</div>
+            <div class="card-title">Responses by Category
+              <button class="embed-btn" onclick="openEmbedModal('categories', 'Responses by Category')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                Embed
+              </button>
+            </div>
             <div class="chart-container">
               <canvas id="chart-categories"></canvas>
             </div>
           </div>
           <div class="card">
-            <div class="card-title">Top Districts by Response</div>
+            <div class="card-title">Top Districts by Response
+              <button class="embed-btn" onclick="openEmbedModal('districts', 'Top Districts by Response')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                Embed
+              </button>
+            </div>
             <div class="chart-container">
               <canvas id="chart-districts"></canvas>
             </div>
@@ -1770,6 +1931,10 @@
             <div class="card-title">
               <span class="dot" style="background: var(--assistance)"></span>
               Top Resident Assistance
+              <button class="embed-btn" onclick="openEmbedModal('priorities', 'All Priorities')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                Embed
+              </button>
             </div>
             <div class="priority-list" id="overview-assistance"></div>
           </div>
@@ -1786,7 +1951,12 @@
       <!-- Districts Tab -->
       <div id="tab-districts" class="tab-content">
         <div class="card">
-          <div class="card-title">Response Distribution by District</div>
+          <div class="card-title">Response Distribution by District
+            <button class="embed-btn" onclick="openEmbedModal('district-grid', 'District Grid')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+              Embed
+            </button>
+          </div>
           <div class="district-grid" id="district-grid"></div>
           <div class="district-legend">
             <div class="legend-item">
@@ -1978,7 +2148,38 @@
   <footer>
     <p>Data collected via community survey · Ground Truth Nashville</p>
     <p>Dashboard updates as new responses are submitted</p>
+    <p style="margin-top: 8px;">
+      <button class="embed-btn" onclick="openEmbedModal('dashboard', 'Full Dashboard')" style="font-size: 12px; padding: 6px 14px; border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+        Embed Full Dashboard
+      </button>
+    </p>
   </footer>
+
+  <!-- Embed Code Modal -->
+  <div class="embed-modal-overlay" id="embed-modal-overlay">
+    <div class="embed-modal">
+      <div class="embed-modal-header">
+        <h3 id="embed-modal-title">Embed Chart</h3>
+        <button class="embed-modal-close" id="embed-modal-close">&times;</button>
+      </div>
+      <div class="embed-modal-body">
+        <p>Copy the code below and paste it into your website's HTML. The chart will automatically load the latest survey data.</p>
+        <div class="embed-sizes">
+          <button class="embed-size-btn active" data-w="100%" data-h="300">Small (300px)</button>
+          <button class="embed-size-btn" data-w="100%" data-h="450">Medium (450px)</button>
+          <button class="embed-size-btn" data-w="100%" data-h="600">Large (600px)</button>
+        </div>
+        <div class="embed-code-wrap">
+          <textarea class="embed-code" id="embed-code-text" readonly></textarea>
+        </div>
+        <button class="embed-copy-btn" id="embed-copy-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Code
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script>
     const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vReSKC_Fxfw_vgYZOrRBKU-7HzRmpioP6D_cPVnXCVFnCsQgvUXYvPyWDF-Zp5URvobMMiIAGGp43vo/pub?output=csv';
@@ -2804,6 +3005,94 @@
           </div>
         `;
       });
+
+    // Embed Modal Logic
+    const EMBED_BASE_URL = 'https://stopthemou.com/embeds/';
+    const EMBED_FILES = {
+      'categories': 'categories.html',
+      'districts': 'districts.html',
+      'priorities': 'priorities.html',
+      'takeaways': 'takeaways.html',
+      'district-grid': 'district-grid.html',
+      'dashboard': 'dashboard.html'
+    };
+
+    let currentEmbedType = '';
+    let currentEmbedHeight = 300;
+
+    function getEmbedCode(type, height) {
+      const file = EMBED_FILES[type] || 'dashboard.html';
+      const url = EMBED_BASE_URL + file;
+      return '<iframe src="' + url + '" width="100%" height="' + height + '" frameborder="0" style="border:none;border-radius:8px;max-width:100%;" loading="lazy" title="NDP Survey - ' + type + '"></iframe>';
+    }
+
+    function openEmbedModal(type, title) {
+      currentEmbedType = type;
+      currentEmbedHeight = 300;
+      document.getElementById('embed-modal-title').textContent = 'Embed: ' + title;
+      document.getElementById('embed-code-text').value = getEmbedCode(type, currentEmbedHeight);
+
+      // Reset size buttons
+      document.querySelectorAll('.embed-size-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.embed-size-btn').classList.add('active');
+
+      // Reset copy button
+      const copyBtn = document.getElementById('embed-copy-btn');
+      copyBtn.classList.remove('copied');
+      copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Code';
+
+      document.getElementById('embed-modal-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEmbedModal() {
+      document.getElementById('embed-modal-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('embed-modal-close').addEventListener('click', closeEmbedModal);
+    document.getElementById('embed-modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeEmbedModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('embed-modal-overlay').classList.contains('active')) {
+        closeEmbedModal();
+      }
+    });
+
+    // Size buttons
+    document.querySelectorAll('.embed-size-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.embed-size-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentEmbedHeight = parseInt(this.dataset.h);
+        document.getElementById('embed-code-text').value = getEmbedCode(currentEmbedType, currentEmbedHeight);
+      });
+    });
+
+    // Copy button
+    document.getElementById('embed-copy-btn').addEventListener('click', function() {
+      const code = document.getElementById('embed-code-text').value;
+      navigator.clipboard.writeText(code).then(() => {
+        this.classList.add('copied');
+        this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+        setTimeout(() => {
+          this.classList.remove('copied');
+          this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Code';
+        }, 2000);
+      }).catch(() => {
+        // Fallback for older browsers
+        const textarea = document.getElementById('embed-code-text');
+        textarea.select();
+        document.execCommand('copy');
+        this.classList.add('copied');
+        this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+        setTimeout(() => {
+          this.classList.remove('copied');
+          this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Code';
+        }, 2000);
+      });
+    });
   </script>
 </body>
 </html>

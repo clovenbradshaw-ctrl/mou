@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>District Response Grid</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      padding: 16px;
+      color: #111827;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+    .district-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .district-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: default;
+      transition: transform 0.15s;
+      position: relative;
+    }
+    .district-cell span {
+      font-size: 9px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+    .district-cell:hover {
+      transform: scale(1.08);
+      z-index: 1;
+    }
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: #6b7280;
+    }
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: #dc2626; text-align: center; padding: 20px; font-size: 13px; }
+    .footer {
+      text-align: right;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+    .footer a { color: #6b7280; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Tooltip */
+    .tooltip {
+      display: none;
+      position: fixed;
+      background: #1f2937;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      pointer-events: none;
+      z-index: 100;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Response Distribution by District</div>
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading...
+  </div>
+  <div id="content" style="display:none;">
+    <div id="grid" class="district-grid"></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(37,99,235,0.15)"></div><span>1-3</span></div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(37,99,235,0.4)"></div><span>4-8</span></div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(37,99,235,0.7)"></div><span>9-15</span></div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(37,99,235,0.95)"></div><span>16+</span></div>
+    </div>
+  </div>
+  <div id="error" class="error" style="display:none;"></div>
+  <div id="tooltip" class="tooltip"></div>
+  <div class="footer">
+    <a href="https://stopthemou.com/survey-app.html" target="_blank" rel="noopener">View full dashboard</a>
+  </div>
+
+  <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vReSKC_Fxfw_vgYZOrRBKU-7HzRmpioP6D_cPVnXCVFnCsQgvUXYvPyWDF-Zp5URvobMMiIAGGp43vo/pub?output=csv';
+
+    const COUNCIL_MEMBERS = {
+      1:'Joy Kimbrough',2:'Kyonzte Toombs',3:'Jennifer Gamble',4:'Mike Cortese',5:'Sean Parker',
+      6:'Clay Capp',7:'Emily Benedict',8:'Deonte Harrell',9:'Tonya Hancock',10:'Jennifer Frensley Webb',
+      11:'Jeff Eslick',12:'Erin Evans',13:'Russ Bradford',14:'Jordan Huffman',15:'Jeff Gregg',
+      16:'Ginny Welsch',17:'Terry Vo',18:'Tom Cash',19:'Jacob Kupin',20:'Rollin Horton',
+      21:'Brandon Taylor',22:'Sheri Weiner',23:'Thom Druffel',24:'Brenda Gadd',25:'Jeff Preptit',
+      26:'Courtney Johnston',27:'Robert (Bob) Nash',28:'David Benton',29:'Tasha Ellis',
+      30:'Sandra Sepulveda',31:'John Rutherford',32:'Joy Styles',33:'Antoinette Lee',
+      34:'Sandy Ewing',35:'Jason Spain'
+    };
+
+    const NAME_TO_DISTRICT = {
+      'joy kimbrough': 1, 'kimbrough': 1, 'kyonzte toombs': 2, 'kyonzté toombs': 2, 'toombs': 2,
+      'jennifer gamble': 3, 'gamble': 3, 'mike cortese': 4, 'cortese': 4,
+      'sean parker': 5, 'parker': 5, 'clay capp': 6, 'capp': 6,
+      'emily benedict': 7, 'benedict': 7, 'deonte harrell': 8, 'deonté harrell': 8, 'harrell': 8,
+      'tonya hancock': 9, 'tanya hancock': 9, 'hancock': 9,
+      'jennifer frensley webb': 10, 'frensley webb': 10, 'webb': 10,
+      'jeff eslick': 11, 'eslick': 11, 'erin evans': 12, 'evans': 12,
+      'russ bradford': 13, 'bradford': 13, 'jordan huffman': 14, 'huffman': 14,
+      'jeff gregg': 15, 'gregg': 15, 'ginny welsch': 16, 'welsch': 16,
+      'terry vo': 17, 'vo': 17, 'tom cash': 18, 'cash': 18,
+      'jacob kupin': 19, 'kupin': 19, 'rollin horton': 20, 'horton': 20,
+      'brandon taylor': 21, 'taylor': 21, 'sheri weiner': 22, 'weiner': 22,
+      'thom druffel': 23, 'druffel': 23, 'brenda gadd': 24, 'gadd': 24,
+      'jeff preptit': 25, 'preptit': 25, 'courtney johnston': 26, 'johnston': 26,
+      'robert (bob) nash': 27, 'bob nash': 27, 'nash': 27,
+      'david benton': 28, 'benton': 28, 'tasha ellis': 29, 'ellis': 29,
+      'sandra sepulveda': 30, 'sepulveda': 30, 'john rutherford': 31, 'rutherford': 31,
+      'joy styles': 32, 'styles': 32, 'antoinette lee': 33, 'lee': 33,
+      'sandy ewing': 34, 'ewing': 34, 'jason spain': 35, 'spain': 35
+    };
+
+    function normalizeDistrict(d) {
+      if (!d) return null;
+      const input = d.trim().toLowerCase();
+      if (/congressional/i.test(d) || /^cd\s*\d/i.test(d)) return null;
+      if (/^davidson(\s+county)?$/i.test(d.trim())) return null;
+      if (/^visitor$/i.test(d.trim())) return null;
+      for (const [name, district] of Object.entries(NAME_TO_DISTRICT)) {
+        if (input.includes(name)) return district;
+      }
+      const wordToNum = {
+        'first':1,'second':2,'third':3,'fourth':4,'fifth':5,'sixth':6,'seventh':7,'eighth':8,
+        'ninth':9,'tenth':10,'eleventh':11,'twelfth':12,'thirteenth':13,'fourteenth':14,
+        'fifteenth':15,'sixteenth':16,'seventeenth':17,'eighteenth':18,'nineteenth':19,
+        'twentieth':20,'twenty-first':21,'twenty-second':22,'twenty-third':23,'twenty-fourth':24,
+        'twenty-fifth':25,'twenty-sixth':26,'twenty-seventh':27,'twenty-eighth':28,
+        'twenty-ninth':29,'thirtieth':30,'thirty-first':31,'thirty-second':32,'thirty-third':33,
+        'thirty-fourth':34,'thirty-fifth':35
+      };
+      for (const [word, num] of Object.entries(wordToNum)) {
+        if (input.includes(word)) return num;
+      }
+      const match = d.match(/\d+/);
+      if (match) { const num = parseInt(match[0]); if (num >= 1 && num <= 35) return num; }
+      return null;
+    }
+
+    function parseCSV(text) {
+      const lines = text.split('\n');
+      const data = [];
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const row = [];
+        let inQuotes = false, field = '';
+        for (let j = 0; j < lines[i].length; j++) {
+          const char = lines[i][j];
+          if (char === '"') inQuotes = !inQuotes;
+          else if (char === ',' && !inQuotes) { row.push(field.trim()); field = ''; }
+          else field += char;
+        }
+        row.push(field.trim());
+        if (row.length >= 2) data.push({ district: row[1] });
+      }
+      return data;
+    }
+
+    fetch(SHEET_URL)
+      .then(r => { if (!r.ok) throw new Error('Failed to load'); return r.text(); })
+      .then(text => {
+        const data = parseCSV(text);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+
+        const counts = {};
+        data.forEach(row => {
+          const d = normalizeDistrict(row.district);
+          if (d && d >= 1 && d <= 35) counts[d] = (counts[d] || 0) + 1;
+        });
+
+        const grid = document.getElementById('grid');
+        const tooltip = document.getElementById('tooltip');
+        let html = '';
+
+        for (let i = 1; i <= 35; i++) {
+          const count = counts[i] || 0;
+          let intensity;
+          if (count === 0) intensity = 0.08;
+          else if (count <= 3) intensity = 0.15;
+          else if (count <= 8) intensity = 0.4;
+          else if (count <= 15) intensity = 0.7;
+          else intensity = 0.95;
+          const textColor = intensity > 0.5 ? 'white' : '#1e40af';
+
+          html += '<div class="district-cell" data-district="' + i + '" style="background:rgba(37,99,235,' + intensity + ');color:' + textColor + '">';
+          html += i + '<span>' + count + '</span></div>';
+        }
+        grid.innerHTML = html;
+
+        // Tooltip on hover
+        grid.addEventListener('mouseover', e => {
+          const cell = e.target.closest('.district-cell');
+          if (!cell) return;
+          const num = cell.dataset.district;
+          const count = counts[num] || 0;
+          const member = COUNCIL_MEMBERS[num] || '';
+          tooltip.textContent = 'District ' + num + ' (' + member + '): ' + count + ' responses';
+          tooltip.style.display = 'block';
+        });
+        grid.addEventListener('mousemove', e => {
+          tooltip.style.left = (e.clientX + 12) + 'px';
+          tooltip.style.top = (e.clientY - 30) + 'px';
+        });
+        grid.addEventListener('mouseout', e => {
+          if (!e.target.closest('.district-cell')) tooltip.style.display = 'none';
+        });
+        grid.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+      })
+      .catch(err => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Unable to load data. ' + err.message;
+      });
+  </script>
+</body>
+</html>

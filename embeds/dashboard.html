@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDP $15M Grant: Community Survey Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      padding: 16px;
+      color: #111827;
+    }
+    .header {
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      color: white;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .header h1 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .header p { font-size: 11px; opacity: 0.9; }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    .stats-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 70px;
+      text-align: center;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px 6px;
+    }
+    .stat-value { font-size: 20px; font-weight: 700; color: #2563eb; }
+    .stat-label { font-size: 9px; color: #6b7280; margin-top: 2px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
+    .card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .card-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart-container { position: relative; height: 160px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .priority-item { margin-bottom: 6px; }
+    .priority-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+    .priority-name { color: #374151; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 6px; }
+    .priority-stats { color: #6b7280; font-size: 10px; white-space: nowrap; flex-shrink: 0; }
+    .priority-bar { height: 5px; background: #f3f4f6; border-radius: 3px; overflow: hidden; }
+    .priority-fill { height: 100%; border-radius: 3px; }
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: #dc2626; text-align: center; padding: 20px; font-size: 13px; }
+    .footer {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+    .footer a { color: #6b7280; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="live-badge"><div class="live-dot"></div> Live Data</div>
+    <h1>NDP $15M Grant: Community Feedback</h1>
+    <p>What Nashville residents actually want for their neighborhoods</p>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading survey data...
+  </div>
+  <div id="content" style="display:none;"></div>
+  <div id="error" class="error" style="display:none;"></div>
+  <div class="footer">
+    Data from community survey &middot;
+    <a href="https://stopthemou.com/survey-app.html" target="_blank" rel="noopener">View full dashboard</a>
+  </div>
+
+  <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vReSKC_Fxfw_vgYZOrRBKU-7HzRmpioP6D_cPVnXCVFnCsQgvUXYvPyWDF-Zp5URvobMMiIAGGp43vo/pub?output=csv';
+    const COLORS = { building: '#2563eb', infrastructure: '#16a34a', assistance: '#7c3aed', safety: '#db2777' };
+    const CATEGORY_NAMES = { building: 'Building & Renovation', infrastructure: 'Infrastructure', assistance: 'Resident Assistance', safety: 'Violence Prevention / Community Safety' };
+    const SHORT_LABELS = {
+      'Fully accessible, regularly cleaned, 24/7 public restrooms': '24/7 Public Restrooms',
+      'Renovations to existing properties to create permanently affordable housing': 'Affordable Housing Renovations',
+      'Renovate unused properties into accessible community centers and resource distribution sites': 'Community Resource Centers',
+      'Contribute to the restoration of the Downtown Public Library for expedited re-opening': 'Downtown Library Restoration',
+      'Street lighting improvements': 'Street Lighting',
+      'Traffic-calming infrastructure improvements': 'Traffic Calming',
+      'Comfortable benches without obtrusive bars': 'Accessible Benches',
+      'Homeless outreach': 'Homeless Outreach',
+      'Housing assistance': 'Housing Assistance',
+      'Transportation assistance': 'Transportation',
+      'Food assistance': 'Food Assistance',
+      'Clothing assistance': 'Clothing',
+      'Community pantries': 'Community Pantries',
+      'Drinkable water stations': 'Water Stations',
+      'Community little libraries': 'Little Libraries',
+      'Job/career assistance': 'Job/Career Help',
+      'Credible messenger violence interruption': 'Violence Interruption',
+      'Community-based restorative justice programming': 'Restorative Justice',
+      'Mobile community-based mental health and crisis intervention teams': 'Mobile Crisis Teams',
+      'Mobile harm reduction teams': 'Harm Reduction Teams',
+      'NARCAN distribution sites': 'NARCAN Sites',
+      'Needle exchange bins': 'Needle Exchange',
+      'Drink drugging prevention and interruption (e.g. training and drug coasters)': 'Drink Drugging Prevention'
+    };
+    const KNOWN_ITEMS = {
+      building: ['Fully accessible, regularly cleaned, 24/7 public restrooms','Renovations to existing properties to create permanently affordable housing','Renovate unused properties into accessible community centers and resource distribution sites','Contribute to the restoration of the Downtown Public Library for expedited re-opening'],
+      infrastructure: ['Street lighting improvements','Traffic-calming infrastructure improvements','Comfortable benches without obtrusive bars','Drinkable water stations','Community little libraries'],
+      assistance: ['Homeless outreach','Housing assistance','Transportation assistance','Food assistance','Clothing assistance','Community pantries','Job/career assistance'],
+      safety: ['Credible messenger violence interruption','Community-based restorative justice programming','Mobile community-based mental health and crisis intervention teams','Mobile harm reduction teams','NARCAN distribution sites','Needle exchange bins','Drink drugging prevention and interruption (e.g. training and drug coasters)']
+    };
+    const NAME_TO_DISTRICT = {
+      'joy kimbrough':1,'kimbrough':1,'kyonzte toombs':2,'kyonzté toombs':2,'toombs':2,
+      'jennifer gamble':3,'gamble':3,'mike cortese':4,'cortese':4,'sean parker':5,'parker':5,
+      'clay capp':6,'capp':6,'emily benedict':7,'benedict':7,'deonte harrell':8,'deonté harrell':8,
+      'harrell':8,'tonya hancock':9,'tanya hancock':9,'hancock':9,'jennifer frensley webb':10,
+      'frensley webb':10,'webb':10,'jeff eslick':11,'eslick':11,'erin evans':12,'evans':12,
+      'russ bradford':13,'bradford':13,'jordan huffman':14,'huffman':14,'jeff gregg':15,'gregg':15,
+      'ginny welsch':16,'welsch':16,'terry vo':17,'vo':17,'tom cash':18,'cash':18,
+      'jacob kupin':19,'kupin':19,'rollin horton':20,'horton':20,'brandon taylor':21,'taylor':21,
+      'sheri weiner':22,'weiner':22,'thom druffel':23,'druffel':23,'brenda gadd':24,'gadd':24,
+      'jeff preptit':25,'preptit':25,'courtney johnston':26,'johnston':26,'robert (bob) nash':27,
+      'bob nash':27,'nash':27,'david benton':28,'benton':28,'tasha ellis':29,'ellis':29,
+      'sandra sepulveda':30,'sepulveda':30,'john rutherford':31,'rutherford':31,'joy styles':32,
+      'styles':32,'antoinette lee':33,'lee':33,'sandy ewing':34,'ewing':34,'jason spain':35,'spain':35
+    };
+
+    function normalizeDistrict(d) {
+      if (!d) return null;
+      const input = d.trim().toLowerCase();
+      if (/congressional/i.test(d) || /^cd\s*\d/i.test(d)) return null;
+      if (/^davidson(\s+county)?$/i.test(d.trim())) return null;
+      if (/^visitor$/i.test(d.trim())) return null;
+      for (const [name, district] of Object.entries(NAME_TO_DISTRICT)) { if (input.includes(name)) return district; }
+      const wordToNum = {'first':1,'second':2,'third':3,'fourth':4,'fifth':5,'sixth':6,'seventh':7,'eighth':8,'ninth':9,'tenth':10,'eleventh':11,'twelfth':12,'thirteenth':13,'fourteenth':14,'fifteenth':15,'sixteenth':16,'seventeenth':17,'eighteenth':18,'nineteenth':19,'twentieth':20,'twenty-first':21,'twenty-second':22,'twenty-third':23,'twenty-fourth':24,'twenty-fifth':25,'twenty-sixth':26,'twenty-seventh':27,'twenty-eighth':28,'twenty-ninth':29,'thirtieth':30,'thirty-first':31,'thirty-second':32,'thirty-third':33,'thirty-fourth':34,'thirty-fifth':35};
+      for (const [word, num] of Object.entries(wordToNum)) { if (input.includes(word)) return num; }
+      const match = d.match(/\d+/);
+      if (match) { const num = parseInt(match[0]); if (num >= 1 && num <= 35) return num; }
+      return null;
+    }
+
+    function parseKnownItems(cellValue, category) {
+      if (!cellValue) return [];
+      const found = []; let remaining = cellValue;
+      const sortedItems = [...(KNOWN_ITEMS[category]||[])].sort((a,b)=>b.length-a.length);
+      for (const item of sortedItems) { if (remaining.includes(item)) { found.push(item); remaining = remaining.replace(item,''); } }
+      return found;
+    }
+
+    function parseCSV(text) {
+      const lines = text.split('\n'); const data = [];
+      for (let i=1;i<lines.length;i++) {
+        if (!lines[i].trim()) continue;
+        const row=[]; let inQuotes=false, field='';
+        for (let j=0;j<lines[i].length;j++) {
+          const c=lines[i][j];
+          if (c==='"') inQuotes=!inQuotes;
+          else if (c===','&&!inQuotes) { row.push(field.trim()); field=''; }
+          else field+=c;
+        }
+        row.push(field.trim());
+        if (row.length>=2) {
+          data.push({ timestamp:row[0], district:row[1], building:parseKnownItems(row[2],'building'), infrastructure:parseKnownItems(row[3],'infrastructure'), assistance:parseKnownItems(row[4],'assistance'), safety:parseKnownItems(row[5],'safety') });
+        }
+      }
+      return data;
+    }
+
+    function countItems(data, field) {
+      const counts = {};
+      data.forEach(row => { (row[field]||[]).forEach(item => { counts[item]=(counts[item]||0)+1; }); });
+      return Object.entries(counts).map(([name,count])=>({name,count,short:SHORT_LABELS[name]||name})).sort((a,b)=>b.count-a.count);
+    }
+
+    fetch(SHEET_URL)
+      .then(r => { if(!r.ok) throw new Error('Failed'); return r.text(); })
+      .then(text => {
+        const data = parseCSV(text);
+        const total = data.length;
+        const districts = new Set(data.map(r=>normalizeDistrict(r.district)).filter(Boolean));
+        const dates = data.map(r=>new Date(r.timestamp)).filter(d=>!isNaN(d));
+        const fmt = d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+        let dateRange = '—';
+        if (dates.length) { const mn=new Date(Math.min(...dates)),mx=new Date(Math.max(...dates)); dateRange=mn.toDateString()===mx.toDateString()?fmt(mn):fmt(mn)+'–'+fmt(mx); }
+
+        document.getElementById('loading').style.display='none';
+        const content = document.getElementById('content');
+        content.style.display='block';
+
+        let html = '';
+
+        // Stats row
+        html += '<div class="stats-row">';
+        html += '<div class="stat-card"><div class="stat-value">'+total+'</div><div class="stat-label">Responses</div></div>';
+        html += '<div class="stat-card"><div class="stat-value">'+districts.size+'</div><div class="stat-label">Districts</div></div>';
+        html += '<div class="stat-card"><div class="stat-value" style="font-size:13px">'+dateRange+'</div><div class="stat-label">Period</div></div>';
+        html += '</div>';
+
+        // Charts
+        html += '<div class="grid-2">';
+        html += '<div class="card"><div class="card-title">Responses by Category</div><div class="chart-container"><canvas id="chart-cat"></canvas></div></div>';
+        html += '<div class="card"><div class="card-title">Top Districts</div><div class="chart-container"><canvas id="chart-dist"></canvas></div></div>';
+        html += '</div>';
+
+        // Priorities
+        const priCats = ['assistance', 'safety'];
+        const priNames = { assistance: 'Top Resident Assistance', safety: 'Top Safety Priorities' };
+        html += '<div class="grid-2">';
+        priCats.forEach(cat => {
+          const items = countItems(data, cat);
+          const maxCount = items.length ? items[0].count : 1;
+          html += '<div class="card"><div class="card-title"><span class="dot" style="background:'+COLORS[cat]+'"></span>'+priNames[cat]+'</div>';
+          html += '<div class="priority-list">';
+          items.slice(0,4).forEach(item => {
+            const pct = Math.round(item.count/total*100);
+            html += '<div class="priority-item"><div class="priority-header"><span class="priority-name">'+item.short+'</span><span class="priority-stats">'+item.count+' ('+pct+'%)</span></div>';
+            html += '<div class="priority-bar"><div class="priority-fill" style="width:'+(item.count/maxCount*100)+'%;background:'+COLORS[cat]+'"></div></div></div>';
+          });
+          html += '</div></div>';
+        });
+        html += '</div>';
+
+        content.innerHTML = html;
+
+        // Render charts
+        const categories = ['building','infrastructure','assistance','safety'];
+        const catCounts = categories.map(c=>({name:CATEGORY_NAMES[c].split(' ')[0],count:data.filter(r=>r[c].length>0).length,color:COLORS[c]}));
+
+        new Chart(document.getElementById('chart-cat'), {
+          type:'bar',
+          data:{labels:catCounts.map(c=>c.name),datasets:[{data:catCounts.map(c=>c.count),backgroundColor:catCounts.map(c=>c.color),borderRadius:6}]},
+          options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f3f4f6'},ticks:{font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:11}}}}}
+        });
+
+        const distCounts = {};
+        data.forEach(row => { const d=normalizeDistrict(row.district); if(d&&d>=1&&d<=35) distCounts[d]=(distCounts[d]||0)+1; });
+        const topDists = Object.entries(distCounts).sort((a,b)=>b[1]-a[1]).slice(0,8);
+
+        new Chart(document.getElementById('chart-dist'), {
+          type:'bar',
+          data:{labels:topDists.map(d=>'D'+d[0]),datasets:[{data:topDists.map(d=>d[1]),backgroundColor:'#2563eb',borderRadius:6}]},
+          options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{display:false}}}
+        });
+      })
+      .catch(err => {
+        document.getElementById('loading').style.display='none';
+        document.getElementById('error').style.display='block';
+        document.getElementById('error').textContent='Unable to load data. '+err.message;
+      });
+  </script>
+</body>
+</html>
