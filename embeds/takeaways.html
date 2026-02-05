@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Takeaways</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      padding: 16px;
+      color: #111827;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+    .stats-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 80px;
+      text-align: center;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 8px;
+    }
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+    .takeaways-grid {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .takeaway-card {
+      flex: 1;
+      min-width: 100px;
+      background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .takeaway-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #7c3aed;
+    }
+    .takeaway-label {
+      font-size: 11px;
+      color: #4b5563;
+      margin-top: 2px;
+    }
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: #dc2626; text-align: center; padding: 20px; font-size: 13px; }
+    .footer {
+      margin-top: 12px;
+      text-align: right;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+    .footer a { color: #6b7280; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading...
+  </div>
+  <div id="content" style="display:none;"></div>
+  <div id="error" class="error" style="display:none;"></div>
+  <div class="footer">
+    <a href="https://stopthemou.com/survey-app.html" target="_blank" rel="noopener">View full dashboard</a>
+  </div>
+
+  <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vReSKC_Fxfw_vgYZOrRBKU-7HzRmpioP6D_cPVnXCVFnCsQgvUXYvPyWDF-Zp5URvobMMiIAGGp43vo/pub?output=csv';
+
+    const SHORT_LABELS = {
+      'Fully accessible, regularly cleaned, 24/7 public restrooms': '24/7 Public Restrooms',
+      'Renovations to existing properties to create permanently affordable housing': 'Affordable Housing Renovations',
+      'Renovate unused properties into accessible community centers and resource distribution sites': 'Community Resource Centers',
+      'Contribute to the restoration of the Downtown Public Library for expedited re-opening': 'Downtown Library Restoration',
+      'Street lighting improvements': 'Street Lighting',
+      'Traffic-calming infrastructure improvements': 'Traffic Calming',
+      'Comfortable benches without obtrusive bars': 'Accessible Benches',
+      'Homeless outreach': 'Homeless Outreach',
+      'Housing assistance': 'Housing Assistance',
+      'Transportation assistance': 'Transportation',
+      'Food assistance': 'Food Assistance',
+      'Clothing assistance': 'Clothing',
+      'Community pantries': 'Community Pantries',
+      'Drinkable water stations': 'Water Stations',
+      'Community little libraries': 'Little Libraries',
+      'Job/career assistance': 'Job/Career Help',
+      'Credible messenger violence interruption': 'Violence Interruption',
+      'Community-based restorative justice programming': 'Restorative Justice',
+      'Mobile community-based mental health and crisis intervention teams': 'Mobile Crisis Teams',
+      'Mobile harm reduction teams': 'Harm Reduction Teams',
+      'NARCAN distribution sites': 'NARCAN Sites',
+      'Needle exchange bins': 'Needle Exchange',
+      'Drink drugging prevention and interruption (e.g. training and drug coasters)': 'Drink Drugging Prevention'
+    };
+
+    const KNOWN_ITEMS = {
+      building: [
+        'Fully accessible, regularly cleaned, 24/7 public restrooms',
+        'Renovations to existing properties to create permanently affordable housing',
+        'Renovate unused properties into accessible community centers and resource distribution sites',
+        'Contribute to the restoration of the Downtown Public Library for expedited re-opening'
+      ],
+      infrastructure: [
+        'Street lighting improvements', 'Traffic-calming infrastructure improvements',
+        'Comfortable benches without obtrusive bars', 'Drinkable water stations', 'Community little libraries'
+      ],
+      assistance: [
+        'Homeless outreach', 'Housing assistance', 'Transportation assistance',
+        'Food assistance', 'Clothing assistance', 'Community pantries', 'Job/career assistance'
+      ],
+      safety: [
+        'Credible messenger violence interruption', 'Community-based restorative justice programming',
+        'Mobile community-based mental health and crisis intervention teams',
+        'Mobile harm reduction teams', 'NARCAN distribution sites', 'Needle exchange bins',
+        'Drink drugging prevention and interruption (e.g. training and drug coasters)'
+      ]
+    };
+
+    const NAME_TO_DISTRICT = {
+      'joy kimbrough': 1, 'kimbrough': 1, 'kyonzte toombs': 2, 'kyonzté toombs': 2, 'toombs': 2,
+      'jennifer gamble': 3, 'gamble': 3, 'mike cortese': 4, 'cortese': 4,
+      'sean parker': 5, 'parker': 5, 'clay capp': 6, 'capp': 6,
+      'emily benedict': 7, 'benedict': 7, 'deonte harrell': 8, 'deonté harrell': 8, 'harrell': 8,
+      'tonya hancock': 9, 'tanya hancock': 9, 'hancock': 9,
+      'jennifer frensley webb': 10, 'frensley webb': 10, 'webb': 10,
+      'jeff eslick': 11, 'eslick': 11, 'erin evans': 12, 'evans': 12,
+      'russ bradford': 13, 'bradford': 13, 'jordan huffman': 14, 'huffman': 14,
+      'jeff gregg': 15, 'gregg': 15, 'ginny welsch': 16, 'welsch': 16,
+      'terry vo': 17, 'vo': 17, 'tom cash': 18, 'cash': 18,
+      'jacob kupin': 19, 'kupin': 19, 'rollin horton': 20, 'horton': 20,
+      'brandon taylor': 21, 'taylor': 21, 'sheri weiner': 22, 'weiner': 22,
+      'thom druffel': 23, 'druffel': 23, 'brenda gadd': 24, 'gadd': 24,
+      'jeff preptit': 25, 'preptit': 25, 'courtney johnston': 26, 'johnston': 26,
+      'robert (bob) nash': 27, 'bob nash': 27, 'nash': 27,
+      'david benton': 28, 'benton': 28, 'tasha ellis': 29, 'ellis': 29,
+      'sandra sepulveda': 30, 'sepulveda': 30, 'john rutherford': 31, 'rutherford': 31,
+      'joy styles': 32, 'styles': 32, 'antoinette lee': 33, 'lee': 33,
+      'sandy ewing': 34, 'ewing': 34, 'jason spain': 35, 'spain': 35
+    };
+
+    function normalizeDistrict(d) {
+      if (!d) return null;
+      const input = d.trim().toLowerCase();
+      if (/congressional/i.test(d) || /^cd\s*\d/i.test(d)) return null;
+      if (/^davidson(\s+county)?$/i.test(d.trim())) return null;
+      if (/^visitor$/i.test(d.trim())) return null;
+      for (const [name, district] of Object.entries(NAME_TO_DISTRICT)) {
+        if (input.includes(name)) return district;
+      }
+      const match = d.match(/\d+/);
+      if (match) { const num = parseInt(match[0]); if (num >= 1 && num <= 35) return num; }
+      return null;
+    }
+
+    function parseKnownItems(cellValue, category) {
+      if (!cellValue) return [];
+      const knownItems = KNOWN_ITEMS[category] || [];
+      const found = [];
+      let remaining = cellValue;
+      const sortedItems = [...knownItems].sort((a, b) => b.length - a.length);
+      for (const item of sortedItems) {
+        if (remaining.includes(item)) { found.push(item); remaining = remaining.replace(item, ''); }
+      }
+      return found;
+    }
+
+    function parseCSV(text) {
+      const lines = text.split('\n');
+      const data = [];
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const row = [];
+        let inQuotes = false, field = '';
+        for (let j = 0; j < lines[i].length; j++) {
+          const char = lines[i][j];
+          if (char === '"') inQuotes = !inQuotes;
+          else if (char === ',' && !inQuotes) { row.push(field.trim()); field = ''; }
+          else field += char;
+        }
+        row.push(field.trim());
+        if (row.length >= 2) {
+          data.push({
+            timestamp: row[0],
+            district: row[1],
+            building: parseKnownItems(row[2], 'building'),
+            infrastructure: parseKnownItems(row[3], 'infrastructure'),
+            assistance: parseKnownItems(row[4], 'assistance'),
+            safety: parseKnownItems(row[5], 'safety')
+          });
+        }
+      }
+      return data;
+    }
+
+    function countItems(data, field) {
+      const counts = {};
+      data.forEach(row => {
+        (row[field] || []).forEach(item => { counts[item] = (counts[item] || 0) + 1; });
+      });
+      return Object.entries(counts)
+        .map(([name, count]) => ({ name, count, short: SHORT_LABELS[name] || name }))
+        .sort((a, b) => b.count - a.count);
+    }
+
+    fetch(SHEET_URL)
+      .then(r => { if (!r.ok) throw new Error('Failed to load'); return r.text(); })
+      .then(text => {
+        const data = parseCSV(text);
+        const total = data.length;
+        const districts = new Set(data.map(r => normalizeDistrict(r.district)).filter(Boolean));
+
+        document.getElementById('loading').style.display = 'none';
+        const content = document.getElementById('content');
+        content.style.display = 'block';
+
+        // Key stats
+        const dates = data.map(r => new Date(r.timestamp)).filter(d => !isNaN(d));
+        const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        let dateRange = '—';
+        if (dates.length) {
+          const min = new Date(Math.min(...dates));
+          const max = new Date(Math.max(...dates));
+          dateRange = min.toDateString() === max.toDateString() ? fmt(min) : fmt(min) + '–' + fmt(max);
+        }
+
+        let html = '<div class="stats-row">';
+        html += '<div class="stat-card"><div class="stat-value">' + total + '</div><div class="stat-label">Responses</div></div>';
+        html += '<div class="stat-card"><div class="stat-value">' + districts.size + '</div><div class="stat-label">Districts</div></div>';
+        html += '<div class="stat-card"><div class="stat-value" style="font-size:14px;">' + dateRange + '</div><div class="stat-label">Period</div></div>';
+        html += '</div>';
+
+        // Top takeaways
+        const categories = ['assistance', 'safety', 'building'];
+        const takeaways = [];
+        categories.forEach(cat => {
+          const items = countItems(data, cat);
+          if (items.length) {
+            const top = items[0];
+            takeaways.push({ pct: Math.round((top.count / total) * 100), label: top.short });
+          }
+        });
+
+        html += '<div class="title">Top Takeaways</div>';
+        html += '<div class="takeaways-grid">';
+        takeaways.forEach(t => {
+          html += '<div class="takeaway-card"><div class="takeaway-value">' + t.pct + '%</div>';
+          html += '<div class="takeaway-label">want ' + t.label + '</div></div>';
+        });
+        html += '</div>';
+
+        content.innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Unable to load data. ' + err.message;
+      });
+  </script>
+</body>
+</html>

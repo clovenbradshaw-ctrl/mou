@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responses by Category</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      padding: 16px;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+    .chart-container {
+      position: relative;
+      height: 200px;
+    }
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: #dc2626; text-align: center; padding: 20px; font-size: 13px; }
+    .footer {
+      margin-top: 10px;
+      text-align: right;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+    .footer a { color: #6b7280; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="title">Responses by Category</div>
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading...
+  </div>
+  <div id="chart-wrap" class="chart-container" style="display:none;">
+    <canvas id="chart"></canvas>
+  </div>
+  <div id="error" class="error" style="display:none;"></div>
+  <div class="footer">
+    <a href="https://stopthemou.com/survey-app.html" target="_blank" rel="noopener">View full dashboard</a>
+  </div>
+
+  <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vReSKC_Fxfw_vgYZOrRBKU-7HzRmpioP6D_cPVnXCVFnCsQgvUXYvPyWDF-Zp5URvobMMiIAGGp43vo/pub?output=csv';
+
+    const COLORS = {
+      building: '#2563eb',
+      infrastructure: '#16a34a',
+      assistance: '#7c3aed',
+      safety: '#db2777'
+    };
+
+    const CATEGORY_NAMES = {
+      building: 'Building & Renovation',
+      infrastructure: 'Infrastructure',
+      assistance: 'Resident Assistance',
+      safety: 'Violence Prevention / Community Safety'
+    };
+
+    const KNOWN_ITEMS = {
+      building: [
+        'Fully accessible, regularly cleaned, 24/7 public restrooms',
+        'Renovations to existing properties to create permanently affordable housing',
+        'Renovate unused properties into accessible community centers and resource distribution sites',
+        'Contribute to the restoration of the Downtown Public Library for expedited re-opening'
+      ],
+      infrastructure: [
+        'Street lighting improvements',
+        'Traffic-calming infrastructure improvements',
+        'Comfortable benches without obtrusive bars',
+        'Drinkable water stations',
+        'Community little libraries'
+      ],
+      assistance: [
+        'Homeless outreach', 'Housing assistance', 'Transportation assistance',
+        'Food assistance', 'Clothing assistance', 'Community pantries', 'Job/career assistance'
+      ],
+      safety: [
+        'Credible messenger violence interruption',
+        'Community-based restorative justice programming',
+        'Mobile community-based mental health and crisis intervention teams',
+        'Mobile harm reduction teams', 'NARCAN distribution sites',
+        'Needle exchange bins',
+        'Drink drugging prevention and interruption (e.g. training and drug coasters)'
+      ]
+    };
+
+    function parseKnownItems(cellValue, category) {
+      if (!cellValue) return [];
+      const knownItems = KNOWN_ITEMS[category] || [];
+      const found = [];
+      let remaining = cellValue;
+      const sortedItems = [...knownItems].sort((a, b) => b.length - a.length);
+      for (const item of sortedItems) {
+        if (remaining.includes(item)) {
+          found.push(item);
+          remaining = remaining.replace(item, '');
+        }
+      }
+      return found;
+    }
+
+    function parseCSV(text) {
+      const lines = text.split('\n');
+      const data = [];
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const row = [];
+        let inQuotes = false, field = '';
+        for (let j = 0; j < lines[i].length; j++) {
+          const char = lines[i][j];
+          if (char === '"') inQuotes = !inQuotes;
+          else if (char === ',' && !inQuotes) { row.push(field.trim()); field = ''; }
+          else field += char;
+        }
+        row.push(field.trim());
+        if (row.length >= 2) {
+          data.push({
+            building: parseKnownItems(row[2], 'building'),
+            infrastructure: parseKnownItems(row[3], 'infrastructure'),
+            assistance: parseKnownItems(row[4], 'assistance'),
+            safety: parseKnownItems(row[5], 'safety')
+          });
+        }
+      }
+      return data;
+    }
+
+    fetch(SHEET_URL)
+      .then(r => { if (!r.ok) throw new Error('Failed to load'); return r.text(); })
+      .then(text => {
+        const data = parseCSV(text);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('chart-wrap').style.display = 'block';
+
+        const categories = ['building', 'infrastructure', 'assistance', 'safety'];
+        const catCounts = categories.map(c => ({
+          name: CATEGORY_NAMES[c].split(' ')[0],
+          count: data.filter(r => r[c].length > 0).length,
+          color: COLORS[c]
+        }));
+
+        new Chart(document.getElementById('chart'), {
+          type: 'bar',
+          data: {
+            labels: catCounts.map(c => c.name),
+            datasets: [{ data: catCounts.map(c => c.count), backgroundColor: catCounts.map(c => c.color), borderRadius: 6 }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { grid: { color: '#f3f4f6' }, ticks: { font: { size: 11 } } },
+              y: { grid: { display: false }, ticks: { font: { size: 12 } } }
+            }
+          }
+        });
+      })
+      .catch(err => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Unable to load data. ' + err.message;
+      });
+  </script>
+</body>
+</html>
