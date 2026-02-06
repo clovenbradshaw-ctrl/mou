@@ -19,10 +19,6 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     :root {
       --bg-cream: #F5F0E6;
       --bg-cream-dark: #EBE5D9;
@@ -35,14 +31,17 @@
       --accent-rust-light: #D4714A;
       --border-light: #D4CFC3;
       --highlight-yellow: #F9E4B7;
+      --navy: #1B2A4A;
+      --deep-red: #9B1B30;
     }
 
-    body {
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Lora', Georgia, serif;
-      background-color: var(--bg-cream);
       color: var(--text-body);
       line-height: 1.7;
-      font-size: 17px;
+      font-size: 16px;
     }
 
     ::selection {
@@ -50,241 +49,380 @@
       color: white;
     }
 
-    /* Container */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-    }
-
-    /* Header */
-    .site-header {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-      background: var(--bg-cream);
-    }
-
-    .header-inner {
-      max-width: 800px;
-      margin: 0 auto;
+    /* ===================== */
+    /* SPLIT LAYOUT          */
+    /* ===================== */
+    .page-layout {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      height: 100vh;
     }
 
-    .site-name {
+    .left-panel {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--bg-cream);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-light) transparent;
+    }
+
+    .right-panel {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--accent-teal);
+      color: white;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.3) transparent;
+    }
+
+    .left-panel::-webkit-scrollbar,
+    .right-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .left-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .left-panel::-webkit-scrollbar-thumb {
+      background: var(--border-light);
+      border-radius: 3px;
+    }
+
+    .right-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .right-panel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 3px;
+    }
+
+    .panel-content {
+      padding: 2.5rem 2rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ===================== */
+    /* LEFT PANEL CONTENT    */
+    /* ===================== */
+    .brand {
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       color: var(--accent-teal);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 4rem 1.5rem 3rem;
-      background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-cream-dark) 100%);
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
     }
 
     .hero-label {
       font-family: 'Archivo', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--accent-rust);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
-    .hero h1 {
+    .hero-headline {
       font-family: 'Archivo', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
       font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-headline .red {
+      color: var(--deep-red);
+      display: block;
     }
 
     .hero-intro {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       color: var(--text-body);
-      max-width: 600px;
-      margin: 0 auto 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
     }
 
-    .stat-highlight {
-      display: inline-block;
+    .stat-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-chip {
       background: var(--highlight-yellow);
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.75rem;
       border-radius: 4px;
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
+      font-size: 0.75rem;
       color: var(--accent-rust);
-      margin-bottom: 1rem;
+      white-space: nowrap;
     }
 
-    /* Section Styles */
-    .section-label {
+    /* Three Clear Asks */
+    .asks-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .asks-title {
       font-family: 'Archivo', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1.2;
       margin-bottom: 1rem;
     }
 
-    .section-intro {
-      font-size: 1rem;
-      color: var(--text-body);
-      margin-bottom: 2rem;
+    .ask-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
     }
 
-    /* Context Section */
-    .context-section {
-      background: var(--bg-cream-dark);
-    }
-
-    .context-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .context-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 4px;
-      border-left: 4px solid var(--accent-rust);
-    }
-
-    .context-card h3 {
-      font-family: 'Archivo', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .context-card p {
-      font-size: 0.9rem;
-      color: var(--text-body);
-    }
-
-    /* Legal Section */
-    .legal-section {
-      background: var(--bg-cream);
-    }
-
-    .legal-box {
-      background: white;
-      border: 2px solid var(--accent-teal);
-      border-radius: 4px;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .legal-box h3 {
-      font-family: 'Archivo', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--accent-teal);
-      margin-bottom: 1rem;
-    }
-
-    .legal-box ul {
-      margin-left: 1.5rem;
-    }
-
-    .legal-box li {
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;
-    }
-
-    /* Action Section */
-    .action-section {
+    .ask-number {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
       background: var(--accent-teal);
       color: white;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
     }
 
-    .action-section .section-label {
-      color: rgba(255, 255, 255, 0.7);
+    .ask-content h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
     }
 
-    .action-section .section-title {
-      color: white;
+    .ask-content p {
+      font-size: 0.85rem;
+      color: var(--text-body);
+      line-height: 1.6;
     }
 
-    .action-section .section-intro {
-      color: rgba(255, 255, 255, 0.9);
+    /* Full Letter */
+    .letter-section {
+      margin-bottom: 2.5rem;
     }
 
-    .btn-action {
-      display: inline-block;
-      background: white;
+    .letter-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--accent-teal);
-      padding: 0.875rem 1.75rem;
+      padding: 0.5rem 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .letter-toggle:hover {
+      color: var(--accent-teal-dark);
+    }
+
+    .letter-toggle .arrow {
+      transition: transform 0.2s ease;
+      font-size: 0.7rem;
+    }
+
+    .letter-toggle.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    .letter-body {
+      display: none;
+      background: white;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+
+    .letter-body.visible {
+      display: block;
+    }
+
+    .letter-date {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .letter-addressees {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .letter-body p {
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .letter-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .letter-ask-heading {
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 0.95rem;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-bottom: 2rem;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
     }
 
-    .btn-action:hover {
-      background: var(--bg-cream);
-      transform: translateY(-2px);
+    .letter-sub-points {
+      margin-left: 1.25rem;
+      margin-bottom: 1rem;
     }
 
-    /* Email Actions */
+    .letter-sub-points li {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .letter-signoff {
+      margin-top: 1.5rem;
+      font-style: italic;
+    }
+
+    .letter-orgs {
+      list-style: none;
+      margin-top: 0.75rem;
+      padding: 0;
+    }
+
+    .letter-orgs li {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    /* Signatories bar */
+    .signatories {
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.5rem;
+    }
+
+    .signatories-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .signatories-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+    }
+
+    .signatory {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* ===================== */
+    /* RIGHT PANEL CONTENT   */
+    /* ===================== */
+    .action-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.5rem;
+    }
+
+    .action-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .action-intro {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+
+    /* Email action buttons */
     .email-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-bottom: 2rem;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
     }
 
     .email-actions button {
       background: transparent;
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      padding: 0.75rem 1.25rem;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      padding: 0.6rem 1rem;
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s ease;
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
     }
 
     .email-actions button:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.2);
       border-color: white;
     }
 
-    /* Message Template */
+    /* Message template */
     .message-template {
-      text-align: left;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1.5rem;
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 1.25rem;
     }
 
     .message-header {
@@ -293,12 +431,12 @@
       align-items: center;
       margin-bottom: 1rem;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
     .message-title {
       font-family: 'Archivo', sans-serif;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 700;
     }
 
@@ -306,10 +444,10 @@
       background: var(--accent-rust);
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.45rem 0.85rem;
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.2s ease;
@@ -323,21 +461,21 @@
       background: white;
       border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .copy-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0.75rem;
+      padding: 0.4rem 0.65rem;
       background: var(--bg-cream);
       border-bottom: 1px solid var(--border-light);
     }
 
     .copy-label {
       font-family: 'Archivo', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
       color: var(--text-muted);
       letter-spacing: 0.05em;
@@ -347,10 +485,10 @@
       background: var(--accent-teal);
       color: white;
       border: none;
-      padding: 0.25rem 0.6rem;
+      padding: 0.2rem 0.5rem;
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       border-radius: 3px;
       cursor: pointer;
       transition: background 0.2s ease;
@@ -365,21 +503,21 @@
     }
 
     .subject-content {
-      padding: 0.75rem;
+      padding: 0.6rem 0.65rem;
       font-family: 'Archivo', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-dark);
     }
 
     .message-content {
-      padding: 1rem;
-      font-size: 0.9rem;
+      padding: 0.75rem 0.65rem;
+      font-size: 0.85rem;
       line-height: 1.7;
       color: var(--text-body);
     }
 
     .message-content p {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
     }
 
     .message-content p:last-child {
@@ -390,96 +528,60 @@
       background: var(--highlight-yellow);
       border: 2px dashed var(--accent-rust);
       border-radius: 3px;
-      padding: 0.75rem;
-      margin: 0.75rem 0;
+      padding: 0.6rem;
+      margin: 0.6rem 0;
       color: var(--accent-rust);
       font-style: italic;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     .personal-input::before {
-      content: "✎ ";
+      content: "\270E ";
     }
 
     .template-note {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
     }
 
-    /* Demands Section */
-    .demands-section {
-      background: var(--bg-cream-dark);
-    }
-
-    .demands-list {
-      margin-top: 1.5rem;
-    }
-
-    .demand-item {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-      border-left: 4px solid var(--accent-teal);
-    }
-
-    .demand-item h3 {
-      font-family: 'Archivo', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .demand-item p {
-      font-size: 0.9rem;
-      color: var(--text-body);
-    }
-
-    /* Signatories Section */
-    .signatories-section {
-      background: var(--bg-cream);
-      text-align: center;
-    }
-
-    .signatories-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .signatory {
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--text-dark);
-      color: rgba(255, 255, 255, 0.7);
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-
-    footer p {
-      font-size: 0.85rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .container {
-        padding: 2rem 1rem;
+    /* ===================== */
+    /* RESPONSIVE            */
+    /* ===================== */
+    @media (max-width: 900px) {
+      html, body {
+        height: auto;
+        overflow: auto;
       }
 
-      .hero {
-        padding: 3rem 1rem 2rem;
+      .page-layout {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-panel,
+      .right-panel {
+        overflow-y: visible;
+        flex: none;
+      }
+
+      .panel-content {
+        padding: 2rem 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .panel-content {
+        padding: 1.5rem 1rem;
+      }
+
+      .stat-bar {
+        flex-direction: column;
+      }
+
+      .stat-chip {
+        text-align: center;
       }
 
       .email-actions {
@@ -489,184 +591,203 @@
       .email-actions button {
         width: 100%;
       }
+
+      .ask-item {
+        gap: 0.75rem;
+      }
+
+      .ask-number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="site-name">Nashville Tenant Advocacy</div>
-    </div>
-  </header>
+  <div class="page-layout">
+    <!-- ======================== -->
+    <!-- LEFT PANEL: EDUCATIONAL  -->
+    <!-- ======================== -->
+    <div class="left-panel">
+      <div class="panel-content">
+        <div class="brand">Nashville Tenant Advocacy</div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-label">Emergency Housing Crisis</div>
-    <h1>No One Should Lose Their Home Because of a Disaster</h1>
-    <div class="stat-highlight">1,350 evictions filed in January 2026 — a 56% increase from last year</div>
-    <p class="hero-intro">
-      In the wake of the winter storm emergency, Nashville families are at risk of losing their homes. We're calling on local leadership to halt evictions and provide emergency rental assistance now.
-    </p>
-  </section>
+        <!-- Hero -->
+        <div class="hero-label">Emergency Housing Crisis</div>
+        <h1 class="hero-headline">
+          When Systems Fail, People Need Protection
+          <span class="red">Not Eviction</span>
+        </h1>
 
-  <!-- Context Section -->
-  <section class="context-section">
-    <div class="container">
-      <div class="section-label">The Crisis</div>
-      <h2 class="section-title">Why This Matters Right Now</h2>
-      <p class="section-intro">
-        Prior to the state of emergency, hundreds of Nashvillians were already facing eviction. The winter storm has made everything worse—power outages, lost income, and unsafe housing conditions have pushed more families to the brink.
-      </p>
-
-      <div class="context-grid">
-        <div class="context-card">
-          <h3>183 Evictions in One Week</h3>
-          <p>Between last Monday and Saturday alone, 183 evictions were filed by 109 landlords—during a declared state of emergency.</p>
-        </div>
-        <div class="context-card">
-          <h3>February 5th Deadline</h3>
-          <p>Rent due February 1st becomes legally late on February 5th. Families behind on payments will soon face eviction filings.</p>
-        </div>
-        <div class="context-card">
-          <h3>Research Shows the Pattern</h3>
-          <p>Eviction filings spike after weather emergencies, especially in states like Tennessee with weak tenant protections.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Legal Section -->
-  <section class="legal-section">
-    <div class="container">
-      <div class="section-label">The "Hands Tied" Myth</div>
-      <h2 class="section-title">Nashville Has the Power to Act</h2>
-      <p class="section-intro">
-        Metro officials claim preemption by the State ties their hands. But legal experts have identified a clear path forward through the Detainer Statute—which governs <em>procedure</em>, not substance, and lacks preemption language.
-      </p>
-
-      <div class="legal-box">
-        <h3>What Nashville Can Do</h3>
-        <ul>
-          <li><strong>Procedural Eviction Ordinance:</strong> A local law based on the Detainer Statute that delays the timeline of eviction filings—creating a mandatory cooling-off period.</li>
-          <li><strong>Sheriff Accountability:</strong> The Sheriff's Office can deprioritize "set-outs" (physical removals) during the crisis—an operational choice, not a legal one.</li>
-          <li><strong>Automatic Continuances:</strong> Judges can grant automatic continuances for tenants with pending rental assistance applications or those without utilities.</li>
-          <li><strong>Emergency Rental Assistance:</strong> Make relief funds available immediately through partners who can distribute them quickly.</li>
-        </ul>
-      </div>
-
-      <p style="margin-top: 1.5rem; font-size: 0.95rem;">
-        Even a law that is eventually challenged provides a "fighting chance." A local ordinance is law until a judge says it isn't. In that time, families can find new jobs, children can finish school semesters, and tenants can secure federal rental assistance.
-      </p>
-    </div>
-  </section>
-
-  <!-- What We're Asking For -->
-  <section class="demands-section">
-    <div class="container">
-      <div class="section-label">Our Demands</div>
-      <h2 class="section-title">What We Need From Local Leadership</h2>
-
-      <div class="demands-list">
-        <div class="demand-item">
-          <h3>1. Emergency Rental Assistance</h3>
-          <p>Increase the availability and accessibility of low-barrier, timely emergency rental assistance. Funds from the Winter Storm Recovery Fund must be made available immediately for rent relief through partners who can distribute them quickly.</p>
-        </div>
-        <div class="demand-item">
-          <h3>2. Pause Eviction Dockets</h3>
-          <p>General Sessions Court should pause eviction hearings and grant automatic continuances until the state of emergency and its immediate impacts have ended. Knoxville closed their eviction court both last week and this week.</p>
-        </div>
-        <div class="demand-item">
-          <h3>3. Halt Eviction Executions</h3>
-          <p>The Sheriff's Office should immediately suspend the execution of eviction orders. Emergency shelters are already at capacity—forcibly displacing residents now would increase homelessness and strain an overburdened system.</p>
-        </div>
-        <div class="demand-item">
-          <h3>4. Pass a Procedural Ordinance</h3>
-          <p>Metro Council should use the "procedural lane" in the Detainer Statute to create a mandatory delay on eviction filings. Nashville has Home Rule authority—if the state hasn't explicitly said no, the city can act.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Take Action -->
-  <section class="action-section">
-    <div class="container" style="text-align: center;">
-      <div class="section-label">Take Action</div>
-      <h2 class="section-title">Tell Nashville Leadership:<br>Halt Evictions Now</h2>
-      <p class="section-intro">
-        Your voice matters. Use the message generator below to contact local officials and demand they protect Nashville families during this emergency.
-      </p>
-
-      <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
-        <strong>Tip:</strong> Paste the copied emails into the <strong>BCC</strong> field of your email — officials are more likely to read individual-looking messages than mass emails.
-      </p>
-      <div class="email-actions">
-        <button onclick="copyAllEmails(this)">
-          Copy All Emails (paste in BCC)
-        </button>
-        <button onclick="launchEmailApp()">
-          Open in Email App
-        </button>
-      </div>
-
-      <div class="message-template">
-        <div class="message-header">
-          <h3 class="message-title">Your Message:</h3>
-          <button onclick="generateNewMessage()" class="btn-generate">Generate New Message</button>
-        </div>
-
-        <!-- Subject Line -->
-        <div class="copy-section">
-          <div class="copy-header">
-            <span class="copy-label">SUBJECT LINE</span>
-            <button onclick="copyToClipboard('subject-text', this)" class="btn-copy">Copy</button>
-          </div>
-          <div id="subject-text" class="subject-content"></div>
-        </div>
-
-        <!-- Message Body -->
-        <div class="copy-section">
-          <div class="copy-header">
-            <span class="copy-label">MESSAGE</span>
-            <button onclick="copyToClipboard('message-text', this)" class="btn-copy">Copy</button>
-          </div>
-          <div id="message-text" class="message-content"></div>
-        </div>
-
-        <p class="template-note">
-          <strong>Quick send:</strong> Click "Open in Email App" to send to all recipients at once, or copy individual sections. Click "Generate New Message" for a fresh version. Don't forget to add your personal story!
+        <p class="hero-intro">
+          In the wake of the winter storm emergency, hundreds of Nashvillians are at risk of losing their homes. On Monday, we joined forces with nine other agencies to remind local leaders that rent is due and urge them to take action to prevent impending evictions. Days later, we are still waiting for a response while families remain at risk of displacement.
         </p>
+
+        <div class="stat-bar">
+          <span class="stat-chip">1,350 evictions filed in Jan 2026</span>
+          <span class="stat-chip">56% increase from Jan 2025</span>
+          <span class="stat-chip">183 filed in one week</span>
+        </div>
+
+        <!-- Three Clear Asks -->
+        <div class="asks-section">
+          <div class="asks-title">Three Clear Asks</div>
+
+          <div class="ask-item">
+            <div class="ask-number">1</div>
+            <div class="ask-content">
+              <h3>Judges Pause Eviction Hearings</h3>
+              <p>General Sessions Court Judges should vote to suspend eviction proceedings or grant automatic continuances until at least March 1st.</p>
+            </div>
+          </div>
+
+          <div class="ask-item">
+            <div class="ask-number">2</div>
+            <div class="ask-content">
+              <h3>Sheriff Halts Forced Removals</h3>
+              <p>The Sheriff's Office can deprioritize removing tenants facing eviction from their homes and instead focus on disaster response.</p>
+            </div>
+          </div>
+
+          <div class="ask-item">
+            <div class="ask-number">3</div>
+            <div class="ask-content">
+              <h3>City Increases Rental Assistance</h3>
+              <p>City leaders can increase fundraising, coordination, and accessibility for the Winter Storm Recovery Fund.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Letter (collapsible) -->
+        <div class="letter-section">
+          <button class="letter-toggle" onclick="toggleLetter(this)" aria-expanded="false">
+            <span class="arrow">&#9654;</span> Read the Full Coalition Letter
+          </button>
+
+          <div class="letter-body" id="full-letter">
+            <p class="letter-date">February 2nd, 2026</p>
+
+            <p class="letter-addressees">Dear Mayor Freddie O'Connell, Metro Legal Department, Metro Council Members, Davidson County Sheriff's Office, and Davidson County General Sessions Court Judges,</p>
+
+            <p>Over the past week and a half, our organizations have been on the ground working alongside Nashvillians directly impacted by the weather and subsequent infrastructure failures that resulted in Mayor O'Connell's declaration of a state of emergency. We are writing to urge immediate action to prevent impending evictions that would further exacerbate the city's housing crisis.</p>
+
+            <p>Prior to this state of emergency, hundreds of Nashvillians were already facing eviction &ndash; before the winter storm struck, before hundreds of thousands of NES customers lost power, and before many Nashvillians lost work and income. 1,350 evictions were filed in January 2026 &ndash; a 56% increase from January 2025. Between last Monday and Saturday alone, 183 evictions were filed by 109 landlords. In the wake of the winter storm, many more households are now at risk of eviction due to continued income disruption and added expenses. Households that are behind on rental payments due February 1st &ndash; which will become legally late if left unpaid by February 5th &ndash; will very soon become subject to eviction.</p>
+
+            <p>Research shows that eviction filings spike following weather-related emergencies, especially in states like Tennessee, with weak tenant protections. No one should lose their home because they were unable to work, access childcare, or safely live in their residence during a declared emergency. Preventing evictions during this period is a moral responsibility, public health necessity, and upholds the legal right to due process for tenants living in inhabitable or unsafe conditions.</p>
+
+            <p>During the initial years of the COVID-19 pandemic, multiple versions of federal eviction moratoriums were in place that halted evictions. Because of multiple state laws, even these federal moratoriums faced legal challenges in Tennessee. We recognize that a local eviction moratorium would face similar legal scrutiny.</p>
+
+            <p>Still, there remain feasible pathways to slow and halt evictions to allow tenants the grace necessary to recuperate under these conditions. We respectfully call on local leadership to explore the following strategies during this emergency and its immediate aftermath:</p>
+
+            <p class="letter-ask-heading">1. Increase the availability and accessibility of low-barrier, timely emergency rental assistance.</p>
+            <p>Mayor O'Connell announced a new Winter Storm Recovery Fund with the Volunteer Organizations Active in Disaster (VOAD), The United Way, and Community Foundation of Middle Tennessee. It is essential that these emergency funds be made available immediately for rent relief through partners who can distribute them quickly and efficiently to households in need. Many Nashvillians will accrue late fees and receive eviction notices in the coming days if rental assistance is not provided in a timely manner.</p>
+
+            <p class="letter-ask-heading">2. Pause eviction dockets in General Sessions Court and grant automatic continuances until the state of emergency and its immediate impacts have ended.</p>
+            <p>Tenants cannot reasonably be expected to appear in court while recovering from prolonged power outages, unsafe housing conditions, and lost income caused by the storm. Knoxville, which experienced severe weather but without the scale of infrastructure failure seen in Nashville, closed their eviction court both last week and again this week. Similarly, Nashville closed civil dockets on January 28th due to safety concerns, however, these safety concerns still remain for many areas of our city. We need Nashville Judges to:</p>
+            <ul class="letter-sub-points">
+              <li><strong>Pause hearings on eviction cases.</strong> This should include temporarily suspending all scheduled court dates for eviction proceedings and placing a hold on the scheduling of new eviction hearings until after a set emergency recovery period.</li>
+              <li><strong>Grant automatic continuances</strong> for tenants with pending rental assistance applications or those who have lost power or remain without utilities.</li>
+            </ul>
+
+            <p class="letter-ask-heading">3. Halt the execution of eviction orders by the Sheriff's Office.</p>
+            <p>The Sheriff's Office should immediately suspend the execution of eviction orders for the duration of the declared state of emergency and the immediate recovery period. Those who have already received final judgement on their eviction should be provided clear communication of when removals will resume, ensuring they have time to seek alternative accommodations. Emergency shelters and temporary housing resources are already at or near capacity, and forcibly displacing residents now would increase homelessness and place additional strain on an already overburdened system. Other communities, including multiple Kentucky counties, have halted enforcing eviction orders both during COVID and this current winter storm.</p>
+
+            <p>These measures would provide families with critical breathing room to recover, restore utilities, and return to work without the imminent threat of displacement. Eviction prevention during emergencies is a proven, cost-effective way to protect community stability, reduce long-term harm, and uphold tenants' legal right to due process.</p>
+
+            <p>Thank you for your consideration. We look forward to working with you to act swiftly in ensuring that no Nashvillian is evicted as a direct result of this disaster. Thank you for your leadership and attention to this urgent matter.</p>
+
+            <p class="letter-signoff">Sincerely,</p>
+
+            <ul class="letter-orgs">
+              <li>Black Mental Health Village</li>
+              <li>CourtWatch615</li>
+              <li>The Equity Alliance</li>
+              <li>Nashville People's Budget Coalition</li>
+              <li>Open Table Nashville</li>
+              <li>The ReMIX Way</li>
+              <li>Southeast Center for Cooperative Development</li>
+              <li>Stand Up Nashville</li>
+              <li>Tennessee Immigrant &amp; Refugee Rights Coalition</li>
+              <li>Tennessee Renters United</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Signatories -->
+        <div class="signatories">
+          <div class="signatories-label">Coalition Partners</div>
+          <div class="signatories-list">
+            <span class="signatory">Black Mental Health Village</span>
+            <span class="signatory">CourtWatch615</span>
+            <span class="signatory">The Equity Alliance</span>
+            <span class="signatory">Nashville People's Budget Coalition</span>
+            <span class="signatory">Open Table Nashville</span>
+            <span class="signatory">The ReMIX Way</span>
+            <span class="signatory">SE Center for Cooperative Development</span>
+            <span class="signatory">Stand Up Nashville</span>
+            <span class="signatory">TN Immigrant &amp; Refugee Rights Coalition</span>
+            <span class="signatory">Tennessee Renters United</span>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Signatories -->
-  <section class="signatories-section">
-    <div class="container">
-      <div class="section-label">Coalition Partners</div>
-      <h2 class="section-title">Organizations Supporting This Effort</h2>
+    <!-- ======================== -->
+    <!-- RIGHT PANEL: EMAIL GEN   -->
+    <!-- ======================== -->
+    <div class="right-panel">
+      <div class="panel-content">
+        <div class="action-label">Take Action</div>
+        <h2 class="action-title">Tell Nashville Leadership:<br>Halt Evictions Now</h2>
+        <p class="action-intro">
+          Your voice matters. Use the tool below to generate and send a message to local officials demanding they protect Nashville families during this emergency.
+        </p>
 
-      <div class="signatories-list">
-        <span class="signatory">Black Mental Health Village</span>
-        <span class="signatory">CourtWatch615</span>
-        <span class="signatory">The Equity Alliance</span>
-        <span class="signatory">Nashville People's Budget Coalition</span>
-        <span class="signatory">Open Table Nashville</span>
-        <span class="signatory">The ReMIX Way</span>
-        <span class="signatory">Southeast Center for Cooperative Development</span>
-        <span class="signatory">Stand Up Nashville</span>
-        <span class="signatory">Tennessee Immigrant & Refugee Rights Coalition</span>
-        <span class="signatory">Tennessee Renters United</span>
+        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">
+          <strong>Tip:</strong> Paste the copied emails into the <strong>BCC</strong> field of your email — officials are more likely to read individual-looking messages than mass emails.
+        </p>
+
+        <div class="email-actions">
+          <button onclick="copyAllEmails(this)">
+            Copy All Emails (paste in BCC)
+          </button>
+          <button onclick="launchEmailApp()">
+            Open in Email App
+          </button>
+        </div>
+
+        <div class="message-template">
+          <div class="message-header">
+            <h3 class="message-title">Your Message</h3>
+            <button onclick="generateNewMessage()" class="btn-generate">Generate New Message</button>
+          </div>
+
+          <!-- Subject Line -->
+          <div class="copy-section">
+            <div class="copy-header">
+              <span class="copy-label">SUBJECT LINE</span>
+              <button onclick="copyToClipboard('subject-text', this)" class="btn-copy">Copy</button>
+            </div>
+            <div id="subject-text" class="subject-content"></div>
+          </div>
+
+          <!-- Message Body -->
+          <div class="copy-section">
+            <div class="copy-header">
+              <span class="copy-label">MESSAGE</span>
+              <button onclick="copyToClipboard('message-text', this)" class="btn-copy">Copy</button>
+            </div>
+            <div id="message-text" class="message-content"></div>
+          </div>
+
+          <p class="template-note">
+            <strong>Quick send:</strong> Click "Open in Email App" to send to all recipients at once, or copy individual sections. Click "Generate New Message" for a fresh version. Don't forget to add your personal story!
+          </p>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      Eviction prevention during emergencies is a proven, cost-effective way to protect community stability, reduce long-term harm, and uphold tenants' legal right to due process.
-    </p>
-  </footer>
+  </div>
 
   <script>
     // Recipient emails - Mayor, Council Members, Sheriff's Office, General Sessions Court Judges, Metro Officials
@@ -745,13 +866,95 @@
       'jodiebell@jisnashville.gov'
     ];
 
-    // Message Generator
+    // Toggle full letter
+    function toggleLetter(btn) {
+      const body = document.getElementById('full-letter');
+      const isOpen = btn.classList.toggle('open');
+      body.classList.toggle('visible', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+    }
+
+    // Message Generator — expanded for maximum variety
     const messageVariants = {
       subjectTemplates: {
-        actions: ['Urgent Request:', 'Please Act Now:', 'Constituent Request:', 'Emergency Appeal:', 'Requesting Immediate Action:', 'Urgent:', 'Time-Sensitive Request:', 'Please Protect Nashville Families:'],
-        descriptors: ['Halt', 'Stop', 'Pause', 'Prevent', 'Suspend', 'Delay'],
-        things: ['Evictions During the Emergency', 'Emergency Evictions', 'Evictions During This Crisis', 'Eviction Proceedings', 'Storm-Related Evictions', 'Evictions Now'],
-        additions: ['', ' — Protect Nashville Families', ' — Emergency Action Needed', ' — Your Constituent', ' — Housing Crisis', '']
+        actions: [
+          'Urgent Request:', 'Please Act Now:', 'Constituent Request:', 'Emergency Appeal:',
+          'Requesting Immediate Action:', 'Urgent:', 'Time-Sensitive Request:',
+          'Please Protect Nashville Families:', 'Action Needed Immediately:',
+          'A Concerned Constituent Writes:', 'Nashville Needs Your Leadership:',
+          'Families Are Counting on You:', 'Emergency Request from a Nashvillian:',
+          'Your Constituent Urges:', 'An Urgent Plea:', 'Do Not Delay:',
+          'Nashville Renters Need Help Now:', 'Act Before It\u2019s Too Late:',
+          'Protect Our Neighbors:', 'Housing Emergency:',
+          'On Behalf of Nashville Families:', 'Critical Request:',
+          'Our Community Needs You:', 'Please Read \u2014 Urgent:',
+          'Winter Storm Eviction Crisis:', 'Demanding Action:',
+          'Tenants Are Waiting:', 'Leadership Is Needed Now:',
+          'Re: Nashville\u2019s Eviction Crisis:', 'Re: Winter Storm Emergency \u2014',
+          'A Nashvillian Asking for Help:', 'Don\u2019t Let Families Be Displaced:',
+          'Immediate Relief Needed:', 'Constituent Concern:',
+          'Calling on Nashville\u2019s Leaders:', 'The Clock Is Ticking:',
+          'Families Facing Eviction Need You:', 'Preventing Displacement:',
+          'No One Should Lose Their Home:', 'Emergency Housing Action Required:',
+          'Regarding the Eviction Crisis:', 'Protect Nashvillians from Eviction:',
+          'We Need Emergency Protections:', 'Stand With Nashville Renters:',
+          'Please Intervene:', 'Storm Recovery Must Include Eviction Relief:',
+          'Where Is the Eviction Relief?', 'Nashvillians Cannot Wait:'
+        ],
+        descriptors: [
+          'Halt', 'Stop', 'Pause', 'Prevent', 'Suspend', 'Delay',
+          'Block', 'Freeze', 'Postpone', 'Put a Moratorium on',
+          'Take Action to Stop', 'End', 'Intervene to Stop',
+          'Act Now to Halt', 'Use Your Power to Stop', 'Immediately Pause',
+          'Protect Families from', 'Shield Tenants from', 'Stand Against',
+          'Take a Stand Against', 'Don\u2019t Allow', 'Act to Prevent',
+          'Show Leadership and Halt', 'Step Up and Stop',
+          'Do the Right Thing and Halt', 'Please Immediately Suspend',
+          'Move Swiftly to Halt', 'Act Decisively to Stop',
+          'Demonstrate Leadership by Halting', 'Prioritize People Over',
+          'Take Emergency Action on', 'Issue Relief from',
+          'Provide Protection from', 'Declare a Moratorium on',
+          'Order a Halt to', 'Put a Stop to'
+        ],
+        things: [
+          'Evictions During the Emergency', 'Emergency Evictions',
+          'Evictions During This Crisis', 'Eviction Proceedings',
+          'Storm-Related Evictions', 'Evictions Now',
+          'Evictions in Nashville', 'Eviction Filings',
+          'Evictions During the State of Emergency', 'Forced Removals',
+          'Tenant Displacement', 'Winter Storm Evictions',
+          'Evictions While Families Recover', 'Eviction Court Proceedings',
+          'Eviction Hearings', 'Set-Outs During the Emergency',
+          'Eviction Orders', 'the Eviction Pipeline',
+          'Displacement of Nashville Families', 'Court-Ordered Evictions',
+          'Evictions Filed During the Disaster', 'Eviction Enforcement',
+          'Evictions That Punish Storm Victims', 'Landlord Eviction Filings',
+          'the Wave of Evictions', 'Evictions After the Winter Storm',
+          'the Eviction Crisis', 'Eviction Dockets',
+          'the Surge in Eviction Filings', 'Disaster-Related Evictions',
+          'Evictions of Vulnerable Families', 'Tenant Removals',
+          'These Unconscionable Evictions', 'Evictions During Recovery',
+          'Evictions Before Families Can Recover', 'the Displacement of Our Neighbors'
+        ],
+        additions: [
+          '', ' \u2014 Protect Nashville Families', ' \u2014 Emergency Action Needed',
+          ' \u2014 Your Constituent', ' \u2014 Housing Crisis', ' \u2014 Act Now',
+          ' \u2014 Please Respond', ' \u2014 Nashville Needs You',
+          ' \u2014 Before It\u2019s Too Late', ' \u2014 Families Are at Risk',
+          ' \u2014 This Cannot Wait', ' \u2014 People Over Process',
+          ' \u2014 Do the Right Thing', ' \u2014 Nashville Is Watching',
+          ' \u2014 Lives Are at Stake', ' \u2014 Time Is Running Out',
+          ' \u2014 An Urgent Request', ' \u2014 We Need Action Today',
+          ' \u2014 1,350 Evictions Filed in January', ' \u2014 56% Increase in Filings',
+          ' \u2014 183 Evictions Filed in One Week', ' \u2014 During a Declared Emergency',
+          ' \u2014 Recovery Requires Housing Stability', ' \u2014 Follow Knoxville\u2019s Lead',
+          ' \u2014 Shelters Are Already Full', ' \u2014 A Moral Imperative',
+          ' \u2014 Prevent Homelessness', ' \u2014 Tenant Rights Matter',
+          ' \u2014 From a Concerned Neighbor', ' \u2014 Demand for Emergency Relief',
+          ' \u2014 Where Is the Leadership?', ' \u2014 No More Excuses',
+          ' \u2014 Davidson County Must Act', ' \u2014 Renters Need Protection',
+          ' \u2014 Don\u2019t Displace Storm Victims', ' \u2014 Uphold Due Process'
+        ]
       },
       greetings: [
         "Dear Mayor O'Connell, Metro Council Members, and Local Officials,",
@@ -761,45 +964,88 @@
         "Dear Local Leaders,",
         "To Our Elected Officials,",
         "Dear Mayor, Council Members, and Judges,",
-        "To Those With the Power to Act,"
+        "To Those With the Power to Act,",
+        "Dear Mayor O'Connell and Davidson County Officials,",
+        "To the Leaders of Nashville and Davidson County,",
+        "Dear Nashville Decision-Makers,",
+        "To Mayor O'Connell, the Metro Council, and General Sessions Court Judges,",
+        "Dear Mayor O'Connell, Metro Legal Department, Metro Council Members, Davidson County Sheriff\u2019s Office, and General Sessions Court Judges,",
+        "To the Officials Who Can Make a Difference,",
+        "Dear Nashville Leadership,",
+        "To the Mayor, Council, Sheriff, and Judiciary,",
+        "Dear Elected and Appointed Officials of Davidson County,",
+        "To Everyone in a Position to Help Nashville Renters,"
       ],
       openers: [
-        "I'm writing to urge immediate action to halt evictions during the declared state of emergency. No one should lose their home because they were unable to work or safely live in their residence during a disaster.",
-        "As a Nashville resident, I'm calling on you to take emergency action to prevent evictions during this crisis. Families who lost power, income, and safety during the winter storm should not face homelessness as a result.",
+        "I\u2019m writing to urge immediate action to halt evictions during the declared state of emergency. No one should lose their home because they were unable to work or safely live in their residence during a disaster.",
+        "As a Nashville resident, I\u2019m calling on you to take emergency action to prevent evictions during this crisis. Families who lost power, income, and safety during the winter storm should not face homelessness as a result.",
         "I urge you to use every tool available to halt evictions during this emergency. Research shows eviction filings spike after weather disasters, especially in states with weak tenant protections like Tennessee.",
-        "I'm reaching out about the urgent need to prevent evictions during this state of emergency. With 1,350 evictions filed in January alone—a 56% increase from last year—we need leadership to act now.",
-        "Please take immediate action to protect Nashville families from eviction during this emergency. Many residents lost power, income, and the ability to work—they should not lose their homes too.",
-        "I'm writing as a concerned Nashvillian about the eviction crisis exacerbated by the winter storm. With rent due February 1st becoming legally late on February 5th, families need relief now.",
-        "I urge you to halt evictions immediately. Between last Monday and Saturday alone, 183 evictions were filed during a declared state of emergency. This is unconscionable.",
-        "As your constituent, I'm asking you to prevent evictions during this crisis. Emergency shelters are already at capacity—forcibly displacing more residents will only create more homelessness."
+        "I\u2019m reaching out about the urgent need to prevent evictions during this state of emergency. With 1,350 evictions filed in January alone\u2014a 56% increase from last year\u2014we need leadership to act now.",
+        "Please take immediate action to protect Nashville families from eviction during this emergency. Many residents lost power, income, and the ability to work\u2014they should not lose their homes too.",
+        "I\u2019m writing as a concerned Nashvillian about the eviction crisis exacerbated by the winter storm. With rent due February 1st becoming legally late on February 5th, families need relief now.",
+        "I urge you to halt evictions immediately. Between last Monday and Saturday alone, 183 evictions were filed by 109 landlords during a declared state of emergency. This is unconscionable.",
+        "As your constituent, I\u2019m asking you to prevent evictions during this crisis. Emergency shelters are already at capacity\u2014forcibly displacing more residents will only create more homelessness.",
+        "Over the past week and a half, Nashvillians have been directly impacted by the weather and subsequent infrastructure failures. I\u2019m writing because evictions are now compounding this disaster, and I need you to act.",
+        "Hundreds of Nashvillians were already facing eviction before the winter storm struck, before hundreds of thousands of NES customers lost power, and before many lost work and income. Now the situation is far worse. Please act.",
+        "No one should lose their home because they were unable to work, access childcare, or safely live in their residence during a declared emergency. Yet that is exactly what is happening right now in Nashville.",
+        "I\u2019m writing because 1,350 evictions were filed in January 2026\u2014a 56% increase from January 2025. Between last Monday and Saturday, 183 more were filed by 109 landlords. This must stop.",
+        "Households that fell behind on rent due February 1st are now legally late as of February 5th and face imminent eviction. These families need emergency protections, not displacement.",
+        "The winter storm has pushed many Nashville families to the brink. Lost income, prolonged power outages, and unsafe housing conditions have left people vulnerable. Eviction should not be added to that list.",
+        "I am a Nashville resident deeply concerned about the wave of evictions happening during this declared state of emergency. Families deserve the chance to recover before facing displacement.",
+        "As someone who cares about Nashville\u2019s future, I\u2019m asking you to halt evictions during this emergency. The infrastructure failures were not tenants\u2019 fault, and they should not be punished for them.",
+        "I\u2019m a Nashville voter writing about the eviction crisis. Many of my neighbors lost power for days, couldn\u2019t work, and are now facing eviction. This is a failure of leadership if we don\u2019t act."
       ],
       problems: [
-        "The claim that Nashville's 'hands are tied' by state law is a myth. Legal experts have identified a clear path forward through the Detainer Statute, which governs procedure—not substance—and lacks preemption language. Nashville has Home Rule authority to act.",
+        "Knoxville, which experienced severe weather without Nashville\u2019s scale of infrastructure failure, closed their eviction court both last week and again this week. Nashville should do the same. Tenants cannot reasonably be expected to appear in court while recovering from prolonged power outages and lost income.",
 
-        "Knoxville, which experienced severe weather without Nashville's scale of infrastructure failure, closed their eviction court both last week and this week. Nashville should do the same. Tenants cannot reasonably be expected to appear in court while recovering from prolonged power outages and lost income.",
+        "The Sheriff\u2019s Office can immediately suspend execution of eviction orders\u2014this is an operational choice, not a legal one. Multiple Kentucky counties have done exactly this during both COVID and this winter storm. Nashville can too.",
 
-        "The Sheriff's Office can immediately suspend execution of eviction orders—this is an operational choice, not a legal one. Jefferson County, Kentucky has done exactly this during both COVID and this winter storm. Nashville can too.",
+        "Mayor O'Connell announced a Winter Storm Recovery Fund with VOAD, The United Way, and the Community Foundation of Middle Tennessee. But these emergency funds must be made available immediately for rent relief through partners who can distribute them quickly and efficiently. Many Nashvillians will accrue late fees and receive eviction notices in the coming days if rental assistance is not provided in a timely manner.",
 
-        "Mayor O'Connell announced a Winter Storm Recovery Fund, but these emergency funds must be made available immediately for rent relief through partners who can distribute them quickly. Many Nashvillians will accrue late fees and receive eviction notices in the coming days if rental assistance is not provided in a timely manner.",
+        "During COVID-19, multiple versions of federal eviction moratoriums halted evictions. We recognize a local moratorium would face legal scrutiny, but there remain feasible pathways to slow and halt evictions\u2014including pausing dockets, granting automatic continuances, and suspending set-outs.",
 
-        "Even a local ordinance that is eventually challenged provides a 'fighting chance.' A law is law until a judge says it isn't. In that time, a family can find a new job, a child can finish their school semester, and a tenant can secure federal rental assistance.",
+        "Emergency shelters and temporary housing resources are already at or near capacity. Forcibly displacing residents now would increase homelessness and place additional strain on an already overburdened system. Those who have received final judgement on their eviction deserve clear communication and time to seek alternatives.",
 
-        "Metro Council can use the 'procedural lane' in the Detainer Statute to create a mandatory cooling-off period for all eviction filings. This doesn't touch state law on landlord-tenant relationships—it simply changes the timeline for court filings.",
+        "Preventing evictions during this period is a moral responsibility, a public health necessity, and upholds the legal right to due process for tenants living in inhabitable or unsafe conditions. Other communities have taken action\u2014Nashville can too.",
 
-        "Preventing evictions during emergencies is a moral responsibility, a public health necessity, and upholds the legal right to due process for tenants living in inhabitable or unsafe conditions. Other communities have taken action—Nashville can too."
+        "These measures would provide families with critical breathing room to recover, restore utilities, and return to work without the imminent threat of displacement. Eviction prevention during emergencies is a proven, cost-effective way to protect community stability and reduce long-term harm.",
+
+        "Nashville closed civil dockets on January 28th due to safety concerns. Those safety concerns still remain for many areas of our city. If it was too dangerous for court proceedings then, it is too dangerous for eviction proceedings now. General Sessions Judges should pause eviction hearings immediately.",
+
+        "Between last Monday and Saturday alone, 183 evictions were filed by 109 landlords during a declared state of emergency. Many of these tenants lost power, couldn\u2019t work, and are still recovering from infrastructure failures. Filing evictions against them during this time is unconscionable.",
+
+        "Research shows that eviction filings spike following weather-related emergencies, especially in states like Tennessee with weak tenant protections. Nashville is following this pattern exactly. We need leadership to break the cycle, not perpetuate it.",
+
+        "Hundreds of thousands of NES customers lost power during the storm. Many Nashvillians lost work and income. These are the same people now receiving eviction notices. The infrastructure failed them, and now the system is failing them again.",
+
+        "Households behind on rental payments due February 1st became legally late on February 5th. Without immediate rental assistance and eviction protections, these families will very soon become subject to eviction\u2014through no fault of their own.",
+
+        "The Winter Storm Recovery Fund is a good start, but it is essential that funds reach households quickly and efficiently. Bureaucratic delays will mean families lose their homes while waiting for assistance. Speed is critical.",
+
+        "Other communities are leading by example. Multiple Kentucky counties halted enforcing eviction orders during both COVID and this current winter storm. Knoxville closed their eviction court for two consecutive weeks. Nashville should not be the outlier that fails its residents.",
+
+        "General Sessions Judges should temporarily suspend all scheduled court dates for eviction proceedings and place a hold on new eviction hearings until after a set emergency recovery period. Automatic continuances should be granted for tenants with pending rental assistance applications or those without utilities."
       ],
-      personalPrompt: "[Write 1-2 sentences about why this matters to you personally—your neighborhood, your experience during the storm, someone you know facing eviction, etc.]",
+      personalPrompt: "[Write 1\u20132 sentences about why this matters to you personally\u2014your neighborhood, your experience during the storm, someone you know facing eviction, etc.]",
       closers: [
         "Please use every tool at your disposal to halt evictions and provide emergency rental assistance during this crisis.",
         "I urge you to act immediately to protect Nashville families from displacement during this emergency.",
-        "Nashville has the power to act. I'm asking you to use it before more families lose their homes.",
+        "Nashville has the power to act. I\u2019m asking you to use it before more families lose their homes.",
         "Please pause eviction dockets, halt eviction executions, and make emergency rental assistance available now.",
         "I expect our leadership to protect the most vulnerable during emergencies. Please take action today.",
-        "The 'preemption' excuse has expired. Nashville has the tools—I'm asking you to use them.",
         "Thank you for considering this urgent request. I look forward to seeing leadership take action to protect Nashville families.",
         "Please stand with tenants during this crisis. Halt evictions now.",
-        "I'm counting on you to do the right thing and prevent evictions during this state of emergency.",
-        "No one should become homeless because of a disaster. Please act now."
+        "I\u2019m counting on you to do the right thing and prevent evictions during this state of emergency.",
+        "No one should become homeless because of a disaster. Please act now.",
+        "We look forward to working with you to act swiftly in ensuring that no Nashvillian is evicted as a direct result of this disaster.",
+        "Every day without action is another day families face displacement. Please don\u2019t let another day pass.",
+        "I\u2019m watching closely and hoping to see the kind of leadership Nashville deserves. Please protect our neighbors.",
+        "There are feasible pathways to halt evictions. I\u2019m asking you to explore every one of them.",
+        "Eviction prevention during emergencies protects community stability and upholds tenants\u2019 legal right to due process. Please act accordingly.",
+        "Thank you for your leadership and attention to this urgent matter. I trust you will do right by Nashville families.",
+        "The families facing eviction are our neighbors, coworkers, and fellow Nashvillians. They deserve protection, not displacement.",
+        "Please ensure that no Nashvillian is evicted as a direct result of this disaster. The time to act is now.",
+        "I ask that you follow the lead of other cities and counties that have already taken action. Nashville\u2019s families deserve the same protection."
       ],
       signoffs: [
         "Thank you for your time,",
@@ -811,7 +1057,13 @@
         "Thank you for your attention to this matter,",
         "With respect,",
         "Urgently,",
-        "Counting on your leadership,"
+        "Counting on your leadership,",
+        "With hope and urgency,",
+        "Awaiting your response,",
+        "In solidarity with Nashville renters,",
+        "A concerned Nashville resident,",
+        "Grateful for your attention,",
+        "Please act swiftly,"
       ]
     };
 
