@@ -744,9 +744,13 @@
           Your voice matters. Use the tool below to generate and send a message to local officials demanding they protect Nashville families during this emergency.
         </p>
 
+        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">
+          <strong>Tip:</strong> Paste the copied emails into the <strong>BCC</strong> field of your email — officials are more likely to read individual-looking messages than mass emails.
+        </p>
+
         <div class="email-actions">
           <button onclick="copyAllEmails(this)">
-            Copy All Recipient Emails
+            Copy All Emails (paste in BCC)
           </button>
           <button onclick="launchEmailApp()">
             Open in Email App
@@ -786,9 +790,80 @@
   </div>
 
   <script>
-    // Recipient emails
+    // Recipient emails - Mayor, Council Members, Sheriff's Office, General Sessions Court Judges, Metro Officials
     const recipientEmails = [
-      // TODO: Add recipient email addresses here
+      'mayor@nashville.gov',
+      'Wally.dietz@nashville.gov',
+      'Tom.cross@nashville.gov',
+      'angie.henderson@nashville.gov',
+      'Zulfat.Suara@nashville.gov',
+      'Delishia.Porterfield@nashville.gov',
+      'Quin.EvansSegall@nashville.gov',
+      'burkley.allen@nashville.gov',
+      'olivia.hill@nashville.gov',
+      'joy.kimbrough@nashville.gov',
+      'kyonzte.toombs@nashville.gov',
+      'Jennifer.Gamble@nashville.gov',
+      'Mike.Cortese@nashville.gov',
+      'Sean.Parker@nashville.gov',
+      'clay.capp@nashville.gov',
+      'Emily.Benedict@nashville.gov',
+      'deonte.harrell@nashville.gov',
+      'Tonya.Hancock@nashville.gov',
+      'Jennifer.Webb@nashville.gov',
+      'Jeff.Eslick@nashville.gov',
+      'Erin.Evans@nashville.gov',
+      'Russ.Bradford@nashville.gov',
+      'Jordan.Huffman@nashville.gov',
+      'jeff.gregg@nashville.gov',
+      'Ginny.Welsch@nashville.gov',
+      'Terry.Vo@nashville.gov',
+      'Thomas.Cash@Nashville.gov',
+      'Jacob.Kupin@nashville.gov',
+      'Rollin.Horton@nashville.gov',
+      'Brandon.Taylor@nashville.gov',
+      'Sheri.Weiner@nashville.gov',
+      'Thom.Druffel@nashville.gov',
+      'brenda.gadd@nashville.gov',
+      'Jeff.Preptit@nashville.gov',
+      'Courtney.Johnston@nashville.gov',
+      'Bob.Nash@nashville.gov',
+      'David.Benton@nashville.gov',
+      'Tasha.Ellis@nashville.gov',
+      'Sandra.Sepulveda@nashville.gov',
+      'John.Rutherford@nashville.gov',
+      'Joy.Styles@nashville.gov',
+      'Antoinette.Lee@nashville.gov',
+      'Sandy.Ewing@nashville.gov',
+      'Jason.Spain@nashville.gov',
+      'Daron.hall@nashvillesheriff.org',
+      'Dhall@dcso.nashville.org',
+      'John.hudson@nashvillesheriff.gov',
+      'Karla.west@nashvillesheriff.gov',
+      'Galerobinson@jisnashville.gov',
+      'Melissablackburn@jisnashville.gov',
+      'Analescobar@jisnashville.gov',
+      'Robinkhayes@jisnashville.gov',
+      'Jimtodd@jisnashville.gov',
+      'Marcusfloyd@jisnashville.gov',
+      'Rachelbell@jisnashville.gov',
+      'Lyndajones@jisnashville.gov',
+      'Samecoleman@jisnashville.gov',
+      'Johnholt@jisnashville.gov',
+      'Kristin.wilson@nashville.gov',
+      'Keidron.turner@nashville.gov',
+      'Brian.sexton@nashville.gov',
+      'Brittany.Irby@nashville.gov',
+      'Kendra.abkowitz@nashville.gov',
+      'Jamari.brown@nashville.gov',
+      'Angela.hubbard@nashville.gov',
+      'April.calvin@nashville.gov',
+      'Renee.pratt@nashville.gov',
+      'jamekia.bies@nashville.gov',
+      'sanmi.areola@nashville.gov',
+      'renee.pratt@nashville.gov',
+      'April.Calvin@nashville.gov',
+      'jodiebell@jisnashville.gov'
     ];
 
     // Toggle full letter
@@ -1050,11 +1125,11 @@
 
       navigator.clipboard.writeText(emailString).then(() => {
         const originalText = button.textContent;
-        button.textContent = 'Copied!';
+        button.textContent = 'Copied! Paste in BCC';
 
         setTimeout(() => {
           button.textContent = originalText;
-        }, 2000);
+        }, 3000);
       });
     }
 
